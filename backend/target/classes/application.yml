@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: trigo-api
+  datasource:
+    url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/trigo}
+    username: ${DATABASE_USERNAME:trigo}
+    password: ${DATABASE_PASSWORD:trigo_dev_password}
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate.jdbc.time_zone: UTC
+  flyway:
+    enabled: true
+server:
+  port: ${SERVER_PORT:8080}
+app:
+  security:
+    username: ${API_USERNAME:admin}
+    password: ${API_PASSWORD:admin}
+
