@@ -11,7 +11,7 @@
   const $=(q,root=document)=>root.querySelector(q);
   const $$=(q,root=document)=>Array.from(root.querySelectorAll(q));
   const safe=(s)=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-  let map=null, markers=[], userMarker=null, initialized=false, selectedMapId=null, fittedOnce=false;
+  let map=null, markers=[], userMarker=null, initialized=false, selectedMapId=null;
   const demoLogo="./src/image/trigo-logo.jpg";
   function iso(d){const p=n=>String(n).padStart(2,"0");return d.getFullYear()+"-"+p(d.getMonth()+1)+"-"+p(d.getDate());}
   function dPlus(n){const d=new Date();d.setHours(12,0,0,0);d.setDate(d.getDate()+n);return d;}
