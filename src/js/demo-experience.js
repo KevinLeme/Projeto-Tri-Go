@@ -23,7 +23,11 @@
       heart:'<path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/>',
       pin:'<path d="M20 10c0 5.5-8 12-8 12S4 15.5 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/>',
       photo:'<rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="m21 16-5-5-9 9"/>',
-      check:'<path d="m4 12 5 5L20 6"/>'
+      check:'<path d="m4 12 5 5L20 6"/>',
+      medical:'<path d="M6 4v6a5 5 0 0 0 10 0V4M4 4h4m6 0h4"/><path d="M11 15v1a4.5 4.5 0 0 0 9 0v-2"/><circle cx="20" cy="12" r="2"/>',
+      video:'<rect x="3" y="5" width="13" height="14" rx="3"/><path d="m16 10 5-3v10l-5-3"/><path d="M7 12h5"/>',
+      hospital:'<path d="M4 21V5h16v16M9 5V2h6v3M9 11h6M12 8v6M8 21v-5h8v5"/>'
+
     };
     return '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+(s[which]||s.check)+'</svg>';
   }
@@ -283,7 +287,7 @@
     if(services){
       const options=c.services||[["Consulta médica",c.price,30]];
       if(!state.selectedService||!options.some(x=>x[0]===state.selectedService))state.selectedService=options[0][0];
-      services.innerHTML='<h3>Serviços oferecidos</h3>'+options.map(service=>'<button type="button" class="service-row '+(state.selectedService===service[0]?"selected":"")+'" data-service="'+safe(service[0])+'"><span class="service-symbol">✚</span><span><strong>'+safe(service[0])+'</strong><small>Presencial / demonstração · '+service[2]+' min</small></span><strong class="service-price">'+money(service[1])+'</strong></button>').join("");
+      services.innerHTML='<h3>Serviços oferecidos</h3>'+options.map(service=>'<button type="button" class="service-row '+(state.selectedService===service[0]?"selected":"")+'" data-service="'+safe(service[0])+'"><span class="service-symbol">'+svgIcon(service[0].toLowerCase().includes("tele")?"video":"medical")+'</span><span><strong>'+safe(service[0])+'</strong><small>Presencial / demonstração · '+service[2]+' min</small></span><strong class="service-price">'+money(service[1])+'</strong></button>').join("");
     }
     const accepted=$("#clinic-accepted");
     if(accepted){accepted.innerHTML='<span class="accepted-icon">✓</span><div><strong>Convênio exibido no protótipo</strong><small>'+safe(c.insurance)+' · aceitação não verificada</small></div><span>›</span>';}
