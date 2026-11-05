@@ -2,11 +2,15 @@
   "use strict";
 
   // Somente dados fictícios. Nenhuma informação é enviada a servidores.
+  // Todos os pontos são personagens/unidades de exemplo posicionados na região da Paulista para demonstrar o mapa.
+  // Não são estabelecimentos reais nem endereços verificados.
   const clinics = [
-    {id:"central",name:"Hospital Central (exemplo)",area:"Centro · unidade fictícia",specialty:"Clínica geral",price:200,rating:4.9,distance:5.5,availability:"Hoje",insurance:"Particular"},
-    {id:"viva",name:"Clínica Viva (exemplo)",area:"Paulista · unidade fictícia",specialty:"Pediatria",price:150,rating:4.8,distance:1.2,availability:"Amanhã",insurance:"Convênio ou particular"},
-    {id:"ortho",name:"Clínica OrthoVida (exemplo)",area:"Bairro Sul · unidade fictícia",specialty:"Ortopedia",price:180,rating:4.7,distance:2.8,availability:"Em 3 dias",insurance:"Particular"},
-    {id:"mais",name:"Centro Saúde Mais (exemplo)",area:"Bairro Norte · unidade fictícia",specialty:"Cardiologia",price:170,rating:4.8,distance:4.1,availability:"Amanhã",insurance:"Convênio ou particular"}
+    {id:"central",name:"Hospital Central",area:"Região da Paulista · exemplo",specialty:"Ortopedia",price:200,rating:4.9,distance:5.5,availability:"Hoje",insurance:"SulAmérica",lat:-23.5659,lng:-46.6565,services:[["Consulta médica",200,30],["Teleconsulta",150,20]]},
+    {id:"viva",name:"Clínica Viva • Paulista",area:"Bela Vista · exemplo",specialty:"Ortopedia",price:150,rating:4.8,distance:1.2,availability:"Amanhã",insurance:"Bradesco",lat:-23.5615,lng:-46.6541,services:[["Consulta médica",200,30],["Teleconsulta",150,20]]},
+    {id:"marcos",name:"Dr. Marcos Souza",area:"Consolação · exemplo",specialty:"Ortopedia",price:180,rating:4.7,distance:2.8,availability:"Em 3 dias",insurance:"Unimed",lat:-23.5580,lng:-46.6600,services:[["Consulta médica",180,30]]},
+    {id:"ortho",name:"Clínica OrthoVida",area:"Jardins · exemplo",specialty:"Ortopedia",price:150,rating:4.7,distance:7.2,availability:"Amanhã",insurance:"Particular",lat:-23.5681,lng:-46.6684,services:[["Consulta médica",150,30]]},
+    {id:"saude",name:"Centro Vida Saúde",area:"Paraíso · exemplo",specialty:"Clínica geral",price:160,rating:4.8,distance:3.6,availability:"Hoje",insurance:"Unimed",lat:-23.5730,lng:-46.6410,services:[["Clínica geral",160,30],["Teleconsulta",110,20]]},
+    {id:"infantil",name:"Clínica Bem Viver",area:"Bela Vista · exemplo",specialty:"Pediatria",price:170,rating:4.8,distance:4.0,availability:"Amanhã",insurance:"Bradesco",lat:-23.5559,lng:-46.6461,services:[["Consulta pediátrica",170,40]]}
   ];
   const screens = ["welcome","home","triage","result","clinics","clinic","appointment","success","bookings","profile"];
   const titles = {welcome:"Bem-vindo",home:"Início",triage:"Triagem",result:"Resultado",clinics:"Clínicas",clinic:"Detalhes da clínica",appointment:"Confirmar atendimento",success:"Agendamento demonstrativo",bookings:"Atendimentos",profile:"Perfil"};
@@ -16,7 +20,7 @@
   const escapeHtml = (value) => String(value).replace(/[&<>"']/g,(c)=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
   const todayLocal = () => { const d=new Date(); const z=(n)=>String(n).padStart(2,"0"); return d.getFullYear()+"-"+z(d.getMonth()+1)+"-"+z(d.getDate()); };
   const formatDate = (date) => date ? new Intl.DateTimeFormat("pt-BR",{day:"2-digit",month:"long",year:"numeric"}).format(new Date(date+"T12:00:00")) : "Não selecionada";
-  const state = {sort:"distance",search:"",clinicId:"central",date:"",time:"",patient:"",booking:null};
+  const state = {sort:"distance",search:"",clinicId:"central",date:"",time:"",patient:"",booking:null,insuranceOnly:false,mapMode:"list",selectedService:"",payment:"insurance",insurance:"",favorites:new Set(),isRescheduling:false};
   const clinicById = (id) => clinics.find((c)=>c.id===id) || clinics[0];
   const currentClinic = () => clinicById(state.clinicId);
   function navigate(screen) {
@@ -38,6 +42,7 @@
     if (screen==="success") renderSuccess();
     if (screen==="bookings") renderBookings();
     if (screen==="home") updateGreeting();
+    window.dispatchEvent(new CustomEvent("trigo:screen",{detail:{screen}}));
     window.scrollTo(0,0);
   }
   function updateGreeting() {
@@ -54,12 +59,12 @@
     $("#result-clinics").innerHTML=clinics.slice(0,2).map(clinicCard).join("");
   }
   function renderClinics() {
-    let list=clinics.filter((c)=>(c.name+" "+c.area+" "+c.specialty).toLocaleLowerCase("pt-BR").includes(state.search.toLocaleLowerCase("pt-BR")));
-    const orders={distance:(a,b)=>a.distance-b.distance,price:(a,b)=>a.price-b.price,available:(a,b)=>["Hoje","Amanhã","Em 3 dias"].indexOf(a.availability)-["Hoje","Amanhã","Em 3 dias"].indexOf(b.availability),rating:(a,b)=>b.rating-a.rating};
+    let list=clinics.filter((c)=>(c.name+" "+c.area+" "+c.specialty+" "+c.insurance).toLocaleLowerCase("pt-BR").includes(state.search.toLocaleLowerCase("pt-BR")) && (!state.insuranceOnly||c.insurance!=="Particular"));
+    const orders={distance:(a,b)=>a.distance-b.distance,price:(a,b)=>a.price-b.price,available:(a,b)=>["Hoje","Amanhã","Em 3 dias"].indexOf(a.availability)-["Hoje","Amanhã","Em 3 dias"].indexOf(b.availability),rating:(a,b)=>b.rating-a.rating,insurance:(a,b)=>a.insurance.localeCompare(b.insurance)};
     list=list.sort(orders[state.sort]||orders.distance);
     $("#clinic-cards").innerHTML=list.length?list.map(clinicCard).join(""):'<div class="content-card empty-state"><h2>Nenhum resultado nesta demonstração</h2><p>Tente outra especialidade ou nome de clínica.</p></div>';
     $("#clinic-count").textContent=list.length+" exemplo(s)";
-    $$(".filter-button").forEach((b)=>b.classList.toggle("is-selected",b.dataset.sort===state.sort));
+    $(".filter-button").forEach((b)=>b.classList.toggle("is-selected",b.dataset.sort==="insurance"?state.insuranceOnly:b.dataset.sort===state.sort));
     $("#clinic-search").value=state.search;
   }
   function renderClinicDetails() {
@@ -108,7 +113,8 @@
   }
   function chooseClinic(id) {
     state.clinicId=clinicById(id).id;
-    state.time="";state.date="";
+    state.time="";state.date="";state.selectedService="";state.insurance="";state.isRescheduling=false;
+    window.dispatchEvent(new CustomEvent("trigo:clinic",{detail:{clinicId:state.clinicId}}));
     navigate("clinic");
   }
   function validateTriage() {
@@ -131,16 +137,19 @@
     $("#confirm-error").hidden=true;
     state.patient=name;
     const c=currentClinic();
-    state.booking={clinic:c.name,clinicId:c.id,specialty:c.specialty,price:c.price,date:state.date,time:state.time,patient:name};
+    const existing=state.booking;
+    const chosenService=c.services?.find(item=>item[0]===state.selectedService);
+    state.booking={clinic:c.name,clinicId:c.id,specialty:c.specialty,price:chosenService?.[1]??c.price,date:state.date,time:state.time,patient:name,service:chosenService?.[0]||"Consulta médica",payment:state.payment,insurance:state.insurance,createdAt:existing?.createdAt||Date.now()};
+    state.isRescheduling=false;
     navigate("success");
   }
   function cancelBooking() {
     if(!state.booking)return;
-    if(window.confirm("Cancelar o agendamento de demonstração?")){state.booking=null;state.time="";navigate("bookings");}
+    if(window.confirm("Cancelar o agendamento fictício?")){state.booking=null;state.time="";state.isRescheduling=false;window.dispatchEvent(new CustomEvent("trigo:cancel"));navigate("bookings");}
   }
   function reschedule() {
     if(!state.booking)return navigate("clinics");
-    state.clinicId=state.booking.clinicId;state.patient=state.booking.patient;state.date=state.booking.date;state.time=state.booking.time;
+    state.clinicId=state.booking.clinicId;state.patient=state.booking.patient;state.date=state.booking.date;state.time=state.booking.time;state.payment=state.booking.payment||"insurance";state.insurance=state.booking.insurance||"";state.selectedService=state.booking.service||"";state.isRescheduling=true;
     navigate("clinic");
   }
   function saveCalendar() {
@@ -160,7 +169,7 @@
     if(!t)return;
     if(t.dataset.go){event.preventDefault();navigate(t.dataset.go);return;}
     if(t.dataset.clinic){chooseClinic(t.dataset.clinic);return;}
-    if(t.dataset.sort){state.sort=t.dataset.sort;renderClinics();return;}
+    if(t.dataset.sort){if(t.dataset.sort==="insurance"){state.insuranceOnly=!state.insuranceOnly;}else{state.sort=t.dataset.sort;}renderClinics();return;}
     if(t.dataset.time){state.time=t.dataset.time;$$(".time-slot").forEach((b)=>b.classList.toggle("is-selected",b.dataset.time===state.time));$("#appointment-error").hidden=true;return;}
     if(t.dataset.action==="cancel"||t.id==="cancel-appointment")cancelBooking();
     else if(t.dataset.action==="reschedule"||t.id==="reschedule")reschedule();
@@ -173,6 +182,8 @@
   $("#home-search").addEventListener("keydown",(e)=>{if(e.key==="Enter"){state.search=e.target.value;navigate("clinics");}});
   $("#home-search").addEventListener("input",(e)=>{state.search=e.target.value;});
   $("#appointment-date").addEventListener("change",(e)=>{state.date=e.target.value;$("#appointment-error").hidden=true;});
+  window.addEventListener("trigo:service",(event)=>{state.selectedService=event.detail.name;});
+  window.TriGo={clinics,state,navigate,chooseClinic,renderClinics,renderClinicDetails,renderConfirmation,renderBookings,clinicById,currentClinic,money,todayLocal,formatDate};
   window.addEventListener("hashchange",()=>renderScreen(currentScreen()));
   if(!location.hash)location.replace("#/welcome");
   renderScreen(currentScreen());
