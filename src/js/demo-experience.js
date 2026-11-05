@@ -26,7 +26,9 @@
       check:'<path d="m4 12 5 5L20 6"/>',
       medical:'<path d="M6 4v6a5 5 0 0 0 10 0V4M4 4h4m6 0h4"/><path d="M11 15v1a4.5 4.5 0 0 0 9 0v-2"/><circle cx="20" cy="12" r="2"/>',
       video:'<rect x="3" y="5" width="13" height="14" rx="3"/><path d="m16 10 5-3v10l-5-3"/><path d="M7 12h5"/>',
-      hospital:'<path d="M4 21V5h16v16M9 5V2h6v3M9 11h6M12 8v6M8 21v-5h8v5"/>'
+      hospital:'<path d="M4 21V5h16v16M9 5V2h6v3M9 11h6M12 8v6M8 21v-5h8v5"/>',
+      location:'<circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="2"/><path d="M12 1v4M12 19v4M1 12h4M19 12h4"/>',
+      search:'<circle cx="10.8" cy="10.8" r="7"/><path d="m16 16 5 5"/>'
 
     };
     return '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+(s[which]||s.check)+'</svg>';
@@ -125,6 +127,10 @@
     wrapper.hidden=true;
     wrapper.innerHTML="\n  <aside class=\"ride-map-sidebar\" aria-label=\"Clínicas demonstrativas\">\n    <div class=\"ride-sidebar-heading\"><span class=\"ride-sidebar-overline\">EXPLORAR CLÍNICAS</span><h2>Escolha seu atendimento</h2><p>Toque em uma clínica para destacá-la no mapa.</p></div>\n    <div class=\"ride-sidebar-list\" id=\"map-clinic-list\"></div>\n    <p class=\"ride-sidebar-disclaimer\">Pontos, valores e disponibilidade fictícios.</p>\n  </aside>\n  <div class=\"ride-map-scene\">\n    <div id=\"trigo-map\" role=\"region\" aria-label=\"Mapa interativo de clínicas fictícias na região da Avenida Paulista\"></div>\n    <div id=\"trigo-map-fallback\" class=\"map-fallback\" hidden><strong>Mapa temporariamente indisponível</strong><p>Consulte as clínicas pelo botão Lista.</p><button type=\"button\" data-view=\"list\">Ver lista de clínicas</button></div>\n    <div class=\"ride-map-floating\">\n      <div class=\"ride-map-search\">\n        <button id=\"map-back-to-list\" type=\"button\" aria-label=\"Ver clínicas em lista\">‹</button>\n        <label class=\"sr-only\" for=\"map-search\">Buscar clínica ou especialidade</label>\n        <input id=\"map-search\" type=\"search\" placeholder=\"Buscar clínica ou especialidade\" autocomplete=\"off\">\n        <span class=\"ride-search-lens\" aria-hidden=\"true\">⌕</span>\n      </div>\n      <div class=\"ride-map-filters\" role=\"group\" aria-label=\"Filtros rápidos\">\n        <button type=\"button\" class=\"ride-chip active\" data-map-filter=\"distance\">⌖ Perto no mapa</button>\n        <button type=\"button\" class=\"ride-chip\" data-map-filter=\"price\">R$ Menor preço</button>\n        <button type=\"button\" class=\"ride-chip\" data-map-filter=\"available\">◷ Disponibilidade</button>\n        <button type=\"button\" class=\"ride-chip\" data-map-filter=\"insurance\">✚ Convênio</button>\n      </div>\n    </div>\n    <button class=\"ride-recenter\" id=\"map-my-location\" type=\"button\" aria-label=\"Localizar-me no mapa\" title=\"Minha localização\">⌖</button>\n    <div class=\"ride-map-sheet\" id=\"map-bottom-sheet\" aria-label=\"Clínica selecionada\">\n      <div class=\"ride-sheet-handle\" aria-hidden=\"true\"></div>\n      <div class=\"ride-sheet-header\"><div><span class=\"ride-sheet-overline\">CLÍNICAS NA REGIÃO DE EXEMPLO</span><strong id=\"ride-results-count\">6 opções para explorar</strong></div><span id=\"ride-position-count\">1 de 6</span></div>\n      <div id=\"map-featured-card\"></div>\n      <div class=\"ride-sheet-footer\">\n        <div class=\"ride-sheet-paging\"><button type=\"button\" data-map-step=\"-1\" aria-label=\"Clínica anterior\">‹</button><button type=\"button\" data-map-step=\"1\" aria-label=\"Próxima clínica\">›</button></div>\n        <button type=\"button\" class=\"ride-booking-button\" id=\"ride-book-selected\">Ver horários <span>→</span></button>\n      </div>\n    </div>\n    <div class=\"ride-map-notice\">Mapa ilustrativo • Não representa clínicas reais</div>\n  </div>\n  <p id=\"map-note\" class=\"ride-map-access-note\" role=\"status\" aria-live=\"polite\">Os pontos exibidos são exemplos na região da Avenida Paulista. Nenhuma localização sua é consultada automaticamente.</p>";
     cards.before(wrapper);
+    const recenter=$("#map-my-location");
+    if(recenter)recenter.innerHTML=svgIcon("location");
+    const glass=$(".ride-search-lens");
+    if(glass)glass.innerHTML=svgIcon("search");
   }
   function filteredClinics(){
     const query=state.search.toLocaleLowerCase("pt-BR");
@@ -165,7 +171,7 @@
     const c=list.find(c=>c.id===selectedMapId)||list[0],idx=list.findIndex(v=>v.id===c.id);
     count.textContent=list.length+" clínicas demonstrativas";
     pos.textContent=(idx+1)+" de "+list.length;
-    card.innerHTML='<div class="ride-featured-main"><span class="ride-featured-logo" aria-hidden="true">✚</span><div class="ride-featured-copy"><strong>'+safe(c.name)+'</strong><span>'+safe(c.specialty)+' · '+safe(c.area)+'</span><div class="ride-featured-badges"><span>★ '+String(c.rating).replace(".",",")+'</span><span>◷ '+safe(c.availability)+'</span><span>'+safe(c.insurance)+'</span></div></div><div class="ride-featured-price"><small>A partir de</small><strong>'+money(c.price)+'</strong></div></div>';
+    card.innerHTML='<div class="ride-featured-main"><span class="ride-featured-logo" aria-hidden="true">'+svgIcon("medical")+'</span><div class="ride-featured-copy"><strong>'+safe(c.name)+'</strong><span>'+safe(c.specialty)+' · '+safe(c.area)+'</span><div class="ride-featured-badges"><span>★ '+String(c.rating).replace(".",",")+'</span><span>◷ '+safe(c.availability)+'</span><span>'+safe(c.insurance)+'</span></div></div><div class="ride-featured-price"><small>A partir de</small><strong>'+money(c.price)+'</strong></div></div>';
     if(book){book.disabled=false;book.dataset.clinic=c.id;}
     $$(".ride-sidebar-card").forEach(el=>{const selected=el.dataset.mapFocus===c.id;el.classList.toggle("selected",selected);el.setAttribute("aria-pressed",selected?"true":"false");});
     markers.forEach(marker=>{
@@ -187,7 +193,7 @@
     const list=filteredClinics();
     if(!list.some(c=>c.id===selectedMapId))selectedMapId=list[0]?.id||null;
     list.forEach(c=>{
-      const html='<div class="ride-price-pin '+(c.id===selectedMapId?"selected":"")+'"><span class="ride-pin-cross" aria-hidden="true">✚</span><span>'+money(c.price)+'</span></div>';
+      const html='<div class="ride-price-pin '+(c.id===selectedMapId?"selected":"")+'"><span class="ride-pin-cross" aria-hidden="true">'+svgIcon("medical")+'</span><span>'+money(c.price)+'</span></div>';
       const ico=L.divIcon({className:"ride-pin-wrapper",html,iconSize:[116,44],iconAnchor:[58,39],popupAnchor:[0,-36]});
       const marker=L.marker([c.lat,c.lng],{icon:ico,keyboard:true,title:c.name+" — "+money(c.price),trigoClinic:c.id}).addTo(map);
       marker.on("click",()=>selectMapClinic(c.id,true));
@@ -215,7 +221,7 @@
     const visible=filteredClinics();
     const sidebar=$("#map-clinic-list");
     if(sidebar){
-      sidebar.innerHTML=visible.map(c=>'<button type="button" class="ride-sidebar-card" data-map-focus="'+safe(c.id)+'"><span class="ride-sidebar-symbol">✚</span><span class="ride-sidebar-details"><strong>'+safe(c.name)+'</strong><small>'+safe(c.specialty)+' · '+safe(c.availability)+'</small><span>★ '+String(c.rating).replace(".",",")+' · '+safe(c.insurance)+'</span></span><strong class="ride-sidebar-price">'+money(c.price)+'</strong></button>').join("")||'<p class="ride-empty-state">Nenhuma clínica encontrada neste exemplo.</p>';
+      sidebar.innerHTML=visible.map(c=>'<button type="button" class="ride-sidebar-card" data-map-focus="'+safe(c.id)+'"><span class="ride-sidebar-symbol">'+svgIcon("hospital")+'</span><span class="ride-sidebar-details"><strong>'+safe(c.name)+'</strong><small>'+safe(c.specialty)+' · '+safe(c.availability)+'</small><span>★ '+String(c.rating).replace(".",",")+' · '+safe(c.insurance)+'</span></span><strong class="ride-sidebar-price">'+money(c.price)+'</strong></button>').join("")||'<p class="ride-empty-state">Nenhuma clínica encontrada neste exemplo.</p>';
     }
     $$(".ride-chip").forEach(b=>{
       const active=b.dataset.mapFilter==="insurance"?state.insuranceOnly:b.dataset.mapFilter===state.sort;
@@ -226,10 +232,10 @@
       setTimeout(()=>{
         if(!map)return;
         map.invalidateSize(true);
-        if(!fittedOnce && markers.length){
+        if(markers.length){
           const bounds=L.latLngBounds(visible.map(c=>[c.lat,c.lng]));
           map.fitBounds(bounds,{paddingTopLeft:[26,65],paddingBottomRight:[26,165],maxZoom:13,animate:false});
-          fittedOnce=true;
+
         }
       },120);
     }
