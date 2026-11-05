@@ -110,7 +110,7 @@
     }
     userPosition={lat,lng,label,mode};
     renderSelectedPosition();
-    setStatus("Mapa centralizado em "+label+". As clínicas exibidas são apenas exemplos.","success");
+    setStatus(""); // O cartão de região já confirma a seleção sem cobrir o mapa.
     return true;
   }
   function resetToDemo(){
