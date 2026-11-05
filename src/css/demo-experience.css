@@ -161,3 +161,25 @@
  .clinic-date-scroller{gap:3px}
  .map-toolbar{align-items:flex-start;flex-direction:column}
 }
+
+/* Ajustes finais das telas e retorno de agendamento. */
+.welcome-logo-bar{display:none;align-items:center;gap:9px;padding:8px 2px 17px;color:#10b981;font-size:19px;font-weight:800;letter-spacing:-.04em}
+.welcome-logo-bar img{width:38px;height:38px;object-fit:cover;border-radius:11px}
+.result-sort-label select{font-size:10px;padding:8px 10px;border:1px solid #dce7e4;border-radius:9px;background:#fff;color:#365850;max-width:145px}
+.sr-only{position:absolute;width:1px;height:1px;clip:rect(0,0,0,0);overflow:hidden;white-space:nowrap}
+#screen-result .section-heading{gap:8px}
+#screen-result .section-heading h2{font-size:14px}
+#screen-result .figma-clinic-footer{grid-template-columns:1fr auto}
+#screen-result .figma-clinic-footer .btn{background:#0b4f4a}
+.actual-demo-booking{display:block;appearance:none;text-align:left;color:#102a2b;cursor:pointer;width:100%;background:white;border:1px solid #dce7e4}
+.actual-demo-booking:hover{border-color:#10b981}
+@media(max-width:900px){
+  .welcome-logo-bar{display:flex}
+  #screen-welcome .welcome-layout{min-height:0}
+  #screen-welcome .welcome-illustration{margin-top:0}
+  #screen-result .result-sort-label select{max-width:118px;font-size:10px;padding:7px}
+  #screen-result .section-heading h2{font-size:12px}
+  #screen-result .recommendation h2{font-size:18px}
+  #screen-result .demo-priority{padding:11px 12px}
+  #screen-home .actual-demo-booking{min-height:92px}
+}
