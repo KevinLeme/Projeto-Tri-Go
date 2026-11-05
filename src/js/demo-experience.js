@@ -28,7 +28,8 @@
       video:'<rect x="3" y="5" width="13" height="14" rx="3"/><path d="m16 10 5-3v10l-5-3"/><path d="M7 12h5"/>',
       hospital:'<path d="M4 21V5h16v16M9 5V2h6v3M9 11h6M12 8v6M8 21v-5h8v5"/>',
       location:'<circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="2"/><path d="M12 1v4M12 19v4M1 12h4M19 12h4"/>',
-      search:'<circle cx="10.8" cy="10.8" r="7"/><path d="m16 16 5 5"/>'
+      search:'<circle cx="10.8" cy="10.8" r="7"/><path d="m16 16 5 5"/>',
+      sliders:'<path d="M4 7h10M18 7h2M4 17h2m4 0h10"/><path d="M14 4v6M8 14v6"/>'
 
     };
     return '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+(s[which]||s.check)+'</svg>';
@@ -130,7 +131,7 @@
     const recenter=$("#map-my-location");
     if(recenter)recenter.innerHTML=svgIcon("location");
     const toggle=$("#map-toggle-filters");
-    if(toggle)toggle.innerHTML=svgIcon("search");
+    if(toggle)toggle.innerHTML=svgIcon("sliders");
   }
   function filteredClinics(){
     const query=state.search.toLocaleLowerCase("pt-BR");
@@ -244,7 +245,7 @@
   function locateOnMap(){
     const node=$("#map-note");
     if(node){node.hidden=false;node.classList.add("is-visible");}
-    if(!navigator.geolocation){node.textContent="Este navegador não oferece geolocalização.";return;}
+    if(!navigator.geolocation){if(node)node.textContent="Este navegador não oferece geolocalização.";return;}
     node.textContent="Solicitando permissão para mostrar sua posição no mapa...";
     navigator.geolocation.getCurrentPosition(position=>{
       if(!map||!window.L)return;
