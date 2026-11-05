@@ -90,3 +90,15 @@ node --test tests/triagem.test.cjs tests/triagem-fluxo.test.cjs tests/mapa.test.
 ```
 
 A publicação em Cloudflare Pages deve ser validada em navegador mobile e desktop. Para uso real é indispensável projeto clínico supervisionado, avaliação de urgências por profissionais habilitados, autenticação e requisitos legais/LGPD.
+## Localização no mapa (GPS e endereço)
+
+- **Celular:** o mapa oferece o botão **Usar minha localização**. Após o usuário autorizar a localização para o site, nas próximas visitas da mesma sessão/permissão o aplicativo pode centralizar automaticamente. Caso a permissão esteja no estado `prompt`, o sistema só solicita acesso quando a pessoa tocar no botão.
+- **Computador:** a busca **Digitar endereço** fica visível no painel lateral, com pesquisa por rua, bairro ou cidade. O endereço pode ser utilizado também no celular, e o GPS pode ser utilizado no computador caso o navegador suporte.
+- O endereço é consultado somente após pressionar **Localizar**. A pessoa escolhe um dos resultados; não há autocomplete nem geocodificação reversa automática.
+- A busca de endereços usa a API pública **Nominatim/OpenStreetMap** apenas no protótipo. O endereço é enviado a esse terceiro ao solicitar a pesquisa, com aviso explícito na tela. Nunca informe dados sensíveis ou endereço residencial detalhado para testes. Atribuição cartográfica aparece no Leaflet.
+- O protótipo usa uma busca por ação, evita consultas automáticas por tecla e limita requisições por sessão. A API pública tem limite de uso de 1 requisição/segundo e não é adequada como infraestrutura de geocodificação de um produto com usuários simultâneos; antes de lançar, contratar provedor geográfico ou executar uma instância própria.
+- Coordenadas do GPS e do endereço selecionado ficam apenas na memória da aba; não são enviadas ao backend Tri-Go. O serviço de tiles recebe requisições cartográficas conforme a região mostrada, como acontece em mapas comuns.
+- **Clínicas exibidas continuam fictícias em São Paulo:** localizar-se em outra cidade mostra essa região no mapa, mas **não** cria nem sugere clínicas reais próximas. É possível retornar ao mapa de demonstração.
+- O serviço precisa de HTTPS e da autorização do navegador para acessar localização. Se a autorização for negada, a busca manual permanece disponível.
+
+Regressão sem dependências: `node --test tests/mapa-localizacao.test.cjs`.
