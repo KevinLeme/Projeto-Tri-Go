@@ -125,12 +125,12 @@
     wrapper.className="demo-map-wrap ride-map-layout";
     wrapper.id="demo-map-wrap";
     wrapper.hidden=true;
-    wrapper.innerHTML="\n  <aside class=\"ride-map-sidebar\" aria-label=\"Clínicas demonstrativas\">\n    <div class=\"ride-sidebar-heading\"><span class=\"ride-sidebar-overline\">EXPLORAR CLÍNICAS</span><h2>Escolha seu atendimento</h2><p>Toque em uma clínica para destacá-la no mapa.</p></div>\n    <div class=\"ride-sidebar-list\" id=\"map-clinic-list\"></div>\n    <p class=\"ride-sidebar-disclaimer\">Pontos, valores e disponibilidade fictícios.</p>\n  </aside>\n  <div class=\"ride-map-scene\">\n    <div id=\"trigo-map\" role=\"region\" aria-label=\"Mapa interativo de clínicas fictícias na região da Avenida Paulista\"></div>\n    <div id=\"trigo-map-fallback\" class=\"map-fallback\" hidden><strong>Mapa temporariamente indisponível</strong><p>Consulte as clínicas pelo botão Lista.</p><button type=\"button\" data-view=\"list\">Ver lista de clínicas</button></div>\n    <div class=\"ride-map-floating\">\n      <div class=\"ride-map-search\">\n        <button id=\"map-back-to-list\" type=\"button\" aria-label=\"Ver clínicas em lista\">‹</button>\n        <label class=\"sr-only\" for=\"map-search\">Buscar clínica ou especialidade</label>\n        <input id=\"map-search\" type=\"search\" placeholder=\"Buscar clínica ou especialidade\" autocomplete=\"off\">\n        <span class=\"ride-search-lens\" aria-hidden=\"true\">⌕</span>\n      </div>\n      <div class=\"ride-map-filters\" role=\"group\" aria-label=\"Filtros rápidos\">\n        <button type=\"button\" class=\"ride-chip active\" data-map-filter=\"distance\">⌖ Perto no mapa</button>\n        <button type=\"button\" class=\"ride-chip\" data-map-filter=\"price\">R$ Menor preço</button>\n        <button type=\"button\" class=\"ride-chip\" data-map-filter=\"available\">◷ Disponibilidade</button>\n        <button type=\"button\" class=\"ride-chip\" data-map-filter=\"insurance\">✚ Convênio</button>\n      </div>\n    </div>\n    <button class=\"ride-recenter\" id=\"map-my-location\" type=\"button\" aria-label=\"Localizar-me no mapa\" title=\"Minha localização\">⌖</button>\n    <div class=\"ride-map-sheet\" id=\"map-bottom-sheet\" aria-label=\"Clínica selecionada\">\n      <div class=\"ride-sheet-handle\" aria-hidden=\"true\"></div>\n      <div class=\"ride-sheet-header\"><div><span class=\"ride-sheet-overline\">CLÍNICAS NA REGIÃO DE EXEMPLO</span><strong id=\"ride-results-count\">6 opções para explorar</strong></div><span id=\"ride-position-count\">1 de 6</span></div>\n      <div id=\"map-featured-card\"></div>\n      <div class=\"ride-sheet-footer\">\n        <div class=\"ride-sheet-paging\"><button type=\"button\" data-map-step=\"-1\" aria-label=\"Clínica anterior\">‹</button><button type=\"button\" data-map-step=\"1\" aria-label=\"Próxima clínica\">›</button></div>\n        <button type=\"button\" class=\"ride-booking-button\" id=\"ride-book-selected\">Ver horários <span>→</span></button>\n      </div>\n    </div>\n    <div class=\"ride-map-notice\">Mapa ilustrativo • Não representa clínicas reais</div>\n  </div>\n  <p id=\"map-note\" class=\"ride-map-access-note\" role=\"status\" aria-live=\"polite\">Os pontos exibidos são exemplos na região da Avenida Paulista. Nenhuma localização sua é consultada automaticamente.</p>";
+    wrapper.innerHTML="\n  <aside class=\"ride-map-sidebar\" aria-label=\"Clínicas demonstrativas\">\n    <div class=\"ride-sidebar-heading\"><span class=\"ride-sidebar-overline\">EXPLORAR CLÍNICAS</span><h2>Escolha seu atendimento</h2><p>Toque em uma clínica para destacá-la no mapa.</p></div>\n    <div class=\"ride-sidebar-list\" id=\"map-clinic-list\"></div>\n    <p class=\"ride-sidebar-disclaimer\">Pontos, valores e disponibilidade fictícios.</p>\n  </aside>\n  <div class=\"ride-map-scene\">\n    <div id=\"trigo-map\" role=\"region\" aria-label=\"Mapa interativo de clínicas fictícias na região da Avenida Paulista\"></div>\n    <div id=\"trigo-map-fallback\" class=\"map-fallback\" hidden><strong>Mapa temporariamente indisponível</strong><p>Consulte as clínicas pelo botão Lista.</p><button type=\"button\" data-view=\"list\">Ver lista de clínicas</button></div>\n    <div class=\"ride-map-floating\">\n      <div class=\"ride-map-search\">\n        <button id=\"map-back-to-list\" type=\"button\" aria-label=\"Ver clínicas em lista\">‹</button>\n        <label class=\"sr-only\" for=\"map-search\">Buscar clínica ou especialidade</label>\n        <input id=\"map-search\" type=\"search\" placeholder=\"Buscar clínica ou especialidade\" autocomplete=\"off\">\n        <button type=\"button\" id=\"map-toggle-filters\" class=\"ride-filter-toggle\" aria-controls=\"map-filters\" aria-expanded=\"true\" aria-label=\"Mostrar ou ocultar filtros\">☷</button>\n      </div>\n      <div class=\"ride-map-filters\" id=\"map-filters\" role=\"group\" aria-label=\"Filtros rápidos\">\n        <button type=\"button\" class=\"ride-chip active\" data-map-filter=\"distance\">⌖ Perto no mapa</button>\n        <button type=\"button\" class=\"ride-chip\" data-map-filter=\"price\">R$ Menor preço</button>\n        <button type=\"button\" class=\"ride-chip\" data-map-filter=\"available\">◷ Disponibilidade</button>\n        <button type=\"button\" class=\"ride-chip\" data-map-filter=\"insurance\">✚ Convênio</button>\n      </div>\n    </div>\n    <button class=\"ride-recenter\" id=\"map-my-location\" type=\"button\" aria-label=\"Localizar-me no mapa\" title=\"Minha localização\">⌖</button>\n    <div class=\"ride-map-sheet\" id=\"map-bottom-sheet\" aria-label=\"Clínica selecionada\">\n      <div class=\"ride-sheet-handle\" aria-hidden=\"true\"></div>\n      <div class=\"ride-sheet-header\"><div><span class=\"ride-sheet-overline\">CLÍNICAS NA REGIÃO DE EXEMPLO</span><strong id=\"ride-results-count\">6 opções para explorar</strong></div><span id=\"ride-position-count\">1 de 6</span></div>\n      <div id=\"map-featured-card\"></div>\n      <div class=\"ride-sheet-footer\">\n        <div class=\"ride-sheet-paging\"><button type=\"button\" data-map-step=\"-1\" aria-label=\"Clínica anterior\">‹</button><button type=\"button\" data-map-step=\"1\" aria-label=\"Próxima clínica\">›</button></div>\n        <button type=\"button\" class=\"ride-booking-button\" id=\"ride-book-selected\">Ver horários <span>→</span></button>\n      </div>\n    </div>\n    <div class=\"ride-map-notice\" role=\"note\"><span class=\"ride-info-badge\" aria-hidden=\"true\">i</span><span><strong>Mapa ilustrativo</strong><small>Não representa clínicas reais.</small></span></div>\n    <p id=\"map-note\" class=\"ride-map-access-note\" role=\"status\" aria-live=\"polite\" hidden></p>\n  </div>";
     cards.before(wrapper);
     const recenter=$("#map-my-location");
     if(recenter)recenter.innerHTML=svgIcon("location");
-    const glass=$(".ride-search-lens");
-    if(glass)glass.innerHTML=svgIcon("search");
+    const toggle=$("#map-toggle-filters");
+    if(toggle)toggle.innerHTML=svgIcon("search");
   }
   function filteredClinics(){
     const query=state.search.toLocaleLowerCase("pt-BR");
@@ -243,7 +243,7 @@
   }
   function locateOnMap(){
     const node=$("#map-note");
-    node?.classList.add("is-visible");
+    if(node){node.hidden=false;node.classList.add("is-visible");}
     if(!navigator.geolocation){node.textContent="Este navegador não oferece geolocalização.";return;}
     node.textContent="Solicitando permissão para mostrar sua posição no mapa...";
     navigator.geolocation.getCurrentPosition(position=>{
@@ -386,6 +386,13 @@
       state.mapMode="list";
       renderMapView();return;
     }
+    if(button.id==="map-toggle-filters"){
+      const filters=$("#map-filters");
+      const open=button.getAttribute("aria-expanded")!=="true";
+      button.setAttribute("aria-expanded",String(open));
+      filters.hidden=!open;
+      return;
+    }
     if(button.dataset.mapFocus){
       selectMapClinic(button.dataset.mapFocus);return;
     }
@@ -408,7 +415,9 @@
     if(button.id==="map-reset"){
       if(map)map.setView([-23.563,-46.655],13);
       $("#map-note").textContent="Mapa de exemplo restaurado. Nenhuma clínica real é representada.";
-      setTimeout(()=>$("#map-note")?.classList.remove("is-visible"),3500);
+      $("#map-note").classList.add("is-visible");
+      $("#map-note").hidden=false;
+      setTimeout(()=>{const notice=$("#map-note");if(notice){notice.classList.remove("is-visible");notice.hidden=true;}},3500);
       return;
     }
     if(button.dataset.date){dateClick(button.dataset.date);return;}
