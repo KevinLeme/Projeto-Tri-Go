@@ -44,3 +44,17 @@ Para hospedar: publique **a pasta raiz da branch `front-end`** em um servidor de
 7. Revisar layout em 360px, 390px, 768px e 1366px.
 
 Branch `backend`: não modificada nesta etapa.
+
+## Atualização — Experiência Figma (novembro/2026)
+
+Foi adicionada a camada de demonstração das oito telas do Figma: logo oficial (arquivo JPG otimizado), filtros e cartões de clínicas, alternância lista/mapa com Leaflet e OpenStreetMap, galerias ilustrativas, especialidades, serviços, seleção de datas e horários, favoritos, convênio e cartão simulados, confirmação, calendário, remarcação e cancelamento.
+
+- `src/js/demo-experience.js` — interações e UI complementares de todas as telas.
+- `src/css/demo-experience.css` — aparência fiel ao estilo mobile e adaptação desktop.
+- `src/image/trigo-logo.jpg` — versão otimizada do logo fornecido.
+- `docs/FIGMA-E-FUNCIONALIDADES.md` — auditoria tela a tela, contratos de API e pontos pendentes.
+
+**Mapa:** usa Leaflet 1.9.4 por CDN com tiles OpenStreetMap e atribuição. Depende de conexão à internet. Os pinos correspondem a locais fictícios na região da Avenida Paulista e NÃO são estabelecimentos verificados. Para produção, contratar serviço de tiles adequado à demanda e conectar a clínicas reais com endereços autorizados.
+
+**NÃO CONECTAR DIRETAMENTE O BACKEND ATUAL À PÁGINA PÚBLICA.** A branch `backend` possui endpoints de pacientes e triagens, mas autenticação administrativa Basic e configuração de desenvolvimento; revise segurança e privacidade primeiro.
+
