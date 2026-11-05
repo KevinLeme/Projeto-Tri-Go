@@ -12,10 +12,12 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
   <link rel="stylesheet" href="src/css/demo-experience.css">
   <link rel="stylesheet" href="src/css/map-ride.css">
+  <link rel="stylesheet" href="src/css/triage-flow.css">
   <script defer src="src/js/ui-icons.js"></script>
   <script defer src="src/js/app.js"></script>
   <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script defer src="src/js/demo-experience.js"></script>
+  <script defer src="src/js/triage-flow.js"></script>
 </head>
 <body>
   <div class="app-shell">
@@ -65,37 +67,90 @@
           </div>
           <p class="preview-disclaimer">Agendamentos fictícios usados somente para demonstrar a interface.</p>
         </section>
-        <section id="screen-triage" class="screen" aria-labelledby="triage-title">
+        <section id="screen-triage" class="screen" aria-label="Questionário demonstrativo de sintomas">
   <div class="triage-mobile-header">
-    <button type="button" class="triage-top-icon" data-go="home" aria-label="Voltar para o início">‹</button>
-    <div class="triage-header-label"><strong>Triagem</strong><span>Suas respostas orientam o próximo passo</span></div>
-    <button type="button" class="triage-top-icon" data-go="home" aria-label="Fechar triagem">×</button>
+    <button type="button" class="triage-top-icon" data-go="home" aria-label="Voltar ao início">‹</button>
+    <div class="triage-header-label"><strong>Triagem Tri'Go</strong><span>Organize as informações antes de buscar atendimento</span></div>
+    <button type="button" class="triage-top-icon" data-go="home" aria-label="Fechar questionário">×</button>
   </div>
-  <div class="triage-form">
-    <div class="progress-top"><strong>Etapa 2 de 4</strong><span>50%</span></div>
-    <div class="progress-track"><span></span></div>
-    <h1 id="triage-title">Quais sintomas você está sentindo?</h1>
-    <p class="triage-intro">Selecione todos que se aplicam. Você poderá detalhar depois.</p>
-    <div class="symptom-grid" role="group" aria-label="Sintomas">
-      <label class="symptom-option"><input type="checkbox" name="symptom" value="Febre"><span class="symptom-glyph" aria-hidden="true">♨</span><strong>Febre</strong></label>
-      <label class="symptom-option"><input type="checkbox" name="symptom" value="Dor de cabeça"><span class="symptom-glyph" aria-hidden="true">◉</span><strong>Dor de cabeça</strong></label>
-      <label class="symptom-option"><input type="checkbox" name="symptom" value="Falta de ar"><span class="symptom-glyph" aria-hidden="true">≋</span><strong>Falta de ar</strong></label>
-      <label class="symptom-option"><input type="checkbox" name="symptom" value="Dor no peito"><span class="symptom-glyph" aria-hidden="true">♡</span><strong>Dor no peito</strong></label>
-      <label class="symptom-option"><input type="checkbox" name="symptom" value="Náusea"><span class="symptom-glyph" aria-hidden="true">◌</span><strong>Náusea</strong></label>
-      <label class="symptom-option"><input type="checkbox" name="symptom" value="Outro"><span class="symptom-glyph" aria-hidden="true">+</span><strong>Outro</strong></label>
-    </div>
-    <fieldset class="triage-duration"><legend>Há quanto tempo?</legend>
-      <div class="duration-grid" role="group" aria-label="Duração dos sintomas">
-        <label><input type="radio" name="duration" value="Hoje"><span>Hoje</span></label>
-        <label><input type="radio" name="duration" value="2–3 dias"><span>2–3 dias</span></label>
-        <label><input type="radio" name="duration" value="Mais tempo"><span>Mais tempo</span></label>
+  <div class="triage-flow">
+    <div class="triage-progress-head"><div><span class="eyebrow">QUESTIONÁRIO INFORMATIVO</span><strong id="triage-step-count">Etapa 1 de 4</strong></div><span id="triage-percent" aria-live="polite">25%</span></div>
+    <div class="triage-progress-rail" role="progressbar" aria-label="Progresso do questionário" aria-valuemin="0" aria-valuemax="4" aria-valuenow="1" id="triage-progressbar"><span id="triage-progress-fill" style="width:25%"></span></div>
+    <form id="triage-questionnaire" autocomplete="off" novalidate>
+      <div class="triage-stage" data-stage="1">
+        <div class="triage-heading"><span class="triage-stage-tag"><span aria-hidden="true">✚</span> SOBRE OS SINTOMAS</span><h1 id="triage-title">O que você está sentindo?</h1><p>Escolha uma ou mais opções. Não é necessário saber o nome de uma doença para responder.</p></div>
+        <fieldset class="triage-fieldset"><legend class="sr-only">Selecione os sintomas percebidos</legend>
+          <div class="symptom-grid">
+            <label class="symptom-option"><input type="checkbox" name="symptom" value="Febre"><span class="symptom-glyph" aria-hidden="true">♨</span><strong>Febre</strong></label>
+            <label class="symptom-option"><input type="checkbox" name="symptom" value="Dor de cabeça"><span class="symptom-glyph" aria-hidden="true">◉</span><strong>Dor de cabeça</strong></label>
+            <label class="symptom-option"><input type="checkbox" name="symptom" value="Falta de ar"><span class="symptom-glyph" aria-hidden="true">≋</span><strong>Falta de ar</strong></label>
+            <label class="symptom-option"><input type="checkbox" name="symptom" value="Dor no peito"><span class="symptom-glyph" aria-hidden="true">♡</span><strong>Dor no peito</strong></label>
+            <label class="symptom-option"><input type="checkbox" name="symptom" value="Náusea"><span class="symptom-glyph" aria-hidden="true">◌</span><strong>Náusea</strong></label>
+            <label class="symptom-option"><input type="checkbox" name="symptom" value="Tosse"><span class="symptom-glyph" aria-hidden="true">◌</span><strong>Tosse</strong></label>
+            <label class="symptom-option"><input type="checkbox" name="symptom" value="Dor abdominal"><span class="symptom-glyph" aria-hidden="true">◇</span><strong>Dor abdominal</strong></label>
+            <label class="symptom-option"><input type="checkbox" name="symptom" value="Tontura"><span class="symptom-glyph" aria-hidden="true">◉</span><strong>Tontura</strong></label>
+            <label class="symptom-option"><input type="checkbox" name="symptom" value="Dor no corpo"><span class="symptom-glyph" aria-hidden="true">♧</span><strong>Dor no corpo</strong></label>
+            <label class="symptom-option"><input type="checkbox" name="symptom" value="Outro"><span class="symptom-glyph" aria-hidden="true">+</span><strong>Outro sintoma</strong></label>
+          </div>
+        </fieldset>
+        <p class="triage-selection-count" id="triage-selected-count" aria-live="polite">Nenhuma opção selecionada</p>
+        <div class="triage-inline-info"><span aria-hidden="true">i</span><p>Esta etapa registra o que você relatou. Ela não identifica doenças ou determina gravidade.</p></div>
       </div>
-    </fieldset>
-    <div class="triage-bottom">
-      <p class="triage-safety">♧ &nbsp; Isto não substitui diagnóstico médico. Em emergência, ligue <a href="tel:192">192</a>.</p>
-      <p id="triage-error" class="form-error" role="alert" hidden>Selecione pelo menos um sintoma e uma duração.</p>
-      <button id="complete-triage" type="button" class="btn btn-primary btn-lg"><span aria-hidden="true">→</span><span>Continuar</span></button>
-    </div>
+      <div class="triage-stage" data-stage="2" hidden>
+        <div class="triage-heading"><span class="triage-stage-tag">◷ QUANDO E COMO</span><h2>Há quanto tempo e com que intensidade?</h2><p>Suas respostas ajudam a organizar uma descrição para conversar com um profissional.</p></div>
+        <fieldset class="triage-fieldset"><legend>Quando os sintomas começaram?</legend>
+          <div class="triage-choice-grid duration-options">
+            <label class="triage-choice"><input type="radio" name="duration" value="Hoje"><span>Hoje</span></label>
+            <label class="triage-choice"><input type="radio" name="duration" value="2–3 dias"><span>2–3 dias</span></label>
+            <label class="triage-choice"><input type="radio" name="duration" value="4–7 dias"><span>4–7 dias</span></label>
+            <label class="triage-choice"><input type="radio" name="duration" value="Mais de 7 dias"><span>Mais tempo</span></label>
+          </div>
+        </fieldset>
+        <fieldset class="triage-fieldset"><legend>Como você descreveria o desconforto?</legend>
+          <div class="triage-choice-grid">
+            <label class="triage-choice triage-choice-detail"><input type="radio" name="intensity" value="Leve"><span><strong>Leve</strong><small>Consigo seguir minha rotina</small></span></label>
+            <label class="triage-choice triage-choice-detail"><input type="radio" name="intensity" value="Moderado"><span><strong>Moderado</strong><small>Incomoda e dificulta tarefas</small></span></label>
+            <label class="triage-choice triage-choice-detail"><input type="radio" name="intensity" value="Intenso"><span><strong>Intenso</strong><small>Está difícil realizar atividades</small></span></label>
+          </div>
+        </fieldset>
+        <fieldset class="triage-fieldset"><legend>Desde que começou, você sente que...</legend>
+          <div class="triage-choice-grid">
+            <label class="triage-choice"><input type="radio" name="trend" value="Está igual"><span>Está igual</span></label>
+            <label class="triage-choice"><input type="radio" name="trend" value="Está piorando"><span>Está piorando</span></label>
+            <label class="triage-choice"><input type="radio" name="trend" value="Está melhorando"><span>Está melhorando</span></label>
+          </div>
+        </fieldset>
+      </div>
+      <div class="triage-stage" data-stage="3" hidden>
+        <div class="triage-heading"><span class="triage-stage-tag">! SEGURANÇA</span><h2>Algum sinal de alerta está acontecendo agora?</h2><p>Exemplos: dor forte no peito, falta de ar intensa, desmaio, dificuldade súbita para falar ou sangramento intenso.</p></div>
+        <div class="triage-safety-banner"><strong>Atenção a emergências</strong><p>Em caso de sintomas graves ou risco imediato, procure atendimento de urgência ou ligue <a href="tel:192">192 (SAMU)</a>. Não espere o resultado deste questionário.</p></div>
+        <fieldset class="triage-fieldset"><legend>Você percebe algum desses sinais?</legend>
+          <div class="triage-warning-options">
+            <label class="triage-warning-choice"><input type="radio" name="warning" value="Sim"><span><strong>Sim, percebo algum sinal</strong><small>Quero registrar que isso está acontecendo</small></span></label>
+            <label class="triage-warning-choice"><input type="radio" name="warning" value="Não percebi"><span><strong>Não percebi esses sinais</strong><small>Entendo que isso não é uma avaliação médica</small></span></label>
+            <label class="triage-warning-choice"><input type="radio" name="warning" value="Não sei"><span><strong>Não sei avaliar</strong><small>Tenho dúvida sobre o que estou sentindo</small></span></label>
+          </div>
+        </fieldset>
+        <div id="triage-warning-detail" class="triage-warning-detail" role="status" hidden><strong>Avaliação presencial pode ser necessária</strong><p>Se houver sintomas intensos ou súbitos, busque atendimento de urgência ou ligue 192. Esta demonstração não classifica risco.</p></div>
+        <label for="triage-notes" class="triage-notes-label">Quer acrescentar alguma informação? <span>(opcional)</span></label>
+        <textarea id="triage-notes" name="notes" maxlength="280" rows="3" placeholder="Ex.: sinto mais desconforto quando tento realizar minhas atividades. Não informe nome, telefone ou dados pessoais."></textarea>
+        <p class="triage-notes-count"><span id="triage-notes-length">0</span>/280 caracteres</p>
+      </div>
+      <div class="triage-stage" data-stage="4" hidden>
+        <div class="triage-heading"><span class="triage-stage-tag">✓ REVISAR</span><h2>Confira o que você informou</h2><p>Você pode voltar para ajustar qualquer resposta antes de visualizar o resumo.</p></div>
+        <div id="triage-review" class="triage-review" aria-live="polite"></div>
+        <div class="triage-privacy"><strong>Sobre seus dados</strong><p>Este protótipo mantém as respostas somente na memória desta aba. Não cria prontuário, não faz diagnóstico e não envia dados de saúde a uma clínica.</p></div>
+        <label class="triage-confirm"><input type="checkbox" id="triage-ack"><span>Entendo que este é um resumo informativo e não uma recomendação médica.</span></label>
+      </div>
+      <div class="triage-bottom">
+        <p id="triage-error" class="form-error" role="alert" hidden>Responda aos campos para continuar.</p>
+        <div class="triage-navigation">
+          <button type="button" id="triage-previous" class="btn btn-outline" data-triage-back hidden>Voltar</button>
+          <button type="button" id="complete-triage" class="btn btn-primary btn-lg" data-triage-next>Continuar <span aria-hidden="true">→</span></button>
+        </div>
+        <p class="triage-footer-notice">Não substitui avaliação médica. Se houver emergência, ligue <a href="tel:192">192</a>.</p>
+      </div>
+    </form>
   </div>
 </section>
         <section id="screen-result" class="screen" aria-labelledby="result-title">
