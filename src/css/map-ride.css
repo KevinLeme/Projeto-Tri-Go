@@ -66,7 +66,7 @@
   #screen-clinics.is-map-active>.section-heading,
   #screen-clinics.is-map-active>.footnote{display:none!important}
   #screen-clinics.is-map-active #clinic-cards{display:none!important}
-  #screen-clinics.is-map-active .ride-map-layout{position:fixed;display:block;inset:44px 0 calc(73px + env(safe-area-inset-bottom));width:100%;height:auto;min-height:0;max-height:none;margin:0!important;border:0!important;border-radius:0!important;box-shadow:none;z-index:18;overflow:hidden!important}
+  #screen-clinics.is-map-active .ride-map-layout{position:fixed;display:block;inset:0 0 calc(73px + env(safe-area-inset-bottom));width:100%;height:auto;min-height:0;max-height:none;margin:0!important;border:0!important;border-radius:0!important;box-shadow:none;z-index:18;overflow:hidden!important}
   .ride-map-sidebar{display:none}
   .ride-map-layout .ride-map-scene{height:100%;width:100%}
   .ride-map-floating{top:14px;left:14px;right:14px;gap:11px}
