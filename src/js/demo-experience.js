@@ -237,6 +237,7 @@
   }
   function locateOnMap(){
     const node=$("#map-note");
+    node?.classList.add("is-visible");
     if(!navigator.geolocation){node.textContent="Este navegador não oferece geolocalização.";return;}
     node.textContent="Solicitando permissão para mostrar sua posição no mapa...";
     navigator.geolocation.getCurrentPosition(position=>{
@@ -398,7 +399,12 @@
       renderMapView();return;
     }
     if(button.id==="map-my-location"){locateOnMap();return;}
-    if(button.id==="map-reset"){if(map)map.setView([-23.563,-46.655],13);$("#map-note").textContent="Os marcadores são fictícios. © OpenStreetMap contributors.";return;}
+    if(button.id==="map-reset"){
+      if(map)map.setView([-23.563,-46.655],13);
+      $("#map-note").textContent="Mapa de exemplo restaurado. Nenhuma clínica real é representada.";
+      setTimeout(()=>$("#map-note")?.classList.remove("is-visible"),3500);
+      return;
+    }
     if(button.dataset.date){dateClick(button.dataset.date);return;}
     if(button.dataset.service){chooseService(button.dataset.service);return;}
     if(button.id==="clinic-favorite"){const id=cNow().id;if(state.favorites.has(id))state.favorites.delete(id);else state.favorites.add(id);renderDetailsExtras();return;}
