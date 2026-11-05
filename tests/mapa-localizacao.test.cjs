@@ -132,5 +132,5 @@ test("retornar à demonstração não conserva marcador de localização",()=>{
   const {nodes,record,window}=mount();
   window.TriGoLocation.resetToDemo();
   assert.equal(record.reset,1);
-  assert.equal(nodes["ride-location-region"].hidden,true);
+  assert.equal(Object.values(nodes).find(element=>element.id==="ride-location-region")?.hidden,true);
 });
