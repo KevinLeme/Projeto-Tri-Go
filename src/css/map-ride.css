@@ -167,3 +167,56 @@
   .ride-map-access-note.is-visible{display:block}
   .ride-map-layout .ride-map-scene{overflow:hidden}
 }
+
+
+/* Zoom e ações de clínicas: controles acessíveis sem sobreposição. */
+@media(min-width:901px){
+  .ride-map-scene .leaflet-top.leaflet-right{
+    top:143px;
+    right:14px;
+  }
+  .ride-map-scene .leaflet-control-zoom{
+    margin:0!important;
+    display:flex!important;
+    flex-direction:column;
+    gap:5px;
+    border:0!important;
+    border-radius:13px!important;
+    background:transparent;
+    box-shadow:none!important;
+  }
+  .ride-map-scene .leaflet-control-zoom a{
+    display:grid!important;
+    place-items:center;
+    width:42px!important;
+    height:42px!important;
+    line-height:1!important;
+    border-radius:12px!important;
+    background:#fff!important;
+    color:#0d7651!important;
+    font-family:Inter,system-ui,sans-serif!important;
+    font-size:25px!important;
+    font-weight:600!important;
+    border:1px solid #e4eee8!important;
+    box-shadow:0 4px 14px rgba(17,58,38,.12);
+  }
+  .ride-map-scene .leaflet-control-zoom a:hover{
+    background:#e8f7ee!important;
+  }
+}
+.ride-sidebar-card{cursor:pointer;position:relative}
+.ride-sidebar-card:hover,
+.ride-sidebar-card:focus-visible{
+  border-color:#0fbd82;
+  box-shadow:0 4px 16px rgba(16,128,82,.12);
+}
+.ride-sidebar-card:focus-visible{outline:3px solid rgba(16,185,129,.35);outline-offset:2px}
+.ride-sidebar-details strong{white-space:normal;line-height:1.35}
+.ride-clinic-popup{display:grid;gap:8px;min-width:170px;color:#17392c}
+.ride-clinic-popup>strong{font-size:14px;font-weight:800}
+.ride-clinic-popup>span{font-size:11px;color:#547469}
+.ride-clinic-popup>button{padding:11px 15px;border:0;border-radius:11px;color:#fff;background:#0e7c58;font-size:12px;font-weight:800;cursor:pointer}
+.ride-clinic-popup>button:hover{background:#086746}
+.ride-map-scene .leaflet-popup-content{margin:14px}
+.ride-map-scene .leaflet-popup-content-wrapper{border-radius:16px;box-shadow:0 6px 28px rgba(15,59,39,.19)}
+.ride-map-scene .leaflet-popup-close-button{right:6px!important;top:5px!important}
