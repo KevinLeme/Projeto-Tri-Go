@@ -20,7 +20,7 @@
   const escapeHtml = (value) => String(value).replace(/[&<>"']/g,(c)=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
   const todayLocal = () => { const d=new Date(); const z=(n)=>String(n).padStart(2,"0"); return d.getFullYear()+"-"+z(d.getMonth()+1)+"-"+z(d.getDate()); };
   const formatDate = (date) => date ? new Intl.DateTimeFormat("pt-BR",{day:"2-digit",month:"long",year:"numeric"}).format(new Date(date+"T12:00:00")) : "Não selecionada";
-  const state = {sort:"distance",search:"",clinicId:"central",date:"",time:"",patient:"",booking:null,insuranceOnly:false,mapMode:"list",selectedService:"",payment:"insurance",insurance:"",favorites:new Set(),isRescheduling:false};
+  const state = {sort:"distance",search:"",clinicId:"central",date:"",time:"",patient:"",booking:null,insuranceOnly:false,mapMode:"map",selectedService:"",payment:"insurance",insurance:"",favorites:new Set(),isRescheduling:false};
   const clinicById = (id) => clinics.find((c)=>c.id===id) || clinics[0];
   const currentClinic = () => clinicById(state.clinicId);
   function navigate(screen) {
