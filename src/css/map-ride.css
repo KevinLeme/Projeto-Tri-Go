@@ -119,3 +119,14 @@
 @media(prefers-reduced-motion:reduce){
   .ride-sidebar-card,.ride-chip{transition:none}
 }
+
+/* Ícones consistentes nas seis opções de triagem e nos serviços. */
+#screen-triage .symptom-glyph{display:grid;place-items:center;width:27px;height:27px;border-radius:8px}
+#screen-triage .symptom-glyph .ui-icon{display:block;width:20px;height:20px;stroke-width:1.9;fill:none}
+#screen-triage .symptom-option:has(input:checked) .symptom-glyph .ui-icon{stroke:#fff}
+#screen-clinic .service-symbol svg{display:block;width:19px;height:19px;stroke-width:1.85}
+#screen-clinic .service-row{gap:12px;min-height:59px;border-radius:12px}
+#screen-clinic .service-symbol{width:37px;height:37px;background:#e9f6f0;color:#0b845e;border-radius:11px}
+#screen-clinic .service-row.selected .service-symbol{background:#d6f3e6;color:#067b58}
+#screen-clinic .service-row .service-price{font-weight:800}
+#screen-clinic .service-row:hover{border-color:#8bdcbb}
