@@ -1,0 +1,64 @@
+/* Tri'Go: escolha de localização no mapa, desktop e mobile. */
+.ride-location-tools{pointer-events:auto;background:rgba(255,255,255,.98);border:1px solid #e0eee6;border-radius:16px;padding:10px;box-shadow:0 6px 25px rgba(15,67,45,.13);min-width:0}
+.ride-location-buttons{display:flex;align-items:center;gap:7px}
+.ride-location-buttons button{display:flex;align-items:center;justify-content:center;gap:7px;flex:1;min-width:0;min-height:40px;padding:9px 10px;border-radius:11px;border:1px solid #d6e8de;color:#0c7050;background:#f1faf5;font-size:11px;font-weight:750;line-height:1.3;white-space:normal;text-align:center;box-shadow:none;transition:border-color .15s,background .15s}
+.ride-location-buttons button:hover{background:#e2f5ea;border-color:#9cdbc0;transform:none}
+.ride-location-buttons button:focus-visible,.ride-address-fields input:focus-visible,.ride-address-fields button:focus-visible,.ride-address-result:focus-visible,.ride-region-back:focus-visible{outline:2px solid #10b981;outline-offset:2px}
+.ride-location-buttons .ride-gps-button{background:#0e7c58;border-color:#0e7c58;color:#fff}
+.ride-location-buttons .ride-gps-button:hover,.ride-location-buttons .ride-gps-button.is-active{background:#0b6448;color:#fff}
+.ride-location-buttons button>span{font-size:20px;line-height:1;flex-shrink:0}
+.ride-location-buttons button:disabled{opacity:.55;cursor:wait}
+.ride-address-panel{display:grid;gap:9px;margin-top:10px;padding:10px 3px 0;border-top:1px solid #e7f0e9}
+.ride-address-panel[hidden],.ride-address-results[hidden],.ride-location-status[hidden],.ride-location-region[hidden]{display:none!important}
+.ride-address-panel label{font-size:12px;color:#2e5948;font-weight:750}
+.ride-address-fields{display:flex;gap:6px;min-width:0}
+.ride-address-fields input{background:#fff;min-width:0;flex:1;width:0;min-height:41px;padding:8px 10px;border:1px solid #cfded6;border-radius:10px;color:#173b2a;font-size:12px;outline:none}
+.ride-address-fields input::placeholder{font-size:11px;color:#90a39a}
+.ride-address-fields button{border-radius:10px;min-width:0;padding:9px 11px;background:#0e7c58;color:#fff;border:0;font-size:11px;font-weight:800;white-space:nowrap}
+.ride-address-fields button:disabled{opacity:.55;cursor:wait}
+.ride-address-panel p{font-size:10px;line-height:1.5;color:#667c71;margin:0}
+.ride-address-results{display:grid;gap:5px;max-height:170px;overflow-y:auto;padding:7px;border:1px solid #e0ece5;border-radius:11px;background:#f8fcfa}
+.ride-address-result{padding:9px 10px;width:100%;border:1px solid transparent;border-radius:9px;color:#285744;background:#fff;text-align:left;font-size:11px;line-height:1.4;white-space:normal;word-break:break-word}
+.ride-address-result:hover{background:#e6f7ed;border-color:#c4e5d3}
+.ride-location-in-sidebar{margin:0 11px 12px;border-radius:12px;box-shadow:none;background:#f8fcfa;flex-shrink:0}
+.ride-location-in-sidebar .ride-location-buttons{display:grid;grid-template-columns:1fr 1fr}
+.ride-location-in-sidebar .ride-location-buttons button{padding:8px 4px;font-size:10px}
+.ride-location-in-sidebar .ride-location-buttons button>span{font-size:16px}
+.ride-location-in-sidebar .ride-address-fields{flex-direction:column}
+.ride-location-in-sidebar .ride-address-fields input{width:100%}
+.ride-location-in-sidebar .ride-address-fields button{min-height:38px}
+.ride-location-status{position:absolute;z-index:1101;left:17px;right:17px;top:auto;bottom:88px;max-width:460px;padding:11px 14px;border:1px solid #bce6d1;border-radius:12px;background:#edfbf3;color:#20573f;font-size:11px;line-height:1.5;box-shadow:0 6px 24px rgba(10,71,42,.14)}
+.ride-location-status[data-type="error"]{background:#fff6e7;color:#7b4c16;border-color:#f0d5a7}
+.ride-location-status[data-type="success"]{background:#eaf9f0;color:#176943}
+.ride-location-region{position:absolute;z-index:890;left:17px;right:auto;bottom:156px;max-width:390px;display:grid;gap:10px;background:rgba(255,255,255,.96);border:1px solid #d8ede1;border-radius:15px;padding:14px 15px;box-shadow:0 6px 26px rgba(13,71,39,.16)}
+.ride-location-region strong{font-size:12px;color:#134d36;display:block;line-height:1.35}
+.ride-location-region p{font-size:11px;color:#536e5f;line-height:1.48;margin:5px 0 0}
+.ride-region-back{background:#0e7c58;border:0;border-radius:10px;padding:9px 13px;min-height:37px;color:#fff;font-size:11px;font-weight:800}
+.ride-location-region .ride-region-back:hover{background:#0b6749}
+.ride-location-in-sidebar .ride-address-result{white-space:normal}
+@media(min-width:901px){
+ .ride-location-in-sidebar+.ride-sidebar-list{min-height:0}
+ .ride-map-scene .ride-location-status{max-width:min(340px,calc(100% - 95px))}
+ .ride-map-scene .ride-location-region{bottom:94px;max-width:360px}
+ .ride-map-scene .ride-location-region+.ride-map-notice{bottom:18px}
+}
+@media(max-width:900px){
+ .ride-map-floating .ride-location-tools{border-radius:15px;padding:7px 9px;margin-top:-2px;box-shadow:0 4px 16px rgba(12,64,41,.16)}
+ .ride-location-buttons button{font-size:11px;min-height:38px;padding:7px 5px;line-height:1.2}
+ .ride-location-buttons button>span{font-size:18px}
+ .ride-address-panel{margin-top:7px;padding-top:8px}
+ .ride-address-fields input{width:0;min-height:40px}
+ .ride-address-panel p{font-size:9px}
+ .ride-address-results{max-height:130px}
+ .ride-location-status{left:12px;right:12px;bottom:321px;max-width:none;font-size:10px;padding:10px 12px}
+ .ride-location-region{left:12px;right:12px;bottom:352px;max-width:none;padding:10px 12px;gap:7px}
+ .ride-location-region strong{font-size:11px}
+ .ride-location-region p{font-size:10px;margin-top:4px}
+ .ride-region-back{min-height:34px;padding:7px 10px;font-size:10px}
+ .ride-map-scene .ride-recenter{bottom:271px}
+}
+@media(max-width:390px){
+ .ride-location-buttons button{font-size:10px;gap:4px}
+ .ride-location-tools{padding:6px}
+ .ride-address-fields button{padding:8px 9px}
+}
