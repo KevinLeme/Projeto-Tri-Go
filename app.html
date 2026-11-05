@@ -7,6 +7,7 @@
   <meta name="description" content="Tri-Go — Protótipo navegável de triagem e agendamento de consultas.">
   <title>Tri-Go | Aplicativo</title>
   <link rel="stylesheet" href="src/css/app.css">
+  <link rel="stylesheet" href="src/css/figma-refinement.css">
   <script defer src="src/js/app.js"></script>
 </head>
 <body>
@@ -25,6 +26,7 @@
       <a class="back-website" href="./index.html">← Voltar ao site</a>
     </aside>
     <div class="workspace">
+      <div class="device-status" aria-hidden="true"><span class="device-time">9:41</span><span class="device-indicators"><span class="signal-bars"><i></i><i></i><i></i><i></i></span><span class="wifi-symbol">◔</span><span class="battery-symbol"></span></span></div>
       <header class="topbar">
         <a class="mobile-brand" href="#/home"><span class="brand-mark" aria-hidden="true">✚</span> Tri<span>Go</span></a>
         <div class="topbar-heading"><small>TRI-GO / DEMONSTRAÇÃO</small><strong id="page-title">Bem-vindo ao Tri-Go</strong></div>
@@ -42,14 +44,14 @@
           <div class="search-wrap"><span aria-hidden="true">⌕</span><input id="home-search" aria-label="Buscar clínica ou especialidade" placeholder="Buscar clínica, bairro ou especialidade" autocomplete="off"><button class="icon-button" type="button" data-go="clinics" aria-label="Pesquisar clínicas">⚙</button></div>
           <div class="triage-callout"><div class="callout-heading"><span class="callout-icon" aria-hidden="true">☷</span><div><h2>Conte o que está sentindo</h2><p>Triagem demonstrativa com orientação sobre os próximos passos.</p></div></div><button class="btn btn-bright" type="button" data-go="triage">Iniciar triagem gratuita <span aria-hidden="true">→</span></button></div>
           <div class="section-heading"><h2>Especialidades</h2><button class="text-link" type="button" data-go="clinics">Ver todas →</button></div>
-          <div class="specialty-grid"><button type="button" data-go="clinics"><span>⚕</span>Clínica geral</button><button type="button" data-go="clinics"><span>♡</span>Pediatria</button><button type="button" data-go="clinics"><span>♧</span>Ortopedia</button><button type="button" data-go="clinics"><span>✚</span>Cardiologia</button></div>
+          <div class="specialty-grid"><button type="button" data-go="clinics"><span>⚕</span>Clínica geral</button><button type="button" data-go="clinics"><span>♙</span>Pediatria</button><button type="button" data-go="clinics"><span>♧</span>Ortopedia</button></div>
           <div class="section-heading"><h2>Encontre atendimento</h2><button class="text-link" type="button" data-go="clinics">Ver clínicas →</button></div>
           <div class="home-quickcards"><button class="quick-card" type="button" data-go="clinics"><span class="quick-icon">⌖</span><strong>Clínicas próximas</strong><small>Explore os locais da demonstração</small><span class="quick-arrow">→</span></button><button class="quick-card" type="button" data-go="bookings"><span class="quick-icon">▣</span><strong>Meus agendamentos</strong><small>Veja suas reservas de teste</small><span class="quick-arrow">→</span></button></div>
           <div class="inline-alert"><strong>Importante:</strong> Se você está com sintomas graves, procure atendimento de urgência. Em emergências, ligue 192.</div>
         </section>
         <section id="screen-triage" class="screen" aria-labelledby="triage-title">
           <div class="screen-top"><button type="button" class="back-button" data-go="home" aria-label="Voltar">←</button><div><span class="eyebrow">TRIAGEM</span><h1 id="triage-title">Suas respostas orientam o próximo passo</h1></div></div>
-          <div class="content-card triage-form"><div class="progress-top"><strong>Questionário de sintomas</strong><span>Etapa 2 de 4 · Demonstração</span></div><div class="progress-track"><span></span></div><h2>Quais sintomas você está sentindo?</h2><p class="muted">Selecione os que se aplicam. Este formulário é apenas uma demonstração visual, não realiza diagnóstico ou classificação de risco.</p>
+          <div class="content-card triage-form"><div class="progress-top"><strong>Etapa 2 de 4</strong><span>50%</span></div><div class="progress-track"><span></span></div><h2>Quais sintomas você está sentindo?</h2><p class="muted">Selecione todos que se aplicam. Você poderá detalhar depois.</p>
             <div class="symptom-grid" role="group" aria-label="Sintomas">
               <label class="symptom-option"><input type="checkbox" name="symptom" value="Febre"><span aria-hidden="true">♨</span>Febre</label>
               <label class="symptom-option"><input type="checkbox" name="symptom" value="Dor de cabeça"><span aria-hidden="true">◉</span>Dor de cabeça</label>
@@ -60,7 +62,7 @@
             </div>
             <label class="field-label" for="duration">Há quanto tempo?</label><div class="duration-grid" role="group" aria-label="Duração"><label><input type="radio" name="duration" value="Hoje"><span>Hoje</span></label><label><input type="radio" name="duration" value="2–3 dias"><span>2–3 dias</span></label><label><input type="radio" name="duration" value="Mais tempo"><span>Mais tempo</span></label></div>
             <div class="inline-alert emergency"><strong>Atenção:</strong> falta de ar intensa, dor forte no peito ou sinais de emergência exigem atendimento imediato. Ligue 192.</div>
-            <p id="triage-error" class="form-error" role="alert" hidden>Selecione pelo menos um sintoma e uma duração.</p><button id="complete-triage" type="button" class="btn btn-primary btn-lg">Continuar <span>→</span></button><p class="footnote">Isto não substitui diagnóstico médico.</p>
+            <p id="triage-error" class="form-error" role="alert" hidden>Selecione pelo menos um sintoma e uma duração.</p><button id="complete-triage" type="button" class="btn btn-primary btn-lg">Continuar <span>→</span></button><p class="footnote">Este protótipo não realiza diagnóstico ou classificação de risco.</p>
           </div>
         </section>
         <section id="screen-result" class="screen" aria-labelledby="result-title">
