@@ -22,7 +22,21 @@
       '<p>Busque por cidade, bairro ou rua. Ao pesquisar, o texto será enviado ao OpenStreetMap/Nominatim; evite endereços residenciais completos.</p>'+
       '<div id="ride-address-results" class="ride-address-results" role="group" aria-label="Endereços encontrados" hidden></div>'+
     '</form>';
-  floating.appendChild(toolbar);
+  // No desktop, o endereço fica no painel lateral e não cobre o mapa.
+  // No celular, os dois botões aparecem sobre o mapa como nos apps de mobilidade.
+  function moveLocationToolbar(){
+    const sidebar=root.querySelector(".ride-map-sidebar");
+    const list=sidebar?.querySelector(".ride-sidebar-list");
+    if(window.matchMedia("(min-width:901px)").matches && list){
+      sidebar.insertBefore(toolbar,list);
+      toolbar.classList.add("ride-location-in-sidebar");
+    }else{
+      floating.appendChild(toolbar);
+      toolbar.classList.remove("ride-location-in-sidebar");
+    }
+  }
+  moveLocationToolbar();
+  window.addEventListener("resize",moveLocationToolbar);
 
   const status=document.createElement("div");
   status.id="ride-location-status";
