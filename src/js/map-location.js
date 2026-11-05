@@ -278,7 +278,7 @@
     }
   });
   // Tela PC: endereço já expandido. Celular: GPS e botão de endereço visíveis.
-  if(!isMobile())setAddressOpen(true);
+  setAddressOpen(!isMobile());
   window.addEventListener("trigo:screen",event=>{
     if(event.detail?.screen==="clinics"&&window.TriGo?.state?.mapMode==="map"){
       useGpsIfAlreadyGranted();
