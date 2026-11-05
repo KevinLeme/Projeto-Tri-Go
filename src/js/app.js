@@ -36,7 +36,7 @@
     if (screen==="success") renderSuccess();
     if (screen==="bookings") renderBookings();
     if (screen==="home") updateGreeting();
-    window.scrollTo({top:0,behavior:"instant"});
+    window.scrollTo(0,0);
   }
   function updateGreeting() {
     const hour=new Date().getHours();
