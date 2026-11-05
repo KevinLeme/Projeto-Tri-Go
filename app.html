@@ -8,6 +8,7 @@
   <title>Tri-Go | Aplicativo</title>
   <link rel="stylesheet" href="src/css/app.css">
   <link rel="stylesheet" href="src/css/figma-refinement.css">
+  <script defer src="src/js/ui-icons.js"></script>
   <script defer src="src/js/app.js"></script>
 </head>
 <body>
@@ -42,21 +43,21 @@
         <section id="screen-home" class="screen" aria-labelledby="home-title">
           <div class="page-heading"><div><p class="muted greeting">Boa tarde, Mariana</p><h1 id="home-title">Como podemos ajudar?</h1></div><span class="avatar big">MS</span></div>
           <div class="search-wrap"><span aria-hidden="true">⌕</span><input id="home-search" aria-label="Buscar clínica ou especialidade" placeholder="Buscar clínica, bairro ou especialidade" autocomplete="off"><button class="icon-button" type="button" data-go="clinics" aria-label="Pesquisar clínicas">⚙</button></div>
-          <div class="triage-callout"><div class="callout-heading"><span class="callout-icon" aria-hidden="true">☷</span><div><h2>Conte o que está sentindo</h2><p>Triagem demonstrativa com orientação sobre os próximos passos.</p></div></div><button class="btn btn-bright" type="button" data-go="triage">Iniciar triagem gratuita <span aria-hidden="true">→</span></button></div>
+          <div class="triage-callout"><div class="callout-heading"><span class="callout-icon" aria-hidden="true">☷</span><div><h2>Conte o que está sentindo</h2><p>Triagem gratuita de demonstração, em cerca de 2 minutos.</p></div></div><button class="btn btn-bright" type="button" data-go="triage"><span class="button-arrow" aria-hidden="true">→</span> Iniciar triagem gratuita</button></div>
           <div class="section-heading"><h2>Especialidades</h2><button class="text-link" type="button" data-go="clinics">Ver todas →</button></div>
           <div class="specialty-grid"><button type="button" data-go="clinics"><span>⚕</span>Clínica geral</button><button type="button" data-go="clinics"><span>♙</span>Pediatria</button><button type="button" data-go="clinics"><span>♧</span>Ortopedia</button></div>
           <div class="section-heading"><h2>Próximos agendamentos</h2><button class="text-link" type="button" data-go="bookings">Ver todos</button></div>
           <div class="preview-appointments" aria-label="Agendamentos de exemplo">
             <article class="preview-appointment">
-              <div class="appointment-person"><span class="doctor-avatar teal">CA</span><div><strong>Dr. Carlos Almeida</strong><small>Clínica geral · exemplo</small></div><span class="appointment-state ok">Exemplo</span></div>
-              <div class="appointment-info">▣ &nbsp; Amanhã, 10:30 &nbsp; &nbsp; ⌖ &nbsp; Clínica Central</div>
+              <div class="appointment-person"><span class="doctor-avatar teal">CA</span><div><strong>Dr. Carlos Almeida</strong><small>Clínica geral · exemplo</small></div><span class="appointment-state ok">Confirmado</span></div>
+              <div class="appointment-info"><span class="appointment-date-info"><span class="appointment-calendar-icon" aria-hidden="true">▣</span> Amanhã, 10:30</span><span class="appointment-address-info"><span class="appointment-location-icon" aria-hidden="true">⌖</span> Clínica Central</span></div>
             </article>
             <article class="preview-appointment">
-              <div class="appointment-person"><span class="doctor-avatar peach">RF</span><div><strong>Dra. Regina Fonseca</strong><small>Pediatria · exemplo</small></div><span class="appointment-state pending">Exemplo</span></div>
-              <div class="appointment-info">▣ &nbsp; Consulta ilustrativa &nbsp; &nbsp; ⌖ &nbsp; Hospital São Lucas</div>
+              <div class="appointment-person"><span class="doctor-avatar peach">RF</span><div><strong>Dra. Regina Fonseca</strong><small>Pediatria · exemplo</small></div><span class="appointment-state pending">Pendente</span></div>
+              <div class="appointment-info"><span class="appointment-date-info"><span class="appointment-calendar-icon" aria-hidden="true">▣</span> Sex, 14 Nov · 14:00</span><span class="appointment-address-info"><span class="appointment-location-icon" aria-hidden="true">⌖</span> Hospital São Lucas</span></div>
             </article>
           </div>
-          <p class="preview-disclaimer">Informações e agendamentos meramente ilustrativos.</p>
+          <p class="preview-disclaimer">Agendamentos fictícios usados somente para demonstrar a interface.</p>
         </section>
         <section id="screen-triage" class="screen" aria-labelledby="triage-title">
   <div class="triage-mobile-header">
