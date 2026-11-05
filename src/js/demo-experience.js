@@ -98,28 +98,29 @@
     if(!root||!b)return;
     root.innerHTML='<button type="button" data-go="bookings" class="preview-appointment actual-demo-booking"><div class="appointment-person"><span class="doctor-avatar teal">✓</span><div><strong>'+safe(b.clinic)+'</strong><small>'+safe(b.service||b.specialty)+'</small></div><span class="appointment-state ok">Simulado</span></div><div class="appointment-info"><span>'+safe(api.formatDate(b.date))+' · '+safe(b.time)+'</span><span>Ver agendamento →</span></div></button>';
   }
+
   function prepareClinics(){
     const screen=$("#screen-clinics");
     if(!screen)return;
     const heading=$(".page-heading",screen);
-    if(heading){heading.innerHTML='<div><span class="eyebrow">CLÍNICAS</span><h1 id="clinics-title">Encontre seu atendimento</h1><p class="muted">Clínicas e pontos do mapa são fictícios.</p></div>';}
+    if(heading)heading.innerHTML='<div><span class="eyebrow">CLÍNICAS</span><h1 id="clinics-title">Explore no mapa</h1><p class="muted">Pontos e clínicas fictícios para demonstração.</p></div>';
     const bar=$(".filter-bar",screen);
     if(bar&&!bar.querySelector('[data-sort="insurance"]')){
       bar.querySelector('[data-sort="rating"]')?.remove();
       bar.insertAdjacentHTML("beforeend",'<button type="button" class="filter-button" data-sort="insurance">Convênio</button>');
     }
-    const title=$("#clinic-cards");
-    if(!title)return;
+    const cards=$("#clinic-cards");
+    if(!cards)return;
     const holder=document.createElement("div");
     holder.className="clinics-view-switch";
-    holder.innerHTML='<div class="view-toggle" role="group" aria-label="Visualização das clínicas"><button type="button" class="view-choice selected" data-view="list" aria-pressed="true">☷ Lista</button><button type="button" class="view-choice" data-view="map" aria-pressed="false">⌖ Mapa</button></div><span class="view-demo-label">Pontos ilustrativos · Av. Paulista</span>';
-    title.parentElement.insertBefore(holder,title);
+    holder.innerHTML='<div class="view-toggle" role="group" aria-label="Visualização das clínicas"><button type="button" class="view-choice" data-view="list" aria-pressed="false">☷ Lista</button><button type="button" class="view-choice selected" data-view="map" aria-pressed="true">⌖ Mapa</button></div><span class="view-demo-label">Demonstração · Região da Paulista</span>';
+    cards.before(holder);
     const wrapper=document.createElement("div");
-    wrapper.className="demo-map-wrap";
+    wrapper.className="demo-map-wrap ride-map-layout";
     wrapper.id="demo-map-wrap";
     wrapper.hidden=true;
-    wrapper.innerHTML='<div class="map-toolbar"><span>Mapa demonstrativo da região da Paulista</span><button class="map-location" id="map-my-location" type="button">⌖ Minha localização</button></div><div id="trigo-map" role="region" aria-label="Mapa de clínicas fictícias na região da Avenida Paulista"></div><div id="trigo-map-fallback" class="map-fallback" hidden><strong>Mapa indisponível</strong><p>Não foi possível carregar os mapas neste navegador. Você ainda pode selecionar uma clínica pela lista.</p></div><p id="map-note" class="map-note">Os marcadores são ilustrativos e não representam endereços de estabelecimentos reais. Dados cartográficos: © OpenStreetMap contributors.</p><div id="map-clinic-list" class="map-clinic-list"></div>';
-    title.parentElement.insertBefore(wrapper,title);
+    wrapper.innerHTML="\n  <aside class=\"ride-map-sidebar\" aria-label=\"Clínicas demonstrativas\">\n    <div class=\"ride-sidebar-heading\"><span class=\"ride-sidebar-overline\">EXPLORAR CLÍNICAS</span><h2>Escolha seu atendimento</h2><p>Toque em uma clínica para destacá-la no mapa.</p></div>\n    <div class=\"ride-sidebar-list\" id=\"map-clinic-list\"></div>\n    <p class=\"ride-sidebar-disclaimer\">Pontos, valores e disponibilidade fictícios.</p>\n  </aside>\n  <div class=\"ride-map-scene\">\n    <div id=\"trigo-map\" role=\"region\" aria-label=\"Mapa interativo de clínicas fictícias na região da Avenida Paulista\"></div>\n    <div id=\"trigo-map-fallback\" class=\"map-fallback\" hidden><strong>Mapa temporariamente indisponível</strong><p>Consulte as clínicas pelo botão Lista.</p><button type=\"button\" data-view=\"list\">Ver lista de clínicas</button></div>\n    <div class=\"ride-map-floating\">\n      <div class=\"ride-map-search\">\n        <button id=\"map-back-to-list\" type=\"button\" aria-label=\"Ver clínicas em lista\">‹</button>\n        <label class=\"sr-only\" for=\"map-search\">Buscar clínica ou especialidade</label>\n        <input id=\"map-search\" type=\"search\" placeholder=\"Buscar clínica ou especialidade\" autocomplete=\"off\">\n        <span class=\"ride-search-lens\" aria-hidden=\"true\">⌕</span>\n      </div>\n      <div class=\"ride-map-filters\" role=\"group\" aria-label=\"Filtros rápidos\">\n        <button type=\"button\" class=\"ride-chip active\" data-map-filter=\"distance\">⌖ Perto no mapa</button>\n        <button type=\"button\" class=\"ride-chip\" data-map-filter=\"price\">R$ Menor preço</button>\n        <button type=\"button\" class=\"ride-chip\" data-map-filter=\"available\">◷ Disponibilidade</button>\n        <button type=\"button\" class=\"ride-chip\" data-map-filter=\"insurance\">✚ Convênio</button>\n      </div>\n    </div>\n    <button class=\"ride-recenter\" id=\"map-my-location\" type=\"button\" aria-label=\"Localizar-me no mapa\" title=\"Minha localização\">⌖</button>\n    <div class=\"ride-map-sheet\" id=\"map-bottom-sheet\" aria-label=\"Clínica selecionada\">\n      <div class=\"ride-sheet-handle\" aria-hidden=\"true\"></div>\n      <div class=\"ride-sheet-header\"><div><span class=\"ride-sheet-overline\">CLÍNICAS NA REGIÃO DE EXEMPLO</span><strong id=\"ride-results-count\">6 opções para explorar</strong></div><span id=\"ride-position-count\">1 de 6</span></div>\n      <div id=\"map-featured-card\"></div>\n      <div class=\"ride-sheet-footer\">\n        <div class=\"ride-sheet-paging\"><button type=\"button\" data-map-step=\"-1\" aria-label=\"Clínica anterior\">‹</button><button type=\"button\" data-map-step=\"1\" aria-label=\"Próxima clínica\">›</button></div>\n        <button type=\"button\" class=\"ride-booking-button\" id=\"ride-book-selected\">Ver horários <span>→</span></button>\n      </div>\n    </div>\n    <div class=\"ride-map-notice\">Mapa ilustrativo • Não representa clínicas reais</div>\n  </div>\n  <p id=\"map-note\" class=\"ride-map-access-note\" role=\"status\" aria-live=\"polite\">Os pontos exibidos são exemplos na região da Avenida Paulista. Nenhuma localização sua é consultada automaticamente.</p>";
+    cards.before(wrapper);
   }
   function filteredClinics(){
     const query=state.search.toLocaleLowerCase("pt-BR");
