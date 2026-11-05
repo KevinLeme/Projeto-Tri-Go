@@ -130,3 +130,10 @@
 #screen-clinic .service-row.selected .service-symbol{background:#d6f3e6;color:#067b58}
 #screen-clinic .service-row .service-price{font-weight:800}
 #screen-clinic .service-row:hover{border-color:#8bdcbb}
+
+/* Ícones vetoriais nos marcadores, cartões e controles do mapa. */
+.ride-pin-cross svg{width:13px;height:13px;display:block;stroke-width:2}
+.ride-featured-logo svg{width:23px;height:23px}
+.ride-sidebar-symbol svg{width:19px;height:19px}
+.ride-recenter svg{display:block;width:22px;height:22px}
+.ride-search-lens svg{display:block;width:20px;height:20px}
