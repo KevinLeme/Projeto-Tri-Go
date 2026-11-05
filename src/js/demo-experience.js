@@ -144,8 +144,8 @@
     if(map)return true;
     const node=$("#trigo-map");
     if(!node || !window.L)return false;
-    map=L.map(node,{scrollWheelZoom:false,zoomControl:false}).setView([-23.563,-46.655],13);
-    L.control.zoom({position:"bottomright"}).addTo(map);
+    map=L.map(node,{scrollWheelZoom:window.matchMedia("(min-width:901px)").matches,zoomControl:false}).setView([-23.563,-46.655],13);
+    L.control.zoom({position:"topright"}).addTo(map);
     L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{
       attribution:'&copy; <a href="https://www.openstreetmap.org/copyright" rel="noopener" target="_blank">OpenStreetMap</a> contributors',
       maxZoom:19
@@ -197,7 +197,12 @@
       const html='<div class="ride-price-pin '+(c.id===selectedMapId?"selected":"")+'"><span class="ride-pin-cross" aria-hidden="true">'+svgIcon("medical")+'</span><span>'+money(c.price)+'</span></div>';
       const ico=L.divIcon({className:"ride-pin-wrapper",html,iconSize:[116,44],iconAnchor:[58,39],popupAnchor:[0,-36]});
       const marker=L.marker([c.lat,c.lng],{icon:ico,keyboard:true,title:c.name+" — "+money(c.price),trigoClinic:c.id}).addTo(map);
-      marker.on("click",()=>selectMapClinic(c.id,true));
+      const popup=document.createElement("div");
+      popup.className="ride-clinic-popup";
+      popup.innerHTML='<strong>'+safe(c.name)+'</strong><span>'+safe(c.specialty)+' · '+money(c.price)+'</span><button type="button" data-clinic="'+safe(c.id)+'">Ver horários →</button>';
+      marker.bindPopup(popup,{autoPan:true,closeButton:true,maxWidth:260});
+
+      marker.on("click",()=>{selectMapClinic(c.id,true);marker.openPopup();});
       markers.push(marker);
     });
   }
@@ -222,7 +227,7 @@
     const visible=filteredClinics();
     const sidebar=$("#map-clinic-list");
     if(sidebar){
-      sidebar.innerHTML=visible.map(c=>'<button type="button" class="ride-sidebar-card" data-map-focus="'+safe(c.id)+'"><span class="ride-sidebar-symbol">'+svgIcon("hospital")+'</span><span class="ride-sidebar-details"><strong>'+safe(c.name)+'</strong><small>'+safe(c.specialty)+' · '+safe(c.availability)+'</small><span>★ '+String(c.rating).replace(".",",")+' · '+safe(c.insurance)+'</span></span><strong class="ride-sidebar-price">'+money(c.price)+'</strong></button>').join("")||'<p class="ride-empty-state">Nenhuma clínica encontrada neste exemplo.</p>';
+      sidebar.innerHTML=visible.map(c=>'<button type="button" class="ride-sidebar-card" aria-label="Abrir detalhes e agendar em '+safe(c.name)+'" data-map-focus="'+safe(c.id)+'"><span class="ride-sidebar-symbol">'+svgIcon("hospital")+'</span><span class="ride-sidebar-details"><strong>'+safe(c.name)+'</strong><small>'+safe(c.specialty)+' · '+safe(c.availability)+'</small><span>★ '+String(c.rating).replace(".",",")+' · '+safe(c.insurance)+'</span></span><strong class="ride-sidebar-price">'+money(c.price)+'</strong></button>').join("")||'<p class="ride-empty-state">Nenhuma clínica encontrada neste exemplo.</p>';
     }
     $$(".ride-chip").forEach(b=>{
       const active=b.dataset.mapFilter==="insurance"?state.insuranceOnly:b.dataset.mapFilter===state.sort;
@@ -395,7 +400,10 @@
       return;
     }
     if(button.dataset.mapFocus){
-      selectMapClinic(button.dataset.mapFocus);return;
+      event.preventDefault();
+      event.stopPropagation();
+      api.chooseClinic(button.dataset.mapFocus);
+      return;
     }
     if(button.dataset.mapStep){
       const visible=filteredClinics();
@@ -411,6 +419,12 @@
       else state.sort=type;
       api.renderClinics();
       renderMapView();return;
+    }
+    if(button.id==="ride-book-selected"){
+      event.preventDefault();
+      event.stopPropagation();
+      if(selectedMapId)api.chooseClinic(selectedMapId);
+      return;
     }
     if(button.id==="map-my-location"){locateOnMap();return;}
     if(button.id==="map-reset"){
