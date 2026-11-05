@@ -58,3 +58,20 @@ Foi adicionada a camada de demonstração das oito telas do Figma: logo oficial 
 
 **NÃO CONECTAR DIRETAMENTE O BACKEND ATUAL À PÁGINA PÚBLICA.** A branch `backend` possui endpoints de pacientes e triagens, mas autenticação administrativa Basic e configuração de desenvolvimento; revise segurança e privacidade primeiro.
 
+
+## Revisão do mapa e da triagem (novembro/2026)
+
+- A rota `app.html#/clinics` abre o mapa demonstrativo por padrão. Em celular, a interface ocupa a tela com busca, filtros, marcadores de preço e cartão inferior; em desktop, mostra lista lateral.
+- Tocar em marcador destaca a clínica no cartão e clicar em **Ver horários** abre os detalhes. Também é possível avançar e voltar entre opções.
+- **Lista** retorna aos cartões tradicionais; o mapa tem fallback caso Leaflet ou os tiles externos não carreguem.
+- O campo de pesquisa e os filtros atualizam os resultados do mapa. Solicitação de localização ocorre apenas quando o usuário toca no controle.
+- Os ícones de sintomas e dos serviços de consulta presencial/teleconsulta foram diferenciados.
+- A correção do botão **Continuar** usa `querySelectorAll` corretamente para ler várias seleções.
+
+Regressão do questionário sem dependências extras:
+
+```bash
+node --test tests/triagem.test.cjs
+```
+
+O mapa utiliza Leaflet e OpenStreetMap. Pinos, valores, distâncias, convênios e disponibilidade são fictícios; nada representa clínicas verificadas ou diagnóstico médico.
