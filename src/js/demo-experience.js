@@ -82,7 +82,7 @@
     if(!node)return;
     const sort=$("#result-sort")?.value||"distance";
     const compare={distance:(a,b)=>a.distance-b.distance,price:(a,b)=>a.price-b.price,rating:(a,b)=>b.rating-a.rating}[sort];
-    const nodes=$("[data-clinic-card]",node);
+    const nodes=$$("[data-clinic-card]",node);
     nodes.sort((a,b)=>compare(api.clinicById(a.dataset.clinicCard),api.clinicById(b.dataset.clinicCard))).forEach(el=>node.appendChild(el));
   }
   function renderResultSafety(){
