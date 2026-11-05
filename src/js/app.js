@@ -3,14 +3,14 @@
 
   // Somente dados fictícios. Nenhuma informação é enviada a servidores.
   // Todos os pontos são personagens/unidades de exemplo posicionados na região da Paulista para demonstrar o mapa.
-  // Não são estabelecimentos reais nem endereços verificados.
+  // Não são estabelecimentos reais nem endereços verificados. Os pontos foram espaçados para evitar sobreposição visual dos pinos.
   const clinics = [
-    {id:"central",name:"Hospital Central",area:"Região da Paulista · exemplo",specialty:"Ortopedia",price:200,rating:4.9,distance:5.5,availability:"Hoje",insurance:"SulAmérica",lat:-23.5659,lng:-46.6565,services:[["Consulta médica",200,30],["Teleconsulta",150,20]]},
-    {id:"viva",name:"Clínica Viva • Paulista",area:"Bela Vista · exemplo",specialty:"Ortopedia",price:150,rating:4.8,distance:1.2,availability:"Amanhã",insurance:"Bradesco",lat:-23.5615,lng:-46.6541,services:[["Consulta médica",200,30],["Teleconsulta",150,20]]},
-    {id:"marcos",name:"Dr. Marcos Souza",area:"Consolação · exemplo",specialty:"Ortopedia",price:180,rating:4.7,distance:2.8,availability:"Em 3 dias",insurance:"Unimed",lat:-23.5580,lng:-46.6600,services:[["Consulta médica",180,30]]},
-    {id:"ortho",name:"Clínica OrthoVida",area:"Jardins · exemplo",specialty:"Ortopedia",price:150,rating:4.7,distance:7.2,availability:"Amanhã",insurance:"Particular",lat:-23.5681,lng:-46.6684,services:[["Consulta médica",150,30]]},
-    {id:"saude",name:"Centro Vida Saúde",area:"Paraíso · exemplo",specialty:"Clínica geral",price:160,rating:4.8,distance:3.6,availability:"Hoje",insurance:"Unimed",lat:-23.5730,lng:-46.6410,services:[["Clínica geral",160,30],["Teleconsulta",110,20]]},
-    {id:"infantil",name:"Clínica Bem Viver",area:"Bela Vista · exemplo",specialty:"Pediatria",price:170,rating:4.8,distance:4.0,availability:"Amanhã",insurance:"Bradesco",lat:-23.5559,lng:-46.6461,services:[["Consulta pediátrica",170,40]]}
+    {id:"central",name:"Hospital Central",area:"Região da Paulista · exemplo",specialty:"Ortopedia",price:200,rating:4.9,distance:5.5,availability:"Hoje",insurance:"SulAmérica",lat:-23.5687,lng:-46.6425,services:[["Consulta médica",200,30],["Teleconsulta",150,20]]},
+    {id:"viva",name:"Clínica Viva • Paulista",area:"Bela Vista · exemplo",specialty:"Ortopedia",price:150,rating:4.8,distance:1.2,availability:"Amanhã",insurance:"Bradesco",lat:-23.5708,lng:-46.6745,services:[["Consulta médica",200,30],["Teleconsulta",150,20]]},
+    {id:"marcos",name:"Dr. Marcos Souza",area:"Consolação · exemplo",specialty:"Ortopedia",price:180,rating:4.7,distance:2.8,availability:"Em 3 dias",insurance:"Unimed",lat:-23.5500,lng:-46.6640,services:[["Consulta médica",180,30]]},
+    {id:"ortho",name:"Clínica OrthoVida",area:"Jardins · exemplo",specialty:"Ortopedia",price:150,rating:4.7,distance:7.2,availability:"Amanhã",insurance:"Particular",lat:-23.5835,lng:-46.6600,services:[["Consulta médica",150,30]]},
+    {id:"saude",name:"Centro Vida Saúde",area:"Paraíso · exemplo",specialty:"Clínica geral",price:160,rating:4.8,distance:3.6,availability:"Hoje",insurance:"Unimed",lat:-23.5840,lng:-46.6280,services:[["Clínica geral",160,30],["Teleconsulta",110,20]]},
+    {id:"infantil",name:"Clínica Bem Viver",area:"Bela Vista · exemplo",specialty:"Pediatria",price:170,rating:4.8,distance:4.0,availability:"Amanhã",insurance:"Bradesco",lat:-23.5444,lng:-46.6320,services:[["Consulta pediátrica",170,40]]}
   ];
   const screens = ["welcome","home","triage","result","clinics","clinic","appointment","success","bookings","profile"];
   const titles = {welcome:"Bem-vindo",home:"Início",triage:"Triagem",result:"Resultado",clinics:"Clínicas",clinic:"Detalhes da clínica",appointment:"Confirmar atendimento",success:"Agendamento demonstrativo",bookings:"Atendimentos",profile:"Perfil"};
