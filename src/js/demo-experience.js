@@ -371,6 +371,28 @@
       state.mapMode=button.dataset.view;
       renderMapView();return;
     }
+    if(button.id==="map-back-to-list"){
+      state.mapMode="list";
+      renderMapView();return;
+    }
+    if(button.dataset.mapFocus){
+      selectMapClinic(button.dataset.mapFocus);return;
+    }
+    if(button.dataset.mapStep){
+      const visible=filteredClinics();
+      if(!visible.length)return;
+      const currentIndex=Math.max(0,visible.findIndex(c=>c.id===selectedMapId));
+      const delta=Number(button.dataset.mapStep);
+      const next=visible[(currentIndex+delta+visible.length)%visible.length];
+      selectMapClinic(next.id);return;
+    }
+    if(button.dataset.mapFilter){
+      const type=button.dataset.mapFilter;
+      if(type==="insurance")state.insuranceOnly=!state.insuranceOnly;
+      else state.sort=type;
+      api.renderClinics();
+      renderMapView();return;
+    }
     if(button.id==="map-my-location"){locateOnMap();return;}
     if(button.id==="map-reset"){if(map)map.setView([-23.563,-46.655],13);$("#map-note").textContent="Os marcadores são fictícios. © OpenStreetMap contributors.";return;}
     if(button.dataset.date){dateClick(button.dataset.date);return;}
@@ -387,6 +409,20 @@
     if(event.target.closest("[data-clinic]"))setTimeout(refresh,10);
   });
   $("#clinic-search")?.addEventListener("input",()=>setTimeout(renderMapView,10));
+  // O campo flutuante mantém a mesma pesquisa do modo lista.
+  $("#map-search")?.addEventListener("input",event=>{
+    state.search=event.target.value;
+    const regular=$("#clinic-search");
+    if(regular)regular.value=state.search;
+    api.renderClinics();
+    renderMapView();
+  });
+  $("#map-search")?.addEventListener("keydown",event=>{
+    if(event.key==="Escape"&&event.target.value){
+      event.target.value="";
+      event.target.dispatchEvent(new Event("input",{bubbles:true}));
+    }
+  });
   window.addEventListener("trigo:screen",()=>{refresh();});
   branding();
   prepareHome();
