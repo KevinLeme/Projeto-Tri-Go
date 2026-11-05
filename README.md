@@ -75,3 +75,18 @@ node --test tests/triagem.test.cjs
 ```
 
 O mapa utiliza Leaflet e OpenStreetMap. Pinos, valores, distâncias, convênios e disponibilidade são fictícios; nada representa clínicas verificadas ou diagnóstico médico.
+## Atualização: mapa refinado e triagem em quatro etapas
+
+- Mapa: aviso informativo dentro da área cartográfica (não comprimido no rodapé), ícones consistentes, marcadores fictícios mais espaçados, controle para abrir/fechar filtros, seleção de clínicas e pesquisa.
+- Triagem: 1) sintomas (seleção múltipla), 2) duração/intensidade/evolução, 3) sinais de alerta e observações opcionais, 4) revisão e confirmação de caráter demonstrativo.
+- Resultado: mostra **apenas o resumo das respostas**, com aviso de emergência quando aplicável. **Não gera diagnóstico, indicação de especialidade ou classificação automática de risco.**
+- Respostas de sintomas permanecem somente em memória durante a sessão da aba. Nenhum dado médico é enviado ao backend, mapa ou serviço externo.
+- Fluxo de demonstração: `app.html#/triage` e `app.html#/clinics`.
+
+Verificações locais usando o Node.js (sem dependências):
+
+```bash
+node --test tests/triagem.test.cjs tests/triagem-fluxo.test.cjs tests/mapa.test.cjs
+```
+
+A publicação em Cloudflare Pages deve ser validada em navegador mobile e desktop. Para uso real é indispensável projeto clínico supervisionado, avaliação de urgências por profissionais habilitados, autenticação e requisitos legais/LGPD.
