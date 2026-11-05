@@ -27,7 +27,11 @@
     lungs: '<path d="M12 3v8M9 8c-2-1-4 1-5 4-1 3-2 8 2 9 4 1 5-3 6-7M15 8c2-1 4 1 5 4 1 3 2 8-2 9-4 1-5-3-6-7"/><path d="m8 11 4 3 4-3"/>',
     chest: '<path d="M20.5 5c-2-2-5.6-1.8-8.5 1.2C9 3.2 5.5 3 3 5c-4 4 2 10 9 16 7-6 13-12 8.5-16Z"/><path d="m5 12 4 0 2-3 2 6 2-3h4"/>',
     nausea: '<path d="M15 3c-2 2-2 4 1 6s5 4 5 7a6 6 0 0 1-12 0c0-3 2-6 2-8s-1-4-1-5"/><path d="m8 13-3-2m2 6-4 1"/>',
-    plusCircle: '<circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/>'
+    plusCircle: '<circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/>',
+    cough: '<path d="M4 8h7c3 0 4 2 4 4s-1 3-4 3H8M15 9h5M17 6l3 3-3 3M5 18c2-2 4-2 6 0M14 18h5"/>',
+    abdomen: '<path d="M8 3v5c-3 2-4 5-4 8a8 8 0 0 0 16 0c0-3-1-6-4-8V3"/><path d="M8 13c1 3 3 4 5 3M12 10h.01"/>',
+    dizzy: '<circle cx="12" cy="12" r="9"/><path d="M8 10a4 4 0 0 1 8 0c0 3-3 3-3 5"/><path d="M13 19h.01M4 6l2-2M20 6l-2-2"/>',
+    body: '<circle cx="12" cy="4.5" r="2"/><path d="m9 8-4 5m10-5 4 5M12 7v9m-4 6 4-6 4 6M8 10l4 2 4-2"/>'
   };
 
   const apply = (selectors, shape, size) => {
@@ -54,6 +58,10 @@
   apply('#screen-triage .symptom-option:nth-child(3) .symptom-glyph', 'lungs', 20);
   apply('#screen-triage .symptom-option:nth-child(4) .symptom-glyph', 'chest', 20);
   apply('#screen-triage .symptom-option:nth-child(5) .symptom-glyph', 'nausea', 20);
-  apply('#screen-triage .symptom-option:nth-child(6) .symptom-glyph', 'plusCircle', 20);
+  apply('#screen-triage .symptom-option:nth-child(6) .symptom-glyph', 'cough', 20);
+  apply('#screen-triage .symptom-option:nth-child(7) .symptom-glyph', 'abdomen', 20);
+  apply('#screen-triage .symptom-option:nth-child(8) .symptom-glyph', 'dizzy', 20);
+  apply('#screen-triage .symptom-option:nth-child(9) .symptom-glyph', 'body', 20);
+  apply('#screen-triage .symptom-option:nth-child(10) .symptom-glyph', 'plusCircle', 20);
 
 })();
