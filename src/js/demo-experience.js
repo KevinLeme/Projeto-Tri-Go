@@ -11,7 +11,7 @@
   const $=(q,root=document)=>root.querySelector(q);
   const $$=(q,root=document)=>Array.from(root.querySelectorAll(q));
   const safe=(s)=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-  let map=null, markers=[], userMarker=null, initialized=false, selectedMapId=null;
+  let map=null, markers=[], userMarker=null, initialized=false, selectedMapId=null, locationViewActive=false;
   const demoLogo="./src/image/trigo-logo.jpg";
   function iso(d){const p=n=>String(n).padStart(2,"0");return d.getFullYear()+"-"+p(d.getMonth()+1)+"-"+p(d.getDate());}
   function dPlus(n){const d=new Date();d.setHours(12,0,0,0);d.setDate(d.getDate()+n);return d;}
@@ -239,7 +239,7 @@
       setTimeout(()=>{
         if(!map)return;
         map.invalidateSize(true);
-        if(markers.length){
+        if(markers.length && !locationViewActive){
           const bounds=L.latLngBounds(visible.map(c=>[c.lat,c.lng]));
           map.fitBounds(bounds,{paddingTopLeft:[26,65],paddingBottomRight:[26,165],maxZoom:13,animate:false});
 
@@ -427,7 +427,7 @@
       if(selectedMapId)api.chooseClinic(selectedMapId);
       return;
     }
-    if(button.id==="map-my-location"){locateOnMap();return;}
+    if(button.id==="map-my-location"){window.TriGoLocation?.useDeviceLocation();return;}
     if(button.id==="map-reset"){
       if(map)map.setView([-23.563,-46.655],13);
       $("#map-note").textContent="Mapa de exemplo restaurado. Nenhuma clínica real é representada.";
@@ -464,6 +464,38 @@
       event.target.dispatchEvent(new Event("input",{bubbles:true}));
     }
   });
+  // Interface controlada pelo módulo de localização; coordenadas não são persistidas nem enviadas ao backend.
+  window.TriGoMap={
+    getMap:()=>map,
+    showLocation:(lat,lng,label)=>{
+      if(!Number.isFinite(lat)||!Number.isFinite(lng)||Math.abs(lat)>90||Math.abs(lng)>180)return false;
+      if(!initMap())return false;
+      locationViewActive=true;
+      if(userMarker)userMarker.remove();
+      userMarker=L.circleMarker([lat,lng],{
+        radius:9,color:"#ffffff",weight:3,fillColor:"#2878da",fillOpacity:1
+      }).addTo(map);
+      userMarker.bindPopup(String(label||"Local selecionado").slice(0,130));
+      map.invalidateSize(true);
+      map.flyTo([lat,lng],14,{duration:.7});
+      return true;
+    },
+    resetLocation:()=>{
+      locationViewActive=false;
+      if(userMarker){userMarker.remove();userMarker=null;}
+      if(map){
+        map.invalidateSize(true);
+        if(markers.length){
+          const coords=filteredClinics().map(c=>[c.lat,c.lng]);
+          if(coords.length)map.fitBounds(L.latLngBounds(coords),{
+            paddingTopLeft:[36,70],paddingBottomRight:[36,125],maxZoom:13,animate:true
+          });
+          else map.setView([-23.563,-46.655],13);
+        }else map.setView([-23.563,-46.655],13);
+      }
+    },
+    hasSelectedLocation:()=>locationViewActive
+  };
   window.addEventListener("trigo:screen",()=>{refresh();});
   branding();
   prepareHome();
