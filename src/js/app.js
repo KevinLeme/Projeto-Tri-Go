@@ -68,7 +68,7 @@
     list=list.sort(orders[state.sort]||orders.distance);
     $("#clinic-cards").innerHTML=list.length?list.map(clinicCard).join(""):'<div class="content-card empty-state"><h2>Nenhum resultado nesta demonstração</h2><p>Tente outra especialidade ou nome de clínica.</p></div>';
     $("#clinic-count").textContent=list.length+" exemplo(s)";
-    $(".filter-button").forEach((b)=>b.classList.toggle("is-selected",b.dataset.sort==="insurance"?state.insuranceOnly:b.dataset.sort===state.sort));
+    $$(".filter-button").forEach((b)=>b.classList.toggle("is-selected",b.dataset.sort==="insurance"?state.insuranceOnly:b.dataset.sort===state.sort));
     $("#clinic-search").value=state.search;
   }
   function renderClinicDetails() {
