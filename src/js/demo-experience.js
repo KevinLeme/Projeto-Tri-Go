@@ -29,6 +29,10 @@
   }
 
   function branding(){
+    const welcome=$("#screen-welcome");
+    if(welcome && !welcome.querySelector(".welcome-logo-bar")){
+      welcome.insertAdjacentHTML("afterbegin",'<div class="welcome-logo-bar"><img src="'+demoLogo+'" alt="Logo oficial do Tri-Go"><strong>Tri\'Go</strong></div>');
+    }
     // O JPEG enviado foi incorporado ao projeto sem alterar a arte.
     $$(".brand-mark").forEach(el=>{el.innerHTML='<img alt="" src="'+demoLogo+'">';el.classList.add("official-logo-mark")});
     const art=$(".illustration-circle");
@@ -60,6 +64,39 @@
     }
     const heading=$("#screen-result .section-heading h2");
     if(heading)heading.textContent="Clínicas encontradas para você:";
+    const head=$("#screen-result .section-heading");
+    if(head&&!$("#result-sort")){
+      head.insertAdjacentHTML("beforeend",'<label class="result-sort-label"><span class="sr-only">Ordenar clínicas</span><select id="result-sort" aria-label="Ordenar clínicas"><option value="distance">Mais próximo</option><option value="price">Menor preço</option><option value="rating">Melhor avaliação</option></select></label>');
+      $("#result-sort").addEventListener("change",sortResultCards);
+    }
+  }
+  function sortResultCards(){
+    const node=$("#result-clinics");
+    if(!node)return;
+    const sort=$("#result-sort")?.value||"distance";
+    const compare={distance:(a,b)=>a.distance-b.distance,price:(a,b)=>a.price-b.price,rating:(a,b)=>b.rating-a.rating}[sort];
+    const nodes=$("[data-clinic-card]",node);
+    nodes.sort((a,b)=>compare(api.clinicById(a.dataset.clinicCard),api.clinicById(b.dataset.clinicCard))).forEach(el=>node.appendChild(el));
+  }
+  function renderResultSafety(){
+    const title=$("#demo-specialty"),reco=$("#screen-result .recommendation p");
+    if(!title||!reco)return;
+    const symptoms=state.triageSymptoms||[];
+    const attention=symptoms.includes("Dor no peito")||symptoms.includes("Falta de ar");
+    if(attention){
+      title.textContent="Orientação profissional necessária";
+      reco.textContent="Como você marcou um sintoma que pode exigir atenção, este protótipo não mostra especialidade de exemplo. Se houver dor intensa no peito, falta de ar importante ou piora súbita, procure urgência ou ligue 192.";
+    }else{
+      title.textContent="Ortopedia (exemplo)";
+      reco.textContent="Especialidade fictícia mostrada apenas para reproduzir o Figma, independentemente das respostas. Não é resultado de análise médica.";
+    }
+    sortResultCards();
+  }
+  function renderHomeAppointments(){
+    const b=state.booking;
+    const root=$("#screen-home .preview-appointments");
+    if(!root||!b)return;
+    root.innerHTML='<button type="button" data-go="bookings" class="preview-appointment actual-demo-booking"><div class="appointment-person"><span class="doctor-avatar teal">✓</span><div><strong>'+safe(b.clinic)+'</strong><small>'+safe(b.service||b.specialty)+'</small></div><span class="appointment-state ok">Simulado</span></div><div class="appointment-info"><span>'+safe(api.formatDate(b.date))+' · '+safe(b.time)+'</span><span>Ver agendamento →</span></div></button>';
   }
   function prepareClinics(){
     const screen=$("#screen-clinics");
@@ -252,6 +289,8 @@
   }
   function refresh(){
     const screen=current();
+    if(screen==="home")renderHomeAppointments();
+    if(screen==="result")renderResultSafety();
     if(screen==="clinics")renderMapView();
     if(screen==="clinic")renderDetailsExtras();
     if(screen==="appointment")renderConfirmExtras();
