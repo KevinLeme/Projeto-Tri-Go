@@ -26,6 +26,7 @@
   }
   function currentScreen() { const screen=location.hash.replace(/^#\//,"").split("?")[0];return screens.includes(screen)?screen:"welcome"; }
   function renderScreen(screen) {
+    document.body.classList.toggle("is-welcome-screen", screen === "welcome");
     $$(".screen").forEach((node)=>{const active=node.id==="screen-"+screen;node.classList.toggle("is-active",active);node.hidden=!active;});
     $$("[data-nav]").forEach((node)=>{const active=node.dataset.nav===screen || (screen==="clinic"&&node.dataset.nav==="clinics") || (screen==="success"&&node.dataset.nav==="bookings");node.classList.toggle("is-active",active);if(active)node.setAttribute("aria-current","page");else node.removeAttribute("aria-current");});
     $("#page-title").textContent=titles[screen]||"Tri-Go";
