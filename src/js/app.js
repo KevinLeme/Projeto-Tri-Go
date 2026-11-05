@@ -50,10 +50,14 @@
     $(".greeting").textContent=(hour<12?"Bom dia":hour<18?"Boa tarde":"Boa noite")+", Mariana";
   }
   function clinicCard(c) {
-    return '<article class="clinic-card">'+
-      '<div class="card-top"><span class="clinic-symbol" aria-hidden="true">✚</span><div><h3>'+escapeHtml(c.name)+'</h3><p>'+escapeHtml(c.area)+'</p></div><span class="rating">★ '+String(c.rating).replace(".",",")+'</span></div>'+
-      '<div class="card-details"><span>⌖ '+String(c.distance).replace(".",",")+' km · demonstrativo</span><span>◷ '+escapeHtml(c.availability)+'</span><span>'+escapeHtml(c.specialty)+'</span></div>'+
-      '<div class="card-bottom"><div><small>Valor estimado</small><strong>'+money(c.price)+'</strong></div><button type="button" class="btn btn-primary" data-clinic="'+c.id+'">Ver horários →</button></div></article>';
+    const rating=String(c.rating).replace(".",",");
+    const distance=String(c.distance).replace(".",",");
+    const soon=c.availability==="Hoje"?"Disp. Hoje":c.availability==="Amanhã"?"Disp. Amanhã":"Disp. 3 dias";
+    const insurance=c.insurance==="Particular"?"Particular":c.insurance;
+    return '<article class="clinic-card figma-clinic-card" data-clinic-card="'+escapeHtml(c.id)+'">'+
+      '<div class="figma-clinic-title"><strong>'+escapeHtml(c.name)+'</strong><span class="rating">★ '+rating+'</span></div>'+
+      '<div class="figma-clinic-meta"><span>⌖ '+distance+' km <em>(ilustrativo)</em></span><span class="figma-availability">◷ '+soon+'</span></div>'+
+      '<div class="figma-clinic-footer"><div class="figma-clinic-tags"><span>✚ '+escapeHtml(insurance)+'</span><span>'+escapeHtml(c.specialty)+'</span></div><div class="figma-clinic-price"><small>Valor estimado</small><strong>'+money(c.price)+'</strong></div><button type="button" class="btn btn-primary" data-clinic="'+escapeHtml(c.id)+'">Agendar</button></div></article>';
   }
   function renderResults() {
     $("#result-clinics").innerHTML=clinics.slice(0,2).map(clinicCard).join("");
