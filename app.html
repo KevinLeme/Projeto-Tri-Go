@@ -45,26 +45,52 @@
           <div class="triage-callout"><div class="callout-heading"><span class="callout-icon" aria-hidden="true">☷</span><div><h2>Conte o que está sentindo</h2><p>Triagem demonstrativa com orientação sobre os próximos passos.</p></div></div><button class="btn btn-bright" type="button" data-go="triage">Iniciar triagem gratuita <span aria-hidden="true">→</span></button></div>
           <div class="section-heading"><h2>Especialidades</h2><button class="text-link" type="button" data-go="clinics">Ver todas →</button></div>
           <div class="specialty-grid"><button type="button" data-go="clinics"><span>⚕</span>Clínica geral</button><button type="button" data-go="clinics"><span>♙</span>Pediatria</button><button type="button" data-go="clinics"><span>♧</span>Ortopedia</button></div>
-          <div class="section-heading"><h2>Encontre atendimento</h2><button class="text-link" type="button" data-go="clinics">Ver clínicas →</button></div>
-          <div class="home-quickcards"><button class="quick-card" type="button" data-go="clinics"><span class="quick-icon">⌖</span><strong>Clínicas próximas</strong><small>Explore os locais da demonstração</small><span class="quick-arrow">→</span></button><button class="quick-card" type="button" data-go="bookings"><span class="quick-icon">▣</span><strong>Meus agendamentos</strong><small>Veja suas reservas de teste</small><span class="quick-arrow">→</span></button></div>
-          <div class="inline-alert"><strong>Importante:</strong> Se você está com sintomas graves, procure atendimento de urgência. Em emergências, ligue 192.</div>
+          <div class="section-heading"><h2>Próximos agendamentos</h2><button class="text-link" type="button" data-go="bookings">Ver todos</button></div>
+          <div class="preview-appointments" aria-label="Agendamentos de exemplo">
+            <article class="preview-appointment">
+              <div class="appointment-person"><span class="doctor-avatar teal">CA</span><div><strong>Dr. Carlos Almeida</strong><small>Clínica geral · exemplo</small></div><span class="appointment-state ok">Exemplo</span></div>
+              <div class="appointment-info">▣ &nbsp; Amanhã, 10:30 &nbsp; &nbsp; ⌖ &nbsp; Clínica Central</div>
+            </article>
+            <article class="preview-appointment">
+              <div class="appointment-person"><span class="doctor-avatar peach">RF</span><div><strong>Dra. Regina Fonseca</strong><small>Pediatria · exemplo</small></div><span class="appointment-state pending">Exemplo</span></div>
+              <div class="appointment-info">▣ &nbsp; Consulta ilustrativa &nbsp; &nbsp; ⌖ &nbsp; Hospital São Lucas</div>
+            </article>
+          </div>
+          <p class="preview-disclaimer">Informações e agendamentos meramente ilustrativos.</p>
         </section>
         <section id="screen-triage" class="screen" aria-labelledby="triage-title">
-          <div class="screen-top"><button type="button" class="back-button" data-go="home" aria-label="Voltar">←</button><div><span class="eyebrow">TRIAGEM</span><h1 id="triage-title">Suas respostas orientam o próximo passo</h1></div></div>
-          <div class="content-card triage-form"><div class="progress-top"><strong>Etapa 2 de 4</strong><span>50%</span></div><div class="progress-track"><span></span></div><h2>Quais sintomas você está sentindo?</h2><p class="muted">Selecione todos que se aplicam. Você poderá detalhar depois.</p>
-            <div class="symptom-grid" role="group" aria-label="Sintomas">
-              <label class="symptom-option"><input type="checkbox" name="symptom" value="Febre"><span aria-hidden="true">♨</span>Febre</label>
-              <label class="symptom-option"><input type="checkbox" name="symptom" value="Dor de cabeça"><span aria-hidden="true">◉</span>Dor de cabeça</label>
-              <label class="symptom-option"><input type="checkbox" name="symptom" value="Falta de ar"><span aria-hidden="true">≋</span>Falta de ar</label>
-              <label class="symptom-option"><input type="checkbox" name="symptom" value="Dor no peito"><span aria-hidden="true">♡</span>Dor no peito</label>
-              <label class="symptom-option"><input type="checkbox" name="symptom" value="Náusea"><span aria-hidden="true">◌</span>Náusea</label>
-              <label class="symptom-option"><input type="checkbox" name="symptom" value="Outro"><span aria-hidden="true">＋</span>Outro</label>
-            </div>
-            <label class="field-label" for="duration">Há quanto tempo?</label><div class="duration-grid" role="group" aria-label="Duração"><label><input type="radio" name="duration" value="Hoje"><span>Hoje</span></label><label><input type="radio" name="duration" value="2–3 dias"><span>2–3 dias</span></label><label><input type="radio" name="duration" value="Mais tempo"><span>Mais tempo</span></label></div>
-            <div class="inline-alert emergency"><strong>Atenção:</strong> falta de ar intensa, dor forte no peito ou sinais de emergência exigem atendimento imediato. Ligue 192.</div>
-            <p id="triage-error" class="form-error" role="alert" hidden>Selecione pelo menos um sintoma e uma duração.</p><button id="complete-triage" type="button" class="btn btn-primary btn-lg">Continuar <span>→</span></button><p class="footnote">Este protótipo não realiza diagnóstico ou classificação de risco.</p>
-          </div>
-        </section>
+  <div class="triage-mobile-header">
+    <button type="button" class="triage-top-icon" data-go="home" aria-label="Voltar para o início">‹</button>
+    <div class="triage-header-label"><strong>Triagem</strong><span>Suas respostas orientam o próximo passo</span></div>
+    <button type="button" class="triage-top-icon" data-go="home" aria-label="Fechar triagem">×</button>
+  </div>
+  <div class="triage-form">
+    <div class="progress-top"><strong>Etapa 2 de 4</strong><span>50%</span></div>
+    <div class="progress-track"><span></span></div>
+    <h1 id="triage-title">Quais sintomas você está sentindo?</h1>
+    <p class="triage-intro">Selecione todos que se aplicam. Você poderá detalhar depois.</p>
+    <div class="symptom-grid" role="group" aria-label="Sintomas">
+      <label class="symptom-option"><input type="checkbox" name="symptom" value="Febre"><span class="symptom-glyph" aria-hidden="true">♨</span><strong>Febre</strong></label>
+      <label class="symptom-option"><input type="checkbox" name="symptom" value="Dor de cabeça"><span class="symptom-glyph" aria-hidden="true">◉</span><strong>Dor de cabeça</strong></label>
+      <label class="symptom-option"><input type="checkbox" name="symptom" value="Falta de ar"><span class="symptom-glyph" aria-hidden="true">≋</span><strong>Falta de ar</strong></label>
+      <label class="symptom-option"><input type="checkbox" name="symptom" value="Dor no peito"><span class="symptom-glyph" aria-hidden="true">♡</span><strong>Dor no peito</strong></label>
+      <label class="symptom-option"><input type="checkbox" name="symptom" value="Náusea"><span class="symptom-glyph" aria-hidden="true">◌</span><strong>Náusea</strong></label>
+      <label class="symptom-option"><input type="checkbox" name="symptom" value="Outro"><span class="symptom-glyph" aria-hidden="true">+</span><strong>Outro</strong></label>
+    </div>
+    <fieldset class="triage-duration"><legend>Há quanto tempo?</legend>
+      <div class="duration-grid" role="group" aria-label="Duração dos sintomas">
+        <label><input type="radio" name="duration" value="Hoje"><span>Hoje</span></label>
+        <label><input type="radio" name="duration" value="2–3 dias"><span>2–3 dias</span></label>
+        <label><input type="radio" name="duration" value="Mais tempo"><span>Mais tempo</span></label>
+      </div>
+    </fieldset>
+    <div class="triage-bottom">
+      <p class="triage-safety">♧ &nbsp; Isto não substitui diagnóstico médico. Em emergência, ligue <a href="tel:192">192</a>.</p>
+      <p id="triage-error" class="form-error" role="alert" hidden>Selecione pelo menos um sintoma e uma duração.</p>
+      <button id="complete-triage" type="button" class="btn btn-primary btn-lg"><span aria-hidden="true">→</span><span>Continuar</span></button>
+    </div>
+  </div>
+</section>
         <section id="screen-result" class="screen" aria-labelledby="result-title">
           <div class="screen-top"><button type="button" class="back-button" data-go="triage" aria-label="Voltar">←</button><div><span class="eyebrow">TRIAGEM</span><h1 id="result-title">Resultado da triagem</h1></div></div>
           <div class="result-hero"><span class="success-icon">✓</span><h2>Questionário concluído!</h2><p>Você completou o formulário de demonstração.</p></div>
