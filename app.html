@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0e7c58">
+  <meta name="description" content="Tri-Go — Protótipo navegável de triagem e agendamento de consultas.">
+  <title>Tri-Go | Aplicativo</title>
+  <link rel="stylesheet" href="src/css/app.css">
+  <script defer src="src/js/app.js"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Navegação principal">
+      <a class="brand" href="#/home"><span class="brand-mark" aria-hidden="true">✚</span><span>Tri<span class="brand-em">Go</span><small>Saúde e cuidado</small></span></a>
+      <p class="sidebar-label">MENU PRINCIPAL</p>
+      <nav class="side-links">
+        <a href="#/home" data-nav="home"><span aria-hidden="true">⌂</span> Início</a>
+        <a href="#/triage" data-nav="triage"><span aria-hidden="true">✚</span> Triagem</a>
+        <a href="#/clinics" data-nav="clinics"><span aria-hidden="true">⌖</span> Clínicas</a>
+        <a href="#/bookings" data-nav="bookings"><span aria-hidden="true">▣</span> Atendimentos</a>
+        <a href="#/profile" data-nav="profile"><span aria-hidden="true">◯</span> Perfil</a>
+      </nav>
+      <div class="sidebar-note"><strong>Uma forma mais simples de encontrar atendimento.</strong><p>Protótipo em desenvolvimento. Não oferece atendimento médico.</p></div>
+      <a class="back-website" href="./index.html">← Voltar ao site</a>
+    </aside>
+    <div class="workspace">
+      <header class="topbar">
+        <a class="mobile-brand" href="#/home"><span class="brand-mark" aria-hidden="true">✚</span> Tri<span>Go</span></a>
+        <div class="topbar-heading"><small>TRI-GO / DEMONSTRAÇÃO</small><strong id="page-title">Bem-vindo ao Tri-Go</strong></div>
+        <div class="topbar-actions"><span class="demo-chip">Ambiente de teste</span><a href="#/profile" class="avatar" aria-label="Abrir perfil">MS</a></div>
+      </header>
+      <main id="main-content" tabindex="-1">
+        <section id="screen-welcome" class="screen is-active" aria-labelledby="welcome-title">
+          <div class="welcome-layout">
+            <div class="welcome-illustration"><span class="floating-icon" aria-hidden="true">✚</span><span class="health-line" aria-hidden="true">♡</span><div class="illustration-circle"><span aria-hidden="true">⚕</span></div><span class="illustration-label">Cuidado com você, em cada etapa</span></div>
+            <div class="welcome-copy"><span class="eyebrow">TRIAGEM 100% GRATUITA</span><h1 id="welcome-title">Triagem inteligente e consulta na hora certa.</h1><p>Responda a algumas perguntas, conheça opções de atendimento e explore as clínicas disponíveis em uma experiência simples.</p><button class="btn btn-primary btn-lg" type="button" data-go="triage">Iniciar triagem gratuita <span aria-hidden="true">→</span></button><button class="btn btn-outline btn-lg" type="button" data-go="home">Explorar aplicativo</button><p class="footnote">Seus dados de saúde não são enviados ou armazenados nesta demonstração.</p></div>
+          </div>
+        </section>
+        <section id="screen-home" class="screen" aria-labelledby="home-title">
+          <div class="page-heading"><div><p class="muted greeting">Boa tarde, Mariana</p><h1 id="home-title">Como podemos ajudar?</h1></div><span class="avatar big">MS</span></div>
+          <div class="search-wrap"><span aria-hidden="true">⌕</span><input id="home-search" aria-label="Buscar clínica ou especialidade" placeholder="Buscar clínica, bairro ou especialidade" autocomplete="off"><button class="icon-button" type="button" data-go="clinics" aria-label="Pesquisar clínicas">⚙</button></div>
+          <div class="triage-callout"><div class="callout-heading"><span class="callout-icon" aria-hidden="true">☷</span><div><h2>Conte o que está sentindo</h2><p>Triagem demonstrativa com orientação sobre os próximos passos.</p></div></div><button class="btn btn-bright" type="button" data-go="triage">Iniciar triagem gratuita <span aria-hidden="true">→</span></button></div>
+          <div class="section-heading"><h2>Especialidades</h2><button class="text-link" type="button" data-go="clinics">Ver todas →</button></div>
+          <div class="specialty-grid"><button type="button" data-go="clinics"><span>⚕</span>Clínica geral</button><button type="button" data-go="clinics"><span>♡</span>Pediatria</button><button type="button" data-go="clinics"><span>♧</span>Ortopedia</button><button type="button" data-go="clinics"><span>✚</span>Cardiologia</button></div>
+          <div class="section-heading"><h2>Encontre atendimento</h2><button class="text-link" type="button" data-go="clinics">Ver clínicas →</button></div>
+          <div class="home-quickcards"><button class="quick-card" type="button" data-go="clinics"><span class="quick-icon">⌖</span><strong>Clínicas próximas</strong><small>Explore os locais da demonstração</small><span class="quick-arrow">→</span></button><button class="quick-card" type="button" data-go="bookings"><span class="quick-icon">▣</span><strong>Meus agendamentos</strong><small>Veja suas reservas de teste</small><span class="quick-arrow">→</span></button></div>
+          <div class="inline-alert"><strong>Importante:</strong> Se você está com sintomas graves, procure atendimento de urgência. Em emergências, ligue 192.</div>
+        </section>
+        <section id="screen-triage" class="screen" aria-labelledby="triage-title">
+          <div class="screen-top"><button type="button" class="back-button" data-go="home" aria-label="Voltar">←</button><div><span class="eyebrow">TRIAGEM</span><h1 id="triage-title">Suas respostas orientam o próximo passo</h1></div></div>
+          <div class="content-card triage-form"><div class="progress-top"><strong>Questionário de sintomas</strong><span>Etapa 2 de 4 · Demonstração</span></div><div class="progress-track"><span></span></div><h2>Quais sintomas você está sentindo?</h2><p class="muted">Selecione os que se aplicam. Este formulário é apenas uma demonstração visual, não realiza diagnóstico ou classificação de risco.</p>
+            <div class="symptom-grid" role="group" aria-label="Sintomas">
+              <label class="symptom-option"><input type="checkbox" name="symptom" value="Febre"><span aria-hidden="true">♨</span>Febre</label>
+              <label class="symptom-option"><input type="checkbox" name="symptom" value="Dor de cabeça"><span aria-hidden="true">◉</span>Dor de cabeça</label>
+              <label class="symptom-option"><input type="checkbox" name="symptom" value="Falta de ar"><span aria-hidden="true">≋</span>Falta de ar</label>
+              <label class="symptom-option"><input type="checkbox" name="symptom" value="Dor no peito"><span aria-hidden="true">♡</span>Dor no peito</label>
+              <label class="symptom-option"><input type="checkbox" name="symptom" value="Náusea"><span aria-hidden="true">◌</span>Náusea</label>
+              <label class="symptom-option"><input type="checkbox" name="symptom" value="Outro"><span aria-hidden="true">＋</span>Outro</label>
+            </div>
+            <label class="field-label" for="duration">Há quanto tempo?</label><div class="duration-grid" role="group" aria-label="Duração"><label><input type="radio" name="duration" value="Hoje"><span>Hoje</span></label><label><input type="radio" name="duration" value="2–3 dias"><span>2–3 dias</span></label><label><input type="radio" name="duration" value="Mais tempo"><span>Mais tempo</span></label></div>
+            <div class="inline-alert emergency"><strong>Atenção:</strong> falta de ar intensa, dor forte no peito ou sinais de emergência exigem atendimento imediato. Ligue 192.</div>
+            <p id="triage-error" class="form-error" role="alert" hidden>Selecione pelo menos um sintoma e uma duração.</p><button id="complete-triage" type="button" class="btn btn-primary btn-lg">Continuar <span>→</span></button><p class="footnote">Isto não substitui diagnóstico médico.</p>
+          </div>
+        </section>
+        <section id="screen-result" class="screen" aria-labelledby="result-title">
+          <div class="screen-top"><button type="button" class="back-button" data-go="triage" aria-label="Voltar">←</button><div><span class="eyebrow">TRIAGEM</span><h1 id="result-title">Resultado da triagem</h1></div></div>
+          <div class="result-hero"><span class="success-icon">✓</span><h2>Questionário concluído!</h2><p>Você completou o formulário de demonstração.</p></div>
+          <div class="content-card recommendation"><p class="eyebrow">PRÓXIMA ETAPA</p><h2>Conheça opções de atendimento</h2><p>O Tri-Go exibirá uma orientação clínica somente quando houver um protocolo validado e profissionais responsáveis. Nesta versão, não há avaliação dos sintomas nem indicação de especialidade.</p><span class="soft-tag">Protótipo · Sem recomendação médica</span></div>
+          <div class="section-heading"><h2>Clínicas para explorar</h2><span class="muted">Dados fictícios</span></div><div id="result-clinics"></div>
+          <div class="inline-alert emergency">Piora intensa ou risco imediato? Ligue <a href="tel:192">192</a>.</div>
+        </section>
+        <section id="screen-clinics" class="screen" aria-labelledby="clinics-title">
+          <div class="page-heading"><div><span class="eyebrow">ENCONTRE ATENDIMENTO</span><h1 id="clinics-title">Clínicas e especialistas</h1><p class="muted">Veja clínicas fictícias para testar a experiência.</p></div></div>
+          <div class="search-wrap"><span aria-hidden="true">⌕</span><input id="clinic-search" aria-label="Pesquisar clínicas" placeholder="Pesquisar por clínica ou especialidade" autocomplete="off"></div>
+          <div class="filter-bar" aria-label="Filtros de clínicas"><button type="button" class="filter-button is-selected" data-sort="distance">Mais próximo</button><button type="button" class="filter-button" data-sort="price">Menor preço</button><button type="button" class="filter-button" data-sort="available">Disponível</button><button type="button" class="filter-button" data-sort="rating">Avaliação</button></div>
+          <div class="section-heading"><h2>Clínicas encontradas para você:</h2><span id="clinic-count" class="muted"></span></div><div id="clinic-cards" class="clinic-cards"></div>
+          <p class="footnote">Locais, valores, avaliações e disponibilidade são somente exemplos. Nenhuma reserva é enviada para uma clínica.</p>
+        </section>
+        <section id="screen-clinic" class="screen" aria-labelledby="clinic-title">
+          <div class="screen-top"><button type="button" class="back-button" data-go="clinics" aria-label="Voltar">←</button><div><span class="eyebrow">DETALHES DA CLÍNICA</span><h1 id="clinic-title">Detalhes da clínica</h1></div></div>
+          <div class="clinic-detail-hero"><div class="clinic-emblem">✚</div><span class="soft-tag">Unidade demonstrativa</span></div>
+          <div class="content-card"><div class="detail-head"><div><h2 id="selected-clinic-name">Clínica Exemplo</h2><p id="selected-clinic-location" class="muted"></p></div><span id="selected-clinic-rating" class="rating"></span></div><div class="meta-grid"><div><small>Especialidade</small><strong id="selected-clinic-specialty"></strong></div><div><small>Consulta a partir de</small><strong id="selected-clinic-price"></strong></div><div><small>Convênio</small><strong id="selected-clinic-insurance"></strong></div><div><small>Atendimento</small><strong>Presencial</strong></div></div><div class="inline-alert">Esta clínica é fictícia. Todos os horários são de demonstração.</div></div>
+          <div class="content-card"><h2>Escolha uma data e horário</h2><label class="field-label" for="appointment-date">Data da consulta</label><input type="date" id="appointment-date" class="date-input"><p class="field-label">Horários disponíveis (simulação)</p><div class="time-grid" id="time-slots"><button type="button" class="time-slot" data-time="09:00">09:00</button><button type="button" class="time-slot" data-time="10:30">10:30</button><button type="button" class="time-slot" data-time="14:00">14:00</button><button type="button" class="time-slot" data-time="15:30">15:30</button></div><p class="form-error" id="appointment-error" role="alert" hidden>Selecione uma data e um horário.</p><button class="btn btn-primary btn-lg" id="continue-appointment" type="button">Continuar <span>→</span></button></div>
+        </section>
+        <section id="screen-appointment" class="screen" aria-labelledby="appointment-title">
+          <div class="screen-top"><button type="button" class="back-button" data-go="clinic" aria-label="Voltar">←</button><div><span class="eyebrow">AGENDAMENTO</span><h1 id="appointment-title">Confirmação de atendimento</h1></div></div>
+          <div class="content-card"><div class="detail-head"><span class="clinic-symbol">✚</span><div class="grow"><h2 id="appointment-clinic"></h2><p class="muted">Clínica demonstrativa</p></div></div><div class="meta-grid"><div><small>Data selecionada</small><strong id="appointment-day"></strong></div><div><small>Horário</small><strong id="appointment-time"></strong></div><div><small>Valor estimado</small><strong id="appointment-value"></strong></div><div><small>Especialidade</small><strong id="appointment-specialty"></strong></div></div></div>
+          <div class="content-card"><h2>Dados para a simulação</h2><label class="field-label" for="patient-name">Nome de exibição</label><input type="text" id="patient-name" placeholder="Ex.: Mariana" autocomplete="off" maxlength="70"><p class="footnote">Não use dados sensíveis. Nada será enviado ou salvo em servidor.</p><p id="confirm-error" class="form-error" role="alert" hidden>Informe um nome para continuar.</p><button type="button" id="confirm-appointment" class="btn btn-primary btn-lg">Confirmar agendamento demonstrativo <span>→</span></button></div>
+        </section>
+        <section id="screen-success" class="screen" aria-labelledby="success-title">
+          <div class="result-hero"><span class="success-icon">✓</span><h1 id="success-title">Agendamento simulado!</h1><p>Seu agendamento de demonstração foi criado apenas neste navegador.</p></div>
+          <div class="content-card appointment-summary"><div class="summary-highlight"><small>ESPECIALIDADE</small><strong id="success-specialty"></strong></div><div class="summary-line"><span>Clínica</span><strong id="success-clinic"></strong></div><div class="summary-line"><span>Paciente</span><strong id="success-patient"></strong></div><div class="summary-line"><span>Data</span><strong id="success-date"></strong></div><div class="summary-line"><span>Horário</span><strong id="success-time"></strong></div><div class="summary-line"><span>Valor estimado</span><strong id="success-price"></strong></div></div>
+          <button id="save-calendar" type="button" class="btn btn-primary btn-lg">Adicionar ao calendário <span>▣</span></button><div class="action-duo"><button type="button" class="btn btn-outline" data-go="bookings">Ver detalhes</button><button type="button" class="btn btn-outline" id="reschedule">Remarcar</button></div><button id="cancel-appointment" type="button" class="text-link centered">Cancelar agendamento demonstrativo</button>
+        </section>
+        <section id="screen-bookings" class="screen" aria-labelledby="bookings-title">
+          <div class="page-heading"><div><span class="eyebrow">MINHA AGENDA</span><h1 id="bookings-title">Atendimentos</h1><p class="muted">Histórico disponível apenas durante esta sessão.</p></div></div><div id="booking-content" class="content-card empty-state"><div class="empty-icon">▣</div><h2>Você ainda não possui agendamentos</h2><p>Explore as clínicas e simule seu primeiro atendimento.</p><button type="button" class="btn btn-primary" data-go="clinics">Explorar clínicas →</button></div>
+        </section>
+        <section id="screen-profile" class="screen" aria-labelledby="profile-title">
+          <div class="page-heading"><div><span class="eyebrow">MINHA CONTA</span><h1 id="profile-title">Perfil</h1></div></div><div class="content-card profile-card"><span class="avatar big">MS</span><div><h2>Visitante de demonstração</h2><p class="muted">Nenhuma conta foi criada neste protótipo.</p></div></div><div class="content-card"><h2>Sobre o Tri-Go</h2><p>Estamos construindo uma experiência de acesso a serviços de saúde mais organizada, com triagem informativa, busca de clínicas e agendamento.</p><p class="muted">Esta versão demonstra somente a interface e a navegação. Não processa prontuários, dados médicos ou pagamentos reais.</p><a href="./index.html" class="btn btn-outline">Visitar site institucional</a></div>
+        </section>
+      </main>
+    </div>
+    <nav class="bottom-nav" aria-label="Navegação do aplicativo"><a href="#/home" data-nav="home"><span>⌂</span><small>Início</small></a><a href="#/clinics" data-nav="clinics"><span>⌖</span><small>Clínicas</small></a><a href="#/bookings" data-nav="bookings"><span>▣</span><small>Atendimentos</small></a><a href="#/profile" data-nav="profile"><span>◯</span><small>Perfil</small></a></nav>
+  </div>
+</body>
+</html>
