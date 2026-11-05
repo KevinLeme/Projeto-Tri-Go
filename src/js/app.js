@@ -122,7 +122,7 @@
     navigate("clinic");
   }
   function validateTriage() {
-    const symptoms=$('input[name="symptom"]:checked');
+    const symptoms=$$('input[name="symptom"]:checked');
     state.triageSymptoms=symptoms.map(el=>el.value);
     const duration=$('input[name="duration"]:checked');
     const valid=symptoms.length>0 && duration;
