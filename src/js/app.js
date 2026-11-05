@@ -77,6 +77,7 @@
     $("#appointment-error").hidden=true;
   }
   function renderConfirmation() {
+    if(!state.date || !state.time){navigate("clinic");return;}
     const c=currentClinic();
     $("#appointment-clinic").textContent=c.name;
     $("#appointment-day").textContent=formatDate(state.date);
@@ -117,11 +118,12 @@
   }
   function continueAppointment() {
     state.date=$("#appointment-date").value;
-    const valid=state.date>=todayLocal() && state.date!=="" && state.time!=="";
+    const valid=state.date>=todayLocal() && state.date!=="" && state.time!=="" && new Date(state.date+"T"+state.time+":00").getTime()>Date.now();
     $("#appointment-error").hidden=valid;
     if(valid) navigate("appointment");
   }
   function confirmAppointment() {
+    if(!state.date || !state.time){navigate("clinic");return;}
     const name=$("#patient-name").value.trim();
     if(name.length<2){$("#confirm-error").hidden=false;return;}
     $("#confirm-error").hidden=true;
@@ -137,7 +139,6 @@
   function reschedule() {
     if(!state.booking)return navigate("clinics");
     state.clinicId=state.booking.clinicId;state.patient=state.booking.patient;state.date=state.booking.date;state.time=state.booking.time;
-    state.booking=null;
     navigate("clinic");
   }
   function saveCalendar() {
