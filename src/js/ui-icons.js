@@ -21,7 +21,13 @@
     bone: '<path d="M17 4a3 3 0 0 1 4 4 3 3 0 0 1-3 4l-6 6a3 3 0 0 1-4 3 3 3 0 0 1-4-4 3 3 0 0 1 3-4l6-6a3 3 0 0 1 4-3Z"/>',
     calendar: '<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4M17 3v4M3 10h18"/>',
     arrow: '<path d="M4 12h16m-7-7 7 7-7 7"/>',
-    heart: '<path d="M20.8 4.8a5.5 5.5 0 0 0-7.8 0L12 5.9l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.4a5.5 5.5 0 0 0 0-7.8Z"/>'
+    heart: '<path d="M20.8 4.8a5.5 5.5 0 0 0-7.8 0L12 5.9l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.4a5.5 5.5 0 0 0 0-7.8Z"/>',
+    thermometer: '<path d="M9 14V5a3 3 0 0 1 6 0v9a5 5 0 1 1-6 0Z"/><path d="M12 9v9"/><circle cx="12" cy="19" r="1.2"/>',
+    headache: '<circle cx="12" cy="12" r="9"/><path d="m12 5-3 7h3l-1 7 5-10h-3l1-4"/>',
+    lungs: '<path d="M12 3v8M9 8c-2-1-4 1-5 4-1 3-2 8 2 9 4 1 5-3 6-7M15 8c2-1 4 1 5 4 1 3 2 8-2 9-4 1-5-3-6-7"/><path d="m8 11 4 3 4-3"/>',
+    chest: '<path d="M20.5 5c-2-2-5.6-1.8-8.5 1.2C9 3.2 5.5 3 3 5c-4 4 2 10 9 16 7-6 13-12 8.5-16Z"/><path d="m5 12 4 0 2-3 2 6 2-3h4"/>',
+    nausea: '<path d="M15 3c-2 2-2 4 1 6s5 4 5 7a6 6 0 0 1-12 0c0-3 2-6 2-8s-1-4-1-5"/><path d="m8 13-3-2m2 6-4 1"/>',
+    plusCircle: '<circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/>'
   };
 
   const apply = (selectors, shape, size) => {
@@ -43,4 +49,11 @@
   apply('#screen-home .preview-appointment .appointment-info .appointment-calendar-icon', 'calendar', 14);
   apply('#screen-home .preview-appointment .appointment-info .appointment-location-icon', 'pin', 14);
   apply('#screen-home .triage-callout .btn .button-arrow', 'arrow', 17);
+  apply('#screen-triage .symptom-option:nth-child(1) .symptom-glyph', 'thermometer', 20);
+  apply('#screen-triage .symptom-option:nth-child(2) .symptom-glyph', 'headache', 20);
+  apply('#screen-triage .symptom-option:nth-child(3) .symptom-glyph', 'lungs', 20);
+  apply('#screen-triage .symptom-option:nth-child(4) .symptom-glyph', 'chest', 20);
+  apply('#screen-triage .symptom-option:nth-child(5) .symptom-glyph', 'nausea', 20);
+  apply('#screen-triage .symptom-option:nth-child(6) .symptom-glyph', 'plusCircle', 20);
+
 })();
