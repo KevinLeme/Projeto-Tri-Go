@@ -104,3 +104,4 @@
   .screen-top h1{font-size:17px}
   .time-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
+@media(max-width:900px){.is-welcome-screen .bottom-nav{display:none}.is-welcome-screen main{padding-bottom:24px}}
