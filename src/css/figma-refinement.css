@@ -185,3 +185,63 @@
   #screen-triage .symptom-option{min-height:72px}
   #screen-triage .triage-form h1{font-size:22px}
 }
+
+
+/* Tela Início: dimensões e ritmo vertical derivados do quadro mobile do Figma. */
+.ui-icon{display:inline-block;width:1em;height:1em;vertical-align:middle;flex-shrink:0;stroke-width:1.9}
+#screen-home{max-width:920px;margin-inline:auto}
+#screen-home .page-heading .avatar{background:#d5ece7}
+#screen-home .search-wrap .ui-icon{font-size:19px;color:#607372}
+#screen-home .search-wrap .icon-button{display:grid;place-items:center;color:#0f766e;flex-shrink:0}
+#screen-home .triage-callout .callout-icon .ui-icon{font-size:23px;color:white}
+#screen-home .triage-callout .button-arrow .ui-icon{font-size:17px}
+#screen-home .specialty-grid .ui-icon{font-size:23px;color:#0f9876}
+#screen-home .preview-appointments{margin-bottom:0}
+#screen-home .preview-appointment{transition:border-color .16s,box-shadow .16s}
+#screen-home .preview-appointment:hover{border-color:#bcded1;box-shadow:0 5px 17px rgba(22,59,56,.06)}
+#screen-home .appointment-info{display:flex;flex-wrap:wrap;align-items:center;gap:8px 13px;font-size:11px}
+#screen-home .appointment-date-info,#screen-home .appointment-address-info{display:inline-flex;align-items:center;gap:5px}
+#screen-home .appointment-info .ui-icon{font-size:14px;color:#607372}
+#screen-home .appointment-state{white-space:nowrap}
+#screen-home .preview-disclaimer{color:#718a84}
+.bottom-nav .ui-icon{font-size:21px;display:block}
+.sidebar .side-links .ui-icon{font-size:21px}
+@media(min-width:901px){
+  #screen-home{max-width:890px;margin-inline:auto}
+  #screen-home .triage-callout{max-width:100%;padding:26px}
+  #screen-home .triage-callout .btn{width:100%;max-width:none}
+  #screen-home .specialty-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+  #screen-home .preview-appointments{grid-template-columns:repeat(2,minmax(0,1fr))}
+  #screen-home .preview-appointment{min-height:118px}
+  #screen-home .search-wrap{max-width:100%}
+}
+@media(max-width:900px){
+  #screen-home{padding-top:25px}
+  #screen-home .page-heading{margin-bottom:16px}
+  #screen-home .search-wrap{min-height:50px;height:50px}
+  #screen-home .triage-callout{margin-top:20px;padding:22px 20px;border-radius:22px}
+  #screen-home .triage-callout .callout-heading{margin-bottom:27px;min-height:55px}
+  #screen-home .callout-heading h2{font-size:18px;font-weight:800;letter-spacing:-.02em}
+  #screen-home .callout-heading p{font-size:12px;line-height:1.35}
+  #screen-home .triage-callout .btn{height:54px}
+  #screen-home .specialty-grid button{font-size:11px;font-weight:650}
+  #screen-home .specialty-grid .ui-icon{font-size:23px}
+  #screen-home .section-heading{margin-top:21px;margin-bottom:11px}
+  #screen-home .preview-appointments{grid-template-columns:1fr;gap:11px}
+  #screen-home .preview-appointment{min-height:111px;padding:15px 16px;border-radius:17px}
+  #screen-home .appointment-person{min-height:40px}
+  #screen-home .appointment-person strong{font-size:12px}
+  #screen-home .doctor-avatar{width:38px;height:38px}
+  #screen-home .appointment-state{font-size:10px}
+  #screen-home .appointment-info{margin-top:12px;padding-top:12px;gap:10px;font-size:10px}
+  #screen-home .preview-disclaimer{margin-top:8px;font-size:10px}
+  #screen-home>.inline-alert{display:none}
+}
+@media(max-width:385px){
+  #screen-home .triage-callout{padding:19px}
+  #screen-home .triage-callout .callout-heading{margin-bottom:20px}
+  #screen-home .preview-appointment{padding:12px}
+  #screen-home .appointment-info{gap:7px}
+  #screen-home .appointment-person strong{font-size:11px}
+  #screen-home .appointment-state{font-size:9px}
+}
