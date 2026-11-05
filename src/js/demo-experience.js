@@ -11,7 +11,7 @@
   const $=(q,root=document)=>root.querySelector(q);
   const $$=(q,root=document)=>Array.from(root.querySelectorAll(q));
   const safe=(s)=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-  let map=null, markers=[], userMarker=null, initialized=false;
+  let map=null, markers=[], userMarker=null, initialized=false, selectedMapId=null, fittedOnce=false;
   const demoLogo="./src/image/trigo-logo.jpg";
   function iso(d){const p=n=>String(n).padStart(2,"0");return d.getFullYear()+"-"+p(d.getMonth()+1)+"-"+p(d.getDate());}
   function dPlus(n){const d=new Date();d.setHours(12,0,0,0);d.setDate(d.getDate()+n);return d;}
@@ -128,41 +128,108 @@
     const order={distance:(a,b)=>a.distance-b.distance,price:(a,b)=>a.price-b.price,available:(a,b)=>["Hoje","Amanhã","Em 3 dias"].indexOf(a.availability)-["Hoje","Amanhã","Em 3 dias"].indexOf(b.availability),rating:(a,b)=>b.rating-a.rating};
     return arr.sort(order[state.sort]||order.distance);
   }
+
   function initMap(){
     if(map)return true;
     const node=$("#trigo-map");
     if(!node || !window.L)return false;
-    map=L.map(node,{scrollWheelZoom:false}).setView([-23.563,-46.655],13);
-    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',maxZoom:19}).addTo(map);
-    renderMapPins();
+    map=L.map(node,{scrollWheelZoom:false,zoomControl:false}).setView([-23.563,-46.655],13);
+    L.control.zoom({position:"bottomright"}).addTo(map);
+    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{
+      attribution:'&copy; <a href="https://www.openstreetmap.org/copyright" rel="noopener" target="_blank">OpenStreetMap</a> contributors',
+      maxZoom:19
+    }).addTo(map);
     return true;
+  }
+  function renderFeaturedClinic(){
+    const list=filteredClinics();
+    const card=$("#map-featured-card");
+    const count=$("#ride-results-count");
+    const pos=$("#ride-position-count");
+    const book=$("#ride-book-selected");
+    if(!card)return;
+    if(!list.length){
+      selectedMapId=null;
+      count.textContent="Nenhuma clínica para este filtro";
+      pos.textContent="0 de 0";
+      card.innerHTML='<div class="ride-empty-state">Nenhum exemplo encontrado. Experimente outro filtro.</div>';
+      if(book){book.disabled=true;delete book.dataset.clinic;}
+      $$(".ride-sidebar-card").forEach(el=>el.classList.remove("selected"));
+      return;
+    }
+    if(!list.some(c=>c.id===selectedMapId))selectedMapId=list[0].id;
+    const c=list.find(c=>c.id===selectedMapId)||list[0],idx=list.findIndex(v=>v.id===c.id);
+    count.textContent=list.length+" clínicas demonstrativas";
+    pos.textContent=(idx+1)+" de "+list.length;
+    card.innerHTML='<div class="ride-featured-main"><span class="ride-featured-logo" aria-hidden="true">✚</span><div class="ride-featured-copy"><strong>'+safe(c.name)+'</strong><span>'+safe(c.specialty)+' · '+safe(c.area)+'</span><div class="ride-featured-badges"><span>★ '+String(c.rating).replace(".",",")+'</span><span>◷ '+safe(c.availability)+'</span><span>'+safe(c.insurance)+'</span></div></div><div class="ride-featured-price"><small>A partir de</small><strong>'+money(c.price)+'</strong></div></div>';
+    if(book){book.disabled=false;book.dataset.clinic=c.id;}
+    $$(".ride-sidebar-card").forEach(el=>{const selected=el.dataset.mapFocus===c.id;el.classList.toggle("selected",selected);el.setAttribute("aria-pressed",selected?"true":"false");});
+    markers.forEach(marker=>{
+      const el=marker.getElement()?.querySelector(".ride-price-pin");
+      if(el)el.classList.toggle("selected",marker.options.trigoClinic===c.id);
+    });
+  }
+  function selectMapClinic(id,center=true){
+    selectedMapId=id;
+    renderFeaturedClinic();
+    const c=clinics.find(clinic=>clinic.id===id);
+    if(c && map && center)map.panTo([c.lat,c.lng],{animate:true,duration:.45});
+    const node=$('#map-clinic-list [data-map-focus="'+id+'"]');
+    if(node && !matchMedia("(max-width:900px)").matches)node.scrollIntoView({block:"nearest",behavior:"smooth"});
   }
   function renderMapPins(){
     if(!map||!window.L)return;
     markers.forEach(marker=>marker.remove());markers=[];
-    filteredClinics().forEach(c=>{
-      const marker=L.circleMarker([c.lat,c.lng],{radius:10,color:"#ffffff",weight:2,fillColor:"#0e7c58",fillOpacity:1}).addTo(map);
-      const pop=document.createElement("div");
-      pop.className="map-popup";
-      pop.innerHTML='<strong>'+safe(c.name)+'</strong><span>'+safe(c.specialty)+' · '+money(c.price)+'</span><button type="button" data-clinic="'+safe(c.id)+'">Ver horários →</button>';
-      marker.bindPopup(pop,{autoPan:true});
-      marker.on("click",()=>{});
+    const list=filteredClinics();
+    if(!list.some(c=>c.id===selectedMapId))selectedMapId=list[0]?.id||null;
+    list.forEach(c=>{
+      const html='<div class="ride-price-pin '+(c.id===selectedMapId?"selected":"")+'"><span class="ride-pin-cross" aria-hidden="true">✚</span><span>'+money(c.price)+'</span></div>';
+      const ico=L.divIcon({className:"ride-pin-wrapper",html,iconSize:[116,44],iconAnchor:[58,39],popupAnchor:[0,-36]});
+      const marker=L.marker([c.lat,c.lng],{icon:ico,keyboard:true,title:c.name+" — "+money(c.price),trigoClinic:c.id}).addTo(map);
+      marker.on("click",()=>selectMapClinic(c.id,true));
       markers.push(marker);
     });
   }
   function renderMapView(){
+    const wrapper=$("#demo-map-wrap"),listBox=$("#clinic-cards"),screen=$("#screen-clinics");
+    if(!wrapper||!listBox||!screen)return;
     const show=state.mapMode==="map";
-    $("#clinic-cards").hidden=show;
-    $("#demo-map-wrap").hidden=!show;
-    $$("[data-view]").forEach(b=>{const pressed=b.dataset.view===state.mapMode;b.classList.toggle("selected",pressed);b.setAttribute("aria-pressed",pressed?"true":"false");});
-    if(show){
-      const ok=initMap();
-      $("#trigo-map-fallback").hidden=ok;
-      $("#trigo-map").hidden=!ok;
-      if(ok){renderMapPins();setTimeout(()=>map.invalidateSize(true),90);}
-      const root=$("#map-clinic-list");
-      root.innerHTML=filteredClinics().map(c=>'<button class="map-list-item" type="button" data-clinic="'+safe(c.id)+'"><span><strong>'+safe(c.name)+'</strong><small>'+safe(c.specialty)+'</small></span><strong>'+money(c.price)+'</strong><span>→</span></button>').join("")||'<p>Nenhum ponto corresponde ao filtro.</p>';
+    listBox.hidden=show;
+    wrapper.hidden=!show;
+    screen.classList.toggle("is-map-active",show);
+    $$("[data-view]").forEach(b=>{
+      const pressed=b.dataset.view===state.mapMode;
+      b.classList.toggle("selected",pressed);
+      b.setAttribute("aria-pressed",pressed?"true":"false");
+    });
+    if(!show)return;
+    const input=$("#map-search");
+    if(input && input.value!==state.search)input.value=state.search;
+    const ok=initMap();
+    $("#trigo-map-fallback").hidden=ok;
+    $("#trigo-map").hidden=!ok;
+    const visible=filteredClinics();
+    const sidebar=$("#map-clinic-list");
+    if(sidebar){
+      sidebar.innerHTML=visible.map(c=>'<button type="button" class="ride-sidebar-card" data-map-focus="'+safe(c.id)+'"><span class="ride-sidebar-symbol">✚</span><span class="ride-sidebar-details"><strong>'+safe(c.name)+'</strong><small>'+safe(c.specialty)+' · '+safe(c.availability)+'</small><span>★ '+String(c.rating).replace(".",",")+' · '+safe(c.insurance)+'</span></span><strong class="ride-sidebar-price">'+money(c.price)+'</strong></button>').join("")||'<p class="ride-empty-state">Nenhuma clínica encontrada neste exemplo.</p>';
     }
+    $$(".ride-chip").forEach(b=>{
+      const active=b.dataset.mapFilter==="insurance"?state.insuranceOnly:b.dataset.mapFilter===state.sort;
+      b.classList.toggle("active",active);b.setAttribute("aria-pressed",active?"true":"false");
+    });
+    if(ok){
+      renderMapPins();
+      setTimeout(()=>{
+        if(!map)return;
+        map.invalidateSize(true);
+        if(!fittedOnce && markers.length){
+          const bounds=L.latLngBounds(visible.map(c=>[c.lat,c.lng]));
+          map.fitBounds(bounds,{paddingTopLeft:[26,65],paddingBottomRight:[26,165],maxZoom:13,animate:false});
+          fittedOnce=true;
+        }
+      },120);
+    }
+    renderFeaturedClinic();
   }
   function locateOnMap(){
     const node=$("#map-note");
