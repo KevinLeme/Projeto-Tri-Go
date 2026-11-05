@@ -60,7 +60,7 @@
       '<div class="figma-clinic-footer"><div class="figma-clinic-tags"><span>✚ '+escapeHtml(insurance)+'</span><span>'+escapeHtml(c.specialty)+'</span></div><div class="figma-clinic-price"><small>Valor estimado</small><strong>'+money(c.price)+'</strong></div><button type="button" class="btn btn-primary" data-clinic="'+escapeHtml(c.id)+'">Agendar</button></div></article>';
   }
   function renderResults() {
-    $("#result-clinics").innerHTML=clinics.slice(0,2).map(clinicCard).join("");
+    $("#result-clinics").innerHTML=[clinics[0],clinics.find(c=>c.id==="ortho")].filter(Boolean).map(clinicCard).join("");
   }
   function renderClinics() {
     let list=clinics.filter((c)=>(c.name+" "+c.area+" "+c.specialty+" "+c.insurance).toLocaleLowerCase("pt-BR").includes(state.search.toLocaleLowerCase("pt-BR")) && (!state.insuranceOnly||c.insurance!=="Particular"));
