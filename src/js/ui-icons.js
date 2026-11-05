@@ -1,0 +1,46 @@
+/*
+ * Iconografia de interface (traços vetoriais).
+ * Elementos originais do Figma poderão substituir estes ícones após exportação.
+ */
+(() => {
+  "use strict";
+
+  const icon = (body, size = 20) =>
+    '<svg class="ui-icon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="' + size + '" height="' + size + '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">' + body + '</svg>';
+
+  const drawings = {
+    house: '<path d="m3 10 9-7 9 7"/><path d="M5 9v12h14V9"/><path d="M9 21v-7h6v7"/>',
+    pin: '<path d="M20 10c0 5.5-8 12-8 12S4 15.5 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/>',
+    visit: '<circle cx="12" cy="12" r="9"/><path d="m9 9 6 6m0-6-6 6"/>',
+    person: '<circle cx="12" cy="8" r="4"/><path d="M5 20c0-4 3-6 7-6s7 2 7 6"/><circle cx="12" cy="12" r="10"/>',
+    search: '<circle cx="10.8" cy="10.8" r="6.9"/><path d="m16.1 16.1 4.4 4.4"/>',
+    sliders: '<path d="M4 7h10M18 7h2M4 17h2m4 0h10"/><path d="M14 4v6M8 14v6"/>',
+    clipboard: '<rect x="5" y="5" width="14" height="16" rx="2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M9 11h6M9 15h6M9 18h4"/>',
+    stethoscope: '<path d="M6 3v6a5 5 0 0 0 10 0V3M4 3h4m6 0h4"/><path d="M11 14v1.5a4.5 4.5 0 0 0 9 0V13"/><circle cx="20" cy="11.5" r="2"/>',
+    baby: '<circle cx="12" cy="13" r="8"/><path d="M10 5c0-2 4-3 5 0"/><path d="M9 12h.01M15 12h.01M9.5 16a3.4 3.4 0 0 0 5 0"/>',
+    bone: '<path d="M17 4a3 3 0 0 1 4 4 3 3 0 0 1-3 4l-6 6a3 3 0 0 1-4 3 3 3 0 0 1-4-4 3 3 0 0 1 3-4l6-6a3 3 0 0 1 4-3Z"/>',
+    calendar: '<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4M17 3v4M3 10h18"/>',
+    arrow: '<path d="M4 12h16m-7-7 7 7-7 7"/>',
+    heart: '<path d="M20.8 4.8a5.5 5.5 0 0 0-7.8 0L12 5.9l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.4a5.5 5.5 0 0 0 0-7.8Z"/>'
+  };
+
+  const apply = (selectors, shape, size) => {
+    document.querySelectorAll(selectors).forEach((element) => {
+      element.innerHTML = icon(drawings[shape], size);
+    });
+  };
+
+  apply('.bottom-nav a[data-nav="home"] > span, .side-links a[data-nav="home"] > span', 'house', 21);
+  apply('.bottom-nav a[data-nav="clinics"] > span, .side-links a[data-nav="clinics"] > span', 'pin', 21);
+  apply('.bottom-nav a[data-nav="bookings"] > span, .side-links a[data-nav="bookings"] > span', 'visit', 21);
+  apply('.bottom-nav a[data-nav="profile"] > span, .side-links a[data-nav="profile"] > span', 'person', 21);
+  apply('#screen-home .search-wrap > span, #screen-clinics .search-wrap > span', 'search', 19);
+  apply('#screen-home .search-wrap .icon-button', 'sliders', 18);
+  apply('#screen-home .callout-icon', 'clipboard', 23);
+  apply('#screen-home .specialty-grid button:nth-child(1) span', 'stethoscope', 23);
+  apply('#screen-home .specialty-grid button:nth-child(2) span', 'baby', 23);
+  apply('#screen-home .specialty-grid button:nth-child(3) span', 'bone', 23);
+  apply('#screen-home .preview-appointment .appointment-info .appointment-calendar-icon', 'calendar', 14);
+  apply('#screen-home .preview-appointment .appointment-info .appointment-location-icon', 'pin', 14);
+  apply('#screen-home .triage-callout .btn .button-arrow', 'arrow', 17);
+})();
