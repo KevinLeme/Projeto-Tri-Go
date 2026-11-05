@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tri'Go</title>
-<link rel="shortcut icon" href="src/image/logo.svg" type="image/x-icon">
+<meta name="theme-color" content="#0e7c58"><meta name="description" content="Tri-Go — descubra uma experiência de triagem e agendamentos. Protótipo demonstrativo.">
 
     <link rel="stylesheet" href="src/css/style.css">
 </head>
@@ -93,10 +93,10 @@
                         Conectando você à saúde ideal
                     </span>
                     <h1 >
-                        Triagem inteligente que te leva à clínica certa.
+                        Triagem e agendamentos em um só lugar.
                     </h1>
                     <p >
-                        Não perca tempo e dinheiro com consultas erradas. Nossa triagem prévia dos sintomas e encaminha para a especialidade adequada.
+                        Explore uma experiência simples de orientação inicial, busca de clínicas e agendamento. Nesta etapa, todos os resultados são demonstrativos.
                     </p>
                     <div >
                         <button class="js-triagem" >
@@ -106,9 +106,9 @@
                     </div>
                     
                     <div >
-                        <div><strong >50k+</strong><span >Pacientes</span></div>
-                        <div><strong >200+</strong><span >Clínicas</span></div>
-                        <div><strong >95%</strong><span >Precisão</span></div>
+                        <div><strong >Grátis</strong><span >Demo de triagem</span></div>
+                        <div><strong >4</strong><span >Clínicas fictícias</span></div>
+                        <div><strong >Web</strong><span >PC e celular</span></div>
                     </div>
                 </div>
 
@@ -178,7 +178,7 @@
                 <div class="section-title">
                     <h2 >Cobertura de Especialidades</h2>
                     <p >
-                        Nossa plataforma conecta você com mais de <span >20 especialidades médicas</span>, garantindo o atendimento exato para sua necessidade.
+                        Conheça as <span >especialidades médicas</span> ilustradas em nosso protótipo e explore a experiência de busca de atendimento.
                     </p>
                 </div>
 
@@ -276,8 +276,8 @@
                                 <div >
                                     ◎
                                 </div>
-                                <h3 >Diagnóstico Certeiro</h3>
-                                <p >Evite consultas desnecessárias indo direto para a especialidade correta.</p>
+                                <h3 >Navegação Guiada</h3>
+                                <p >Veja opções de atendimento e explore funcionalidades de triagem nesta demonstração.</p>
                             </div>
 
                             
@@ -286,7 +286,7 @@
                                     $
                                 </div>
                                 <h3 >Economize Dinheiro</h3>
-                                <p >Não gaste com consultas erradas que não resolvem seu problema.</p>
+                                <p >Compare valores ilustrativos e conheça o processo de agendamento.</p>
                             </div>
 
                             
@@ -295,7 +295,7 @@
                                     ◷
                                 </div>
                                 <h3 >Ganhe Tempo</h3>
-                                <p >Triagem em 5 minutos e recomendação imediata da especialidade.</p>
+                                <p >Preenchimento simples e navegação rápida.</p>
                             </div>
 
                             
@@ -304,7 +304,7 @@
                                     ✓
                                 </div>
                                 <h3 >Clínicas Certificadas</h3>
-                                <p >Conectamos você apenas com clínicas parceiras verificadas.</p>
+                                <p >Veja informações organizadas sobre as clínicas na plataforma.</p>
                             </div>
                             
                             
@@ -313,7 +313,7 @@
                                     ⌘
                                 </div>
                                 <h3 >Rede Ampla</h3>
-                                <p >Acesso a centenas de especialistas na sua região.</p>
+                                <p >Uma interface para descobrir especialidades e estabelecimentos.</p>
                             </div>
 
                             
@@ -322,7 +322,7 @@
                                     ★
                                 </div>
                                 <h3 >Qualidade</h3>
-                                <p >Avaliação constante dos atendimentos realizados.</p>
+                                <p >Estrutura preparada para avaliações quando houver dados reais.</p>
                             </div>
                         </div>
                     </div>
@@ -339,9 +339,9 @@
                         
                         <div >
                             <div >
-                                <p >Taxa de Sucesso</p>
-                                <h4 >95%</h4>
-                                <p >dos pacientes satisfeitos com o encaminhamento</p>
+                                <p >Experiência Tri-Go</p>
+                                <h4 >Demo</h4>
+                                <p >interfaces demonstrativas para navegação e agendamentos</p>
                             </div>
                         </div>
                     </div>
@@ -352,152 +352,17 @@
 
         
         <section id="triagem" class="section">
-            <div class="container">
-                <div class="triage-box">
-                    
-                    
-                    <div class="triage-header">
-                        <span >Triagem Gratuita</span>
-                        <h2 >Descubra sua Especialidade</h2>
-                        
-                        
-                        <div >
-                            <div >
-                                <div id="indicator-step-1" >1</div>
-                                <span >Dados</span>
-                            </div>
-                            <div >
-                                <div id="progress-line" ></div>
-                            </div>
-                            <div >
-                                <div id="indicator-step-2" >2</div>
-                                <span >Sintomas</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    
-                    <div class="form-area">
-                        
-                        
-                        <div id="step-1" class="stack">
-                            <div class="form-grid">
-                                <div >
-                                    <label >Nome Completo *</label>
-                                    <input type="text" id="input-name"  placeholder="Seu nome">
-                                </div>
-                                <div >
-                                    <label >Idade *</label>
-                                    <input type="number" id="input-age"  placeholder="Anos">
-                                </div>
-                                <div >
-                                    <label >WhatsApp *</label>
-                                    <input type="tel" id="input-phone"  placeholder="(00) 00000-0000">
-                                </div>
-                                <div >
-                                    <label >Email</label>
-                                    <input type="email" id="input-email"  placeholder="seu@email.com">
-                                </div>
-                            </div>
-                            <button id="nextStepBtn" >
-                                Continuar →
-                            </button>
-                        </div>
-
-                        
-                        <div id="step-2" class="stack">
-                            <div >
-                                <label >O que você está sentindo? (Selecione todos que se aplicam) *</label>
-                                <div  id="symptoms-grid">
-                                    
-                                </div>
-                            </div>
-
-                            <div >
-                                <label >Descreva com suas palavras *</label>
-                                <textarea id="input-desc" rows="3"  placeholder="Ex: Dor aguda no lado direito que piora ao comer..."></textarea>
-                            </div>
-
-                            <div class="form-grid">
-                                <div>
-                                    <label >Duração</label>
-                                    <select id="input-duration" >
-                                        <option value="">Selecione...</option>
-                                        <option value="hoje">Começou hoje</option>
-                                        <option value="semana">Alguns dias</option>
-                                        <option value="mes">Mais de um mês</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <label >Urgência Percebida</label>
-                                    <select id="input-urgency" >
-                                        <option value="">Selecione...</option>
-                                        <option value="baixa">Pode esperar</option>
-                                        <option value="media">Gostaria essa semana</option>
-                                        <option value="alta">Preciso pra hoje/amanhã</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div >
-                                <button id="prevStepBtn" >
-                                    Voltar
-                                </button>
-                                <button id="finishTriageBtn" >
-                                    Finalizar ✓
-                                </button>
-                            </div>
-                        </div>
-
-                       
-<div id="result-screen" >
-    
-    
-    <div >
-        <div >
-            ✓
-        </div>
-        <h3 >Triagem Concluída!</h3>
-        <p >Com base na análise dos seus sintomas:</p>
+  <div class="container">
+    <div class="triage-box">
+      <div class="triage-header"><span>TRIAGEM GRATUITA</span><h2>Veja como funciona o Tri-Go</h2></div>
+      <div class="triage-entry">
+        <div><h3>Experimente o aplicativo</h3><p>Responda ao questionário demonstrativo, explore clínicas fictícias e simule um agendamento. Nenhum dado de saúde será enviado para um servidor e esta versão não fornece avaliação clínica nem diagnóstico.</p></div>
+        <a href="./app.html#/triage">Iniciar demonstração →</a>
+      </div>
     </div>
+  </div>
+</section>
 
-    
-    <div class="specialty-result">
-        <p >
-            Especialidade Recomendada
-        </p>
-        <h2 id="specialtyName" >
-            Clínico Geral
-        </h2>
-    </div>
-
-    
-    <div class="filter-row">
-        <span >Clínicas encontradas para você:</span>
-        <select id="sortFilter"  >
-            <option value="distancia">Mais Próximo</option>
-            <option value="preco">Menor Preço</option>
-            <option value="avaliacao">Melhor Avaliação</option>
-        </select>
-    </div>
-
-    
-    <div id="clinicsList" class="clinics-list">
-        
-    </div>
-    
-    
-    <button id="restartTriageBtn" >
-        Fazer nova triagem
-    </button>
-</div>
-
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        
         <section id="contato-info" class="section section-light">
             <div class="container">
                 
@@ -584,7 +449,7 @@
                             A triagem é realmente gratuita?
                         </h3>
                         <p >
-                            Sim! Nossa triagem é 100% gratuita. Você só paga se decidir agendar uma consulta em uma de nossas clínicas parceiras.
+                            Sim! A demonstração é gratuita e não realiza agendamentos reais nem cobra por consultas.
                         </p>
                     </div>
 
@@ -594,7 +459,7 @@
                             Como vocês escolhem as clínicas parceiras?
                         </h3>
                         <p >
-                            Todas as nossas clínicas parceiras passam por um processo rigoroso de verificação, incluindo certificações, avaliações de pacientes e qualidade de atendimento.
+                            As clínicas desta versão são fictícias e servem apenas para testar a interface. Parcerias reais dependerão de validação.
                         </p>
                     </div>
 
@@ -604,7 +469,7 @@
                             Quanto tempo leva para receber a recomendação?
                         </h3>
                         <p >
-                            A triagem leva apenas 5 minutos e você recebe a recomendação imediatamente. Nossa equipe então busca as melhores opções de clínicas e retorna em até 2 horas.
+                            O questionário funciona como demonstração de navegação. Não é realizada recomendação médica nesta versão.
                         </p>
                     </div>
 
@@ -614,7 +479,7 @@
                             Posso escolher a clínica que quiser?
                         </h3>
                         <p >
-                            Sim! Apresentamos várias opções de clínicas parceiras na sua região e você escolhe aquela que melhor atende suas necessidades.
+                            Sim! Você pode explorar diferentes exemplos de clínicas e selecionar um horário fictício no protótipo.
                         </p>
                     </div>
 
@@ -633,7 +498,7 @@
                         </div>
                         <span >Tri'Go</span>
                     </div>
-                    <p >Sua plataforma de conexão com a saúde. Triagem inteligente, agendamento rápido e as melhores clínicas da região.</p>
+                    <p >Sua plataforma de conexão com a saúde. Demonstração de triagem, busca de clínicas e agendamento.</p>
                 </div>
                 <div>
                     <h4 >Links Rápidos</h4>
@@ -654,7 +519,7 @@
                 </div>
             </div>
             <div >
-                &copy; 2025 Tri'Go Saúde. Todos os direitos reservados.
+                &copy; 2026 Tri-Go Saúde. Todos os direitos reservados.
             </div>
         </div>
     </footer>
