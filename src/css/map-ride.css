@@ -137,3 +137,33 @@
 .ride-sidebar-symbol svg{width:19px;height:19px}
 .ride-recenter svg{display:block;width:22px;height:22px}
 .ride-search-lens svg{display:block;width:20px;height:20px}
+
+/* Revisão: cartão de informação dentro do mapa, sem texto comprimido no grid. */
+.ride-map-layout{grid-template-rows:minmax(0,1fr)}
+.ride-map-notice{display:flex;align-items:center;gap:11px;left:17px;bottom:18px;padding:12px 16px;border-radius:15px;white-space:normal;max-width:min(300px,calc(100% - 92px));background:rgba(255,255,255,.97);border:1px solid rgba(212,233,222,.9);box-shadow:0 7px 25px rgba(16,63,39,.17);font-weight:500;line-height:1.3}
+.ride-map-notice strong,.ride-map-notice small{display:block;text-align:left}
+.ride-map-notice strong{font-size:12px;color:#102e26;font-weight:800}
+.ride-map-notice small{font-size:10px;color:#607b70;margin-top:2px}
+.ride-info-badge{display:grid;place-items:center;width:29px;height:29px;flex-shrink:0;border-radius:50%;border:2px solid #137951;color:#137951;font-size:17px;font-weight:850;font-style:normal;font-family:Georgia,serif}
+.ride-map-access-note{position:absolute;z-index:1050;bottom:87px;left:18px;right:auto;max-width:min(340px,calc(100% - 36px));margin:0;padding:13px 15px;border:1px solid #cfe7d9;border-radius:14px;background:rgba(255,255,255,.98);color:#294e40;box-shadow:0 7px 25px rgba(16,63,39,.17);font-size:11px;line-height:1.5;word-break:normal}
+.ride-map-access-note[hidden]{display:none!important}
+.ride-map-access-note.is-visible{display:block}
+.ride-filter-toggle{display:grid;place-items:center;width:39px;height:39px;min-width:39px;border-radius:12px;background:#eff9f2;color:#0b8054;border:0;padding:0;font-size:20px;box-shadow:none}
+.ride-filter-toggle svg{display:block;width:21px;height:21px}
+.ride-filter-toggle[aria-expanded="false"]{background:#edf2ef;color:#50695c}
+.ride-map-filters[hidden]{display:none!important}
+.ride-map-search input:focus{outline:none}
+.ride-map-search:focus-within{outline:2px solid #10b981;outline-offset:2px}
+.ride-sidebar-card.selected{box-shadow:0 3px 14px rgba(18,123,78,.12)}
+.ride-price-pin{min-height:37px;min-width:97px;border-radius:999px;box-shadow:0 3px 12px rgba(18,74,48,.13)}
+.ride-price-pin.selected{box-shadow:0 0 0 3px rgba(16,185,129,.25),0 5px 15px rgba(17,56,41,.18)}
+.ride-map-scene .leaflet-control-attribution{padding:4px 7px!important;border-radius:8px 0 0 0;font-size:9px}
+@media(max-width:900px){
+  .ride-map-notice{bottom:267px;left:12px;max-width:calc(100% - 88px);padding:8px 11px;gap:8px;border-radius:11px}
+  .ride-map-notice strong{font-size:10px}
+  .ride-map-notice small{font-size:9px}
+  .ride-info-badge{width:23px;height:23px;font-size:14px}
+  .ride-map-access-note{bottom:300px;left:13px;right:13px;max-width:none;font-size:11px}
+  .ride-map-access-note.is-visible{display:block}
+  .ride-map-layout .ride-map-scene{overflow:hidden}
+}
