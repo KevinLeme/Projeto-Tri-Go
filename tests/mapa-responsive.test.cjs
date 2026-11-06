@@ -65,7 +65,9 @@ function layout(mobile){
 }
 test("no celular a busca, o mapa e o cartão são irmãos na ordem certa",()=>{
   const ui=layout(true);
-  assert.deepEqual(ui.wrapper.children.slice(1),[ui.floating,ui.scene,ui.sheet]);
+  assert.equal(ui.wrapper.children[1],ui.floating);
+  assert.equal(ui.wrapper.children[2],ui.scene);
+  assert.equal(ui.wrapper.children[3],ui.sheet);
   assert.equal(ui.floating.parentElement,ui.wrapper);
   assert.equal(ui.sheet.parentElement,ui.wrapper);
 });
