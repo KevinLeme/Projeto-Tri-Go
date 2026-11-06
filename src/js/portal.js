@@ -131,12 +131,15 @@
       '<ul><li>Clínica: <span data-preview-name></span></li>'+
       '<li>Localização: <span data-preview-location></span></li>'+
       '<li>Especialidade: <span data-preview-specialty></span></li>'+
-      '<li>Serviços: <span data-preview-services></span></li></ul>'+
+      '<li>Serviços: <span data-preview-services></span></li>'+
+      '<li>Plano simulado: <span data-preview-plan></span></li></ul>'+
       '<button type="button" data-clinic-form-reset>Editar / limpar demonstração</button>';
     $("[data-preview-name]",preview).textContent=clinic;
     $("[data-preview-location]",preview).textContent=city+" — "+state;
     $("[data-preview-specialty]",preview).textContent=specialty;
     $("[data-preview-services]",preview).textContent=services.join(", ")||"Nenhum";
+    const chosenPlan=window.TriGoPricing?.getSelected("clinic");
+    $("[data-preview-plan]",preview).textContent=chosenPlan?(chosenPlan.label+" — "+(chosenPlan.value===0?"R$ 0/mês":"R$ "+chosenPlan.value+"/mês")):"Básico — R$ 0/mês";
     preview.hidden=false;
     preview.scrollIntoView({behavior:"smooth",block:"nearest"});
   });
