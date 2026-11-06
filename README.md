@@ -141,3 +141,20 @@ Para testar:
 - `app.html#/specialties` — buscar e escolher a especialidade;
 - `app.html#/clinics` — filtrar o mapa e limpar ou trocar a seleção.
 
+
+
+## Nova jornada (novembro/2026) — duas triagens e atendimento depois
+
+A tela inicial do paciente `#/home` mostra **duas opções de triagem**, e não um botão independente de teleconsulta:
+
+- **Responder formulário** `#/triage`: relato informativo gratuito, sem diagnóstico, classificação de risco ou médico remoto.
+- **Vídeo com médico** `#/online`: **teletriagem médica futura**; a versão atual permite apenas prévia local da própria câmera. Não há médico conectado nem conclusão de teletriagem por vídeo.
+- `#/triage-choice`: página explicativa dos dois caminhos.
+
+Após completar o formulário, `#/result` oferece **ir até uma clínica** (mapa demonstrativo) ou **conhecer atendimento online** `#/teleconsult` (agendamento ainda não disponível). Quando a teletriagem médica real estiver funcionando, somente a conclusão do médico poderá alimentar a etapa seguinte. Se o usuário sinalizar alerta grave ou não souber avaliar os sinais, a tela prioriza procurar atendimento de urgência e não oferece agendamento não emergencial como orientação.
+
+Modelo comercial proposto (a validar): **pacientes gratuitos para mapa/formulário**, clínica **básica gratuita** e assinatura opcional de gestão, médico com **perfil verificado gratuito** e ferramentas opcionais. Não usar comissão por pacientes encaminhados como monetização inicial.
+
+Detalhes do fluxo, preços candidatos e restrições éticas/regulatórias: `docs/TRIAGEM-E-MODELO-DE-NEGOCIO.md`.
+
+Teste de regressão: `node --test tests/jornada-triagem.test.cjs`.
