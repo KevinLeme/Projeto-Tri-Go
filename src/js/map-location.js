@@ -42,7 +42,6 @@
     }else{
       floating.appendChild(toolbar);
     }
-    if(!desktop && !addressForm.hidden) setAddressOpen(false);
   }
   moveLocationToolbar();
   window.addEventListener("resize",moveLocationToolbar);
