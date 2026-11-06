@@ -33,14 +33,15 @@ O paciente também pode abrir o mapa e procurar clínicas diretamente; isso não
 
 | Público | Plano | Preço proposto | Entrega prevista |
 |---|---|---:|---|
-| Paciente | Essencial | Gratuito | Busca, mapa, triagem informativa, opções e histórico no app |
-| Clínica verificada | Básico | Gratuito | Aparecer no mapa com ficha verdadeira e contato/serviços básicos |
-| Clínica verificada | Gestão | R$ 99/mês | Agenda de equipe, horários, gestão de serviços e relatórios |
-| Clínica verificada | Gestão Plus | R$ 199/mês | Múltiplas agendas, automações, integrações e suporte adicional |
-| Médico verificado | Perfil | Gratuito | Aparecer associado a clínica ou perfil profissional verificado |
-| Médico independente | Pro | R$ 49/mês | Ferramentas próprias de disponibilidade/agenda, não acesso privilegiado a pacientes |
+| Paciente | Acesso básico | Gratuito | Mapa, formulário informativo e histórico demonstrativo |
+| Clínica verificada | Essencial | R$ 29,90/mês | Perfil no mapa e contato, após verificação. Sem agenda integrada |
+| Clínica verificada | Gestão | R$ 99/mês | Agenda com até 2 profissionais, horários e solicitações |
+| Clínica verificada | Gestão Plus | R$ 199/mês | Até 5 agendas, lembretes com franquia e relatórios |
+| Médico vinculado a clínica parceira | Acesso pela clínica | Sem mensalidade extra obrigatória | Utiliza o plano contratado pela instituição |
+| Médico independente | Essencial | R$ 29,90/mês | Perfil verificado, consultório próprio ou atendimento online quando habilitado |
+| Médico independente | Pro | R$ 49/mês | Agenda pessoal, horários e ferramentas administrativas |
 
-*Esses valores não são preços testados em mercado. A cobrança efetiva, emissões fiscais, política de cancelamento, contrato e margens dependem de pesquisa e validação jurídica/operacional.*
+*Todos os planos pagos têm proposta de 30 dias gratuitos de teste (condições futuras ainda não implementadas). O cadastro para verificação é gratuito, mas a publicação independente de clínica/médico depende de plano após o teste. Esses valores não são preços testados em mercado. A cobrança efetiva, emissões fiscais, política de cancelamento, contrato e margens dependem de pesquisa e validação jurídica/operacional.*
 
 - Médico já vinculado a clínica assinante **não paga outra assinatura obrigatória** para trabalhar na agenda da clínica.
 - O custo da teletriagem médica por vídeo e da teleconsulta deve ser informado **antes** de contratar, de acordo com condições da prestação, remuneração médica e custos reais da plataforma. Evitar valores arbitrariamente baixos e promessas de médico grátis sem subsídio.
@@ -57,7 +58,7 @@ Preferência: **assinaturas de software e infraestrutura efetivamente prestados*
 
 Receitas potenciais:
 - Assinaturas B2B de gestão de clínicas (base principal).
-- Assinaturas opcionais de ferramentas administrativas para médicos independentes.
+- Assinaturas de presença profissional e ferramentas administrativas para médicos independentes.
 - Infraestrutura e ferramentas contratadas por prestadores, quando permitido e com prestação de serviço clara.
 
 Custos importantes:
@@ -68,7 +69,7 @@ Custos importantes:
 - Gateway de pagamento, inadimplência, impostos e operação;
 - Verificação de médicos, clínicas e conformidade regulatória.
 
-A rentabilidade não deve ser calculada apenas pela quantidade de usuários. Precisamos medir custo por clínica ativa e por minuto/sessão de vídeo, taxas, suporte e CAC.
+Os 30 dias gratuitos exigem controle de início/fim, proteção contra múltiplas contas abusivas, regras claras de cancelamento e política de cobrança previamente consentida. Nenhuma cobrança automática é aplicada no protótipo. A rentabilidade não deve ser calculada apenas pela quantidade de usuários. Precisamos medir custo por clínica ativa e por minuto/sessão de vídeo, taxas, suporte e CAC.
 
 ## 4. Segurança, medicina e privacidade antes de produção
 
