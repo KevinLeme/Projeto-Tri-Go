@@ -49,3 +49,24 @@
  .pricing-grid-clinic .pricing-amount strong{font-size:27px}
 }
 @media(prefers-reduced-motion:reduce){.pricing-card{transition:none}}
+
+
+/* Avaliação gratuita por 30 dias em todos os planos comerciais. */
+.pricing-trial{
+  align-self:flex-start;display:inline-flex;align-items:center;gap:5px;
+  color:#06744f;background:#dff7e9;border:1px solid #a9e2c2;
+  font-weight:850;font-size:11px;letter-spacing:.01em;
+  border-radius:999px;padding:6px 11px;
+}
+.pricing-trial::before{content:"✓";font-size:12px}
+.pricing-amount{align-items:baseline}
+.pricing-amount small{max-width:140px;line-height:1.35}
+.doctor-onboarding{margin-bottom:22px;max-width:100%}
+.doctor-demo-note{font-size:11px;color:#5c7969;line-height:1.6;padding:11px 13px;background:#eff9f3;border:1px solid #dcece2;border-radius:11px;margin:2px 0 9px}
+#doctor-demo-preview{max-width:100%}
+#doctor-demo-preview strong,#doctor-demo-preview p,#doctor-demo-preview li{overflow-wrap:anywhere}
+@media(max-width:900px){
+ .pricing-trial{font-size:10px}
+ .doctor-onboarding{margin-bottom:16px}
+ .pricing-card .pricing-amount strong{font-size:27px}
+}
