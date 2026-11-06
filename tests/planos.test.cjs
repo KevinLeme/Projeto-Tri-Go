@@ -32,20 +32,21 @@ function mount(){
 }
 test("planos visíveis para clínicas com valores mensais propostos",()=>{
   const area=html.slice(html.indexOf('id="clinic-pricing"'),html.indexOf('class="clinic-portal-highlights"'));
-  for(const text of ["R$ 0/mês","R$ 99","R$ 199","/mês"]){
+  for(const text of ["R$ 29,90","R$ 99","R$ 199","30 dias grátis"]){
     assert.ok(area.includes(text),"Valor ausente: "+text);
   }
   assert.equal((area.match(/data-plan-choice=/g)||[]).length,3);
 });
-test("planos visíveis para médicos com R$ 0 e R$ 49",()=>{
+test("planos visíveis para médicos independentes com R$ 29,90 e R$ 49",()=>{
   const area=html.slice(html.indexOf('id="professional-pricing"'),html.indexOf('class="professional-demo-summary"'));
-  assert.ok(area.includes("R$ 0/mês"));
+  assert.ok(area.includes("R$ 29,90"));
   assert.ok(area.includes("R$ 49"));
+  assert.ok(area.includes("30 dias grátis"))
   assert.equal((area.match(/data-plan-choice=/g)||[]).length,2);
 });
 test("planos têm rótulo de valores em estudo, sem compra ou pagamento",()=>{
   assert.match(html,/Preços em estudo/);
-  assert.match(html,/nenhum pagamento é processado/);
+  assert.match(html,/sem cartão, cobrança/);
   assert.match(pricing,/Não registra assinatura, não cobra/);
   assert.doesNotMatch(pricing,/\bfetch\s*\(|\bXMLHttpRequest\b|localStorage|sessionStorage/);
 });
@@ -57,15 +58,15 @@ test("escolher Gestão seleciona R$ 99, desmarcando o Básico",()=>{
   assert.equal(cards[0].classList.selected,false);
   assert.equal(cards[1].classList.selected,true);
   assert.equal(buttons["clinic-management"].attributes["aria-pressed"],"true");
-  assert.match(status["clinic-pricing-choice"].textContent,/Gestão — R\$ 99\/mês/);
+  assert.match(status["clinic-pricing-choice"].textContent,/Gestão — 30 dias grátis; depois R\$ 99\/mês/);
 });
 test("médico Pro é independente da escolha da clínica",()=>{
   const {window,handlers,status}=mount();
   const trigger={dataset:{planChoice:"doctor-pro"}};
   handlers.click({target:{closest:()=>trigger},preventDefault(){}});
   assert.equal(window.TriGoPricing.getSelected("doctor").value,49);
-  assert.equal(window.TriGoPricing.getSelected("clinic").value,0);
-  assert.match(status["doctor-pricing-choice"].textContent,/Pro — R\$ 49\/mês/);
+  assert.equal(window.TriGoPricing.getSelected("clinic").value,29.9);
+  assert.match(status["doctor-pricing-choice"].textContent,/Independente Pro — 30 dias grátis; depois R\$ 49\/mês/);
 });
 test("a prévia da solicitação usa o plano escolhido sem gravar dados",()=>{
   assert.match(portal,/data-preview-plan/);
@@ -76,4 +77,21 @@ test("custo do vídeo para pacientes não é apresentado como disponível",()=>{
   const choose=html.slice(html.indexOf('id="screen-triage-choice"'),html.indexOf('id="screen-triage"'));
   assert.match(choose,/Valor da teletriagem médica: a definir/);
   assert.match(html,/não tem preço definido nem médico disponível/);
+});
+
+test("planos de entrada têm mensalidade acessível após 30 dias de teste",()=>{
+  const {window}=mount();
+  for(const group of ["clinic","doctor"]){
+    const selected=window.TriGoPricing.getSelected(group);
+    assert.equal(selected.value,29.9);
+    assert.equal(selected.trialDays,30);
+  }
+});
+test("médico independente possui cadastro demonstrativo e opção de consultório/online",()=>{
+  const doctorSource=fs.readFileSync(path.join(root,"src/js/doctor-onboarding.js"),"utf8");
+  assert.match(html,/id="doctor-demo-form"/);
+  assert.match(html,/value="consultorio"/);
+  assert.match(html,/value="online"/);
+  assert.match(doctorSource,/30 dias gratuitos/);
+  assert.doesNotMatch(doctorSource,/\bfetch\s*\(|\bXMLHttpRequest\b|localStorage|sessionStorage/);
 });
