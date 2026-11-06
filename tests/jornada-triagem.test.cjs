@@ -79,7 +79,7 @@ test("teletriagem por vídeo não finge ser consulta concluída",()=>{
   const video=html.slice(html.indexOf('id="screen-online"'),html.indexOf('id="screen-clinic-portal"'));
   const future=html.slice(html.indexOf('id="screen-teleconsult"'),html.indexOf('id="screen-online"'));
   assert.match(video,/não existe atendimento médico conectado/i);
-  assert.match(video,/apenas teste local de câmera/i);
+  assert.match(video,/esta tela testa apenas sua câmera local/i);
   assert.match(future,/Ainda não temos profissionais ou horários reais conectados/);
   assert.match(camera,/audio:false/);
 });
