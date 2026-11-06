@@ -165,38 +165,35 @@
     if(!node || !window.L)return false;
     map=L.map(node,{scrollWheelZoom:window.matchMedia("(min-width:901px)").matches,zoomControl:false}).setView([-23.563,-46.655],13);
     L.control.zoom({position:"topright"}).addTo(map);
-    // Cartografia clara. Quando o provedor primário falha no celular,
-    // usamos outra fonte; o fundo nunca deve ficar preto ou vazio.
-    const primary=L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",{
-      attribution:'&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions" target="_blank" rel="noopener">CARTO</a>',
-      subdomains:"abcd",
+    // O provedor CARTO passou a exigir chave de API em setembro/2026.
+    // Para a demonstração, usamos os tiles padrão do OpenStreetMap,
+    // sem camada com marca d'água e com a atribuição obrigatória.
+    // Não realizar pré-carregamento nem uso offline deste endpoint público.
+    const baseTiles=L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{
+      attribution:'&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors',
       maxZoom:19
     });
-    let failedTiles=0, usingFallback=false;
-    primary.on("tileerror",()=>{
-      if(++failedTiles<3 || usingFallback)return;
-      usingFallback=true;
-      const secondary=L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{
-        attribution:'&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors',
-        maxZoom:19
-      });
-      let fallbackErrors=0;
-      secondary.on("load",()=>{
-        if(map.hasLayer(primary))map.removeLayer(primary);
-      });
-      secondary.on("tileerror",()=>{
-        if(++fallbackErrors===3){
-          const notice=$("#map-note");
-          if(notice){
-            notice.textContent="O mapa está com dificuldade de carregar. Você ainda pode selecionar as clínicas da demonstração.";
-            notice.hidden=false;
-            notice.classList.add("is-visible");
-          }
-        }
-      });
-      secondary.addTo(map);
+    let tileFailures=0;
+    baseTiles.on("tileerror",()=>{
+      if(++tileFailures!==3)return;
+      const notice=$("#map-note");
+      if(notice && notice.hidden){
+        notice.textContent="A conexão com o mapa está indisponível. Você ainda pode selecionar as clínicas demonstrativas.";
+        notice.dataset.tileIssue="true";
+        notice.hidden=false;
+        notice.classList.add("is-visible");
+      }
     });
-    primary.addTo(map);
+    baseTiles.on("tileload",()=>{
+      tileFailures=0;
+      const notice=$("#map-note");
+      if(notice?.dataset.tileIssue==="true"){
+        notice.hidden=true;
+        notice.classList.remove("is-visible");
+        delete notice.dataset.tileIssue;
+      }
+    });
+    baseTiles.addTo(map);
     return true;
   }
   function renderFeaturedClinic(){
