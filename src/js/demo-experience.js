@@ -37,7 +37,7 @@
 
   function branding(){
     const welcome=$("#screen-welcome");
-    if(welcome && !welcome.querySelector(".welcome-logo-bar")){
+    if(welcome && !welcome.classList.contains("portal-entry") && !welcome.querySelector(".welcome-logo-bar")){
       welcome.insertAdjacentHTML("afterbegin",'<div class="welcome-logo-bar"><img src="'+demoLogo+'" alt="Logo oficial do Tri-Go"><strong>Tri\'Go</strong></div>');
     }
     // O JPEG enviado foi incorporado ao projeto sem alterar a arte.
