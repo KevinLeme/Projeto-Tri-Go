@@ -35,9 +35,10 @@ test("não desenha barra falsa nem segundo botão de GPS em cima do mapa",()=>{
 test("fundo não fica preto durante falhas de carregamento dos tiles",()=>{
   assert.match(css,/background-color:#e6f1e9!important/);
   assert.match(css,/img\.leaflet-tile\{opacity:1!important\}/);
-  assert.match(map,/basemaps\.cartocdn\.com\/light_all/);
-  assert.match(map,/tile\.openstreetmap\.org/);
-  assert.match(map,/primary\.on\("tileerror"/);
+  assert.match(map,/https:\/\/tile\.openstreetmap\.org\/\{z\}\/\{x\}\/\{y\}\.png/);
+  assert.doesNotMatch(map,/basemaps\.cartocdn\.com/);
+  assert.match(map,/baseTiles\.on\("tileerror"/);
+  assert.match(map,/baseTiles\.on\("tileload"/);
 });
 test("clínicas continuam clicáveis após erro do mapa",()=>{
   assert.match(map,/api\.chooseClinic\(button\.dataset\.mapFocus\)/);
