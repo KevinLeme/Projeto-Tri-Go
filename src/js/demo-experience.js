@@ -147,10 +147,38 @@
     if(!node || !window.L)return false;
     map=L.map(node,{scrollWheelZoom:window.matchMedia("(min-width:901px)").matches,zoomControl:false}).setView([-23.563,-46.655],13);
     L.control.zoom({position:"topright"}).addTo(map);
-    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{
-      attribution:'&copy; <a href="https://www.openstreetmap.org/copyright" rel="noopener" target="_blank">OpenStreetMap</a> contributors',
+    // Cartografia clara. Quando o provedor primário falha no celular,
+    // usamos outra fonte; o fundo nunca deve ficar preto ou vazio.
+    const primary=L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",{
+      attribution:'&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions" target="_blank" rel="noopener">CARTO</a>',
+      subdomains:"abcd",
       maxZoom:19
-    }).addTo(map);
+    });
+    let failedTiles=0, usingFallback=false;
+    primary.on("tileerror",()=>{
+      if(++failedTiles<3 || usingFallback)return;
+      usingFallback=true;
+      const secondary=L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{
+        attribution:'&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors',
+        maxZoom:19
+      });
+      let fallbackErrors=0;
+      secondary.on("load",()=>{
+        if(map.hasLayer(primary))map.removeLayer(primary);
+      });
+      secondary.on("tileerror",()=>{
+        if(++fallbackErrors===3){
+          const notice=$("#map-note");
+          if(notice){
+            notice.textContent="O mapa está com dificuldade de carregar. Você ainda pode selecionar as clínicas da demonstração.";
+            notice.hidden=false;
+            notice.classList.add("is-visible");
+          }
+        }
+      });
+      secondary.addTo(map);
+    });
+    primary.addTo(map);
     return true;
   }
   function renderFeaturedClinic(){
