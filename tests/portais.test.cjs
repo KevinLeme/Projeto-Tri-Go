@@ -27,7 +27,7 @@ test("paciente pode acessar triagem, sala online e sua própria área",()=>{
 });
 test("cadastro de clínicas é simulação e não publica no mapa",()=>{
   assert.match(html,/id="clinic-demo-form"/);
-  assert.match(portal,/clinicForm\.addEventListener\("submit"/);
+  assert.match(portal,/clinicForm\?\.addEventListener\("submit"/);
   assert.doesNotMatch(portal,/\bfetch\s*\(|\bXMLHttpRequest\b|localStorage|sessionStorage/);
   assert.match(html,/não envia nem armazena dados/i);
 });
