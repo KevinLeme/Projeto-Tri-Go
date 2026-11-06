@@ -160,6 +160,11 @@
   }
 
   document.addEventListener("click",event=>{
+    if(event.target.closest('[data-go="specialties"]')){
+      // "Ver todas" e "Alterar" sempre apresentam o catálogo completo.
+      resetCatalog();
+      return;
+    }
     const homeCard=event.target.closest("[data-catalog-specialty]");
     if(homeCard){
       event.preventDefault();
