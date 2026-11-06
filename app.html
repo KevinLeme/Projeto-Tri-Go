@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="src/css/triage-flow.css">
   <link rel="stylesheet" href="src/css/portal.css">
   <link rel="stylesheet" href="src/css/specialties.css">
+  <link rel="stylesheet" href="src/css/triage-journey.css">
   <script defer src="src/js/ui-icons.js"></script>
   <script defer src="src/js/app.js"></script>
   <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -33,7 +34,7 @@
       <p class="sidebar-label">MENU PRINCIPAL</p>
       <nav class="side-links">
         <a href="#/home" data-nav="home"><span aria-hidden="true">⌂</span> Início</a>
-        <a href="#/triage" data-nav="triage"><span aria-hidden="true">✚</span> Triagem</a>
+        <a href="#/triage-choice" data-nav="triage-choice"><span aria-hidden="true">✚</span> Triagem</a>
         <a href="#/clinics" data-nav="clinics"><span aria-hidden="true">⌖</span> Clínicas</a>
         <a href="#/bookings" data-nav="bookings"><span aria-hidden="true">▣</span> Atendimentos</a>
         <a href="#/profile" data-nav="profile"><span aria-hidden="true">◯</span> Perfil</a>
@@ -146,7 +147,7 @@
         </section>
         <section id="screen-triage" class="screen" aria-label="Questionário demonstrativo de sintomas">
   <div class="triage-mobile-header">
-    <button type="button" class="triage-top-icon" data-go="home" aria-label="Voltar ao início">‹</button>
+    <button type="button" class="triage-top-icon" data-go="triage-choice" aria-label="Voltar às opções de triagem">‹</button>
     <div class="triage-header-label"><strong>Triagem Tri'Go</strong><span>Organize as informações antes de buscar atendimento</span></div>
     <button type="button" class="triage-top-icon" data-go="home" aria-label="Fechar questionário">×</button>
   </div>
@@ -308,7 +309,7 @@
         </section>
         <section id="screen-clinic-portal" class="screen portal-workspace" aria-labelledby="clinic-portal-title">
           <header class="role-page-head"><button type="button" class="role-back" data-go="welcome">← Todos os acessos</button><span class="portal-demo-pill">Área da clínica · demonstração</span></header>
-          <div class="role-page-intro"><span class="role-kicker">PARA CLÍNICAS PARCEIRAS</span><h1 id="clinic-portal-title">Sua clínica mais perto de novos pacientes.</h1><p>O futuro painel do parceiro reunirá cadastro, profissionais, serviços, agenda e solicitações recebidas em um só lugar.</p></div>
+          <div class="role-page-intro"><span class="role-kicker">PARA CLÍNICAS PARCEIRAS</span><h1 id="clinic-portal-title">Sua clínica mais perto de novos pacientes.</h1><p>O futuro painel do parceiro reunirá cadastro, profissionais, serviços, agenda e solicitações recebidas em um só lugar.</p></div><div class="clinic-partner-access"><span class="access-flag">Cadastro básico gratuito · proposta</span><div><strong>Sua clínica poderá aparecer no Tri-Go após verificação.</strong><p>A proposta comercial é oferecer perfil básico gratuito e ferramentas avançadas por assinatura opcional. Nenhum pagamento ou contrato está disponível nesta demonstração.</p></div></div>
           <div class="clinic-portal-highlights"><div><span>01</span><strong>Solicitar parceria</strong><small>Dados institucionais da unidade</small></div><div><span>02</span><strong>Verificação Tri'Go</strong><small>Validação antes da publicação</small></div><div><span>03</span><strong>Gerenciar atendimentos</strong><small>Agenda, serviços e profissionais</small></div></div>
           <div class="role-page-grid">
             <section class="role-main-card" aria-labelledby="clinic-form-title">
@@ -332,7 +333,7 @@
         </section>
         <section id="screen-professional-portal" class="screen portal-workspace" aria-labelledby="professional-portal-title">
           <header class="role-page-head"><button type="button" class="role-back" data-go="welcome">← Todos os acessos</button><span class="portal-demo-pill">Área profissional · demonstração</span></header>
-          <div class="role-page-intro"><span class="role-kicker">PROFISSIONAIS HABILITADOS</span><h1 id="professional-portal-title">Seu espaço para cuidar à distância.</h1><p>Uma futura área reservada a profissionais verificados, com agenda, atendimentos online e gestão da fila de pacientes.</p></div>
+          <div class="role-page-intro"><span class="role-kicker">PROFISSIONAIS HABILITADOS</span><h1 id="professional-portal-title">Seu espaço para cuidar à distância.</h1><p>Uma futura área reservada a profissionais verificados, com agenda, atendimentos online e gestão da fila de pacientes.</p></div><p class="professional-access-note"><strong>Modelo comercial em estudo:</strong> perfil básico gratuito para médicos verificados, com ferramentas de agenda e gestão opcionais por assinatura. Profissionais vinculados a uma clínica não precisam pagar uma segunda assinatura obrigatória.</p>
           <div class="professional-demo-summary"><div><span>ATENDIMENTOS DE EXEMPLO</span><strong>03</strong><small>Agendados no protótipo</small></div><div><span>DISPONIBILIDADE</span><strong>Demo</strong><small>Nenhuma agenda real vinculada</small></div><div><span>ACESSO PROFISSIONAL</span><strong>Verificação</strong><small>Registro obrigatório na versão real</small></div></div>
           <div class="role-page-grid">
             <section class="role-main-card" aria-labelledby="professional-camera-title">
