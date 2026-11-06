@@ -153,7 +153,7 @@ A tela inicial do paciente `#/home` mostra **duas opções de triagem**, e não 
 
 Após completar o formulário, `#/result` oferece **ir até uma clínica** (mapa demonstrativo) ou **conhecer atendimento online** `#/teleconsult` (agendamento ainda não disponível). Quando a teletriagem médica real estiver funcionando, somente a conclusão do médico poderá alimentar a etapa seguinte. Se o usuário sinalizar alerta grave ou não souber avaliar os sinais, a tela prioriza procurar atendimento de urgência e não oferece agendamento não emergencial como orientação.
 
-Modelo comercial proposto (a validar): **pacientes gratuitos para mapa/formulário**, clínica **básica gratuita** e assinatura opcional de gestão, médico com **perfil verificado gratuito** e ferramentas opcionais. Não usar comissão por pacientes encaminhados como monetização inicial.
+Modelo comercial proposto (a validar): **pacientes gratuitos para mapa/formulário**, clínica **Essencial R$ 29,90/mês**, **Gestão R$ 99/mês** e **Plus R$ 199/mês**; para médicos independentes, **Essencial R$ 29,90/mês** ou **Pro R$ 49/mês**. Todos com proposta de **30 dias grátis**. A verificação é gratuita, médicos vinculados à clínica não pagam segunda mensalidade obrigatória. Não usar comissão por encaminhamento.
 
 Detalhes do fluxo, preços candidatos e restrições éticas/regulatórias: `docs/TRIAGEM-E-MODELO-DE-NEGOCIO.md`.
 
@@ -162,12 +162,16 @@ Teste de regressão: `node --test tests/jornada-triagem.test.cjs`.
 
 ## Planos e valores visíveis na demonstração
 
-Os valores propostos foram incorporados à interface pública dos portais comerciais:
-- `app.html#/clinic-portal`: **Básico R$ 0/mês**, **Gestão R$ 99/mês**, **Gestão Plus R$ 199/mês**;
-- `app.html#/professional-portal`: **Perfil básico R$ 0/mês**, **Pro R$ 49/mês**;
-- `app.html#/triage-choice` e `#/online`: formulário gratuito e teletriagem médica por vídeo com **valor ainda a definir** com os parceiros;
-- `app.html#/teleconsult`: teleconsulta médica futura, com preço dependente de profissional e disponibilidade.
+- `app.html#/clinic-portal`: **Essencial R$ 29,90/mês**, **Gestão R$ 99/mês**, **Gestão Plus R$ 199/mês**, todos com proposta de 30 dias grátis.
+- `app.html#/professional-portal`: médicos independentes **Essencial R$ 29,90/mês** e **Pro R$ 49/mês**, ambos com 30 dias grátis. O profissional pode simular perfil de consultório próprio, somente online ou ambos; quem é vinculado à clínica não tem segunda assinatura obrigatória.
+- Cadastro/verificação gratuitos para análise, mas publicação no mapa ou como independente depende de plano comercial após verificação e condições de teste.
+- A área do paciente continua gratuita para mapa/formulário; vídeo médico com preço a combinar com os prestadores.
+- Seleção e formulários são inteiramente demonstrativos, **sem ativar teste, cadastrar contas, salvar dados, cobrar ou renovar automaticamente**. Para ativar planos reais é necessário backend de identidade, assinatura, aprovação institucional/profissional e regras transparentes de cancelamento.
 
-A seleção de planos é **apenas visual** e aparece na prévia do formulário fictício da clínica: não registra contas, não publica clínicas, não cobra, não armazena assinatura ou dados de faturamento. Os preços são **hipóteses para testes de mercado**, não oferta comercial final.
+### Mapa mobile
 
-Teste: `node --test tests/planos.test.cjs`.
+- GPS e digitação de endereço ficam dentro do cartão inferior; o mapa mantém somente busca e filtros compactos sobre a cartografia.
+- Os tiles têm duas fontes de mapa claro com fallback em caso de falha; a área mantém cor clara quando imagens do mapa não carregam.
+- Estilos móveis carregados em `src/css/map-mobile-fix.css`. O desktop mantém a lateral de clínicas.
+- Validação de regressão: `node --test tests/planos.test.cjs tests/mapa-localizacao.test.cjs tests/mapa-mobile-fix.test.cjs`.
+
