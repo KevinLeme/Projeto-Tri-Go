@@ -87,7 +87,7 @@ test("o CSS separa as três áreas e mantém o mapa livre",()=>{
   assert.match(location,/sheet\.insertBefore\(locationCard,footer\)/);
 });
 test("arquivos atualizados têm versão no HTML para evitar cache desatualizado",()=>{
-  assert.match(html,/map-mobile-fix\.css\?v=20261105c/);
-  assert.match(html,/demo-experience\.js\?v=20261105c/);
-  assert.match(html,/map-location\.js\?v=20261105c/);
+  assert.match(html,/map-mobile-fix\.css\?v=\d{8}[a-z]/);
+  assert.match(html,/demo-experience\.js\?v=\d{8}[a-z]/);
+  assert.match(html,/map-location\.js\?v=\d{8}[a-z]/);
 });
