@@ -12,15 +12,15 @@
     {id:"saude",name:"Centro Vida Saúde",area:"Paraíso · exemplo",specialty:"Clínica geral",price:160,rating:4.8,distance:3.6,availability:"Hoje",insurance:"Unimed",lat:-23.5840,lng:-46.6280,services:[["Clínica geral",160,30],["Teleconsulta",110,20]]},
     {id:"infantil",name:"Clínica Bem Viver",area:"Bela Vista · exemplo",specialty:"Pediatria",price:170,rating:4.8,distance:4.0,availability:"Amanhã",insurance:"Bradesco",lat:-23.5444,lng:-46.6320,services:[["Consulta pediátrica",170,40]]}
   ];
-  const screens = ["welcome","home","triage","result","clinics","clinic","appointment","success","bookings","profile","online","clinic-portal","professional-portal"];
-  const titles = {welcome:"Bem-vindo",home:"Início",triage:"Triagem",result:"Resultado",clinics:"Clínicas",clinic:"Detalhes da clínica",appointment:"Confirmar atendimento",success:"Agendamento demonstrativo",bookings:"Atendimentos",profile:"Perfil",online:"Atendimento online", "clinic-portal":"Painel da clínica", "professional-portal":"Área profissional"};
+  const screens = ["welcome","home","specialties","triage","result","clinics","clinic","appointment","success","bookings","profile","online","clinic-portal","professional-portal"];
+  const titles = {welcome:"Bem-vindo",home:"Início",specialties:"Especialidades",triage:"Triagem",result:"Resultado",clinics:"Clínicas",clinic:"Detalhes da clínica",appointment:"Confirmar atendimento",success:"Agendamento demonstrativo",bookings:"Atendimentos",profile:"Perfil",online:"Atendimento online", "clinic-portal":"Painel da clínica", "professional-portal":"Área profissional"};
   const $ = (selector) => document.querySelector(selector);
   const $$ = (selector) => Array.from(document.querySelectorAll(selector));
   const money = (n) => Number(n).toLocaleString("pt-BR",{style:"currency",currency:"BRL",maximumFractionDigits:0});
   const escapeHtml = (value) => String(value).replace(/[&<>"']/g,(c)=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
   const todayLocal = () => { const d=new Date(); const z=(n)=>String(n).padStart(2,"0"); return d.getFullYear()+"-"+z(d.getMonth()+1)+"-"+z(d.getDate()); };
   const formatDate = (date) => date ? new Intl.DateTimeFormat("pt-BR",{day:"2-digit",month:"long",year:"numeric"}).format(new Date(date+"T12:00:00")) : "Não selecionada";
-  const state = {sort:"distance",search:"",clinicId:"central",date:"",time:"",patient:"",booking:null,insuranceOnly:false,mapMode:"map",selectedService:"",payment:"insurance",insurance:"",favorites:new Set(),isRescheduling:false};
+  const state = {sort:"distance",search:"",clinicId:"central",date:"",time:"",patient:"",booking:null,insuranceOnly:false,mapMode:"map",specialtyFilter:"",selectedService:"",payment:"insurance",insurance:"",favorites:new Set(),isRescheduling:false};
   const clinicById = (id) => clinics.find((c)=>c.id===id) || clinics[0];
   const currentClinic = () => clinicById(state.clinicId);
   function navigate(screen) {
@@ -65,10 +65,10 @@
     $("#result-clinics").innerHTML=[clinics[0],clinics.find(c=>c.id==="ortho")].filter(Boolean).map(clinicCard).join("");
   }
   function renderClinics() {
-    let list=clinics.filter((c)=>(c.name+" "+c.area+" "+c.specialty+" "+c.insurance).toLocaleLowerCase("pt-BR").includes(state.search.toLocaleLowerCase("pt-BR")) && (!state.insuranceOnly||c.insurance!=="Particular"));
+    let list=clinics.filter((c)=>(c.name+" "+c.area+" "+c.specialty+" "+c.insurance).toLocaleLowerCase("pt-BR").includes(state.search.toLocaleLowerCase("pt-BR")) && (!state.specialtyFilter||c.specialty.toLocaleLowerCase("pt-BR")===state.specialtyFilter.toLocaleLowerCase("pt-BR")) && (!state.insuranceOnly||c.insurance!=="Particular"));
     const orders={distance:(a,b)=>a.distance-b.distance,price:(a,b)=>a.price-b.price,available:(a,b)=>["Hoje","Amanhã","Em 3 dias"].indexOf(a.availability)-["Hoje","Amanhã","Em 3 dias"].indexOf(b.availability),rating:(a,b)=>b.rating-a.rating,insurance:(a,b)=>a.insurance.localeCompare(b.insurance)};
     list=list.sort(orders[state.sort]||orders.distance);
-    $("#clinic-cards").innerHTML=list.length?list.map(clinicCard).join(""):'<div class="content-card empty-state"><h2>Nenhum resultado nesta demonstração</h2><p>Tente outra especialidade ou nome de clínica.</p></div>';
+    $("#clinic-cards").innerHTML=list.length?list.map(clinicCard).join(""):'<div class="content-card empty-state"><h2>Nenhuma clínica de exemplo encontrada</h2><p>Esta especialidade ou busca ainda não tem opções no protótipo. Use Limpar filtro para explorar outras clínicas.</p><button type="button" class="btn btn-outline" data-clear-specialty>Ver todas as clínicas</button></div>';
     $("#clinic-count").textContent=list.length+" exemplo(s)";
     $$(".filter-button").forEach((b)=>b.classList.toggle("is-selected",b.dataset.sort==="insurance"?state.insuranceOnly:b.dataset.sort===state.sort));
     $("#clinic-search").value=state.search;
