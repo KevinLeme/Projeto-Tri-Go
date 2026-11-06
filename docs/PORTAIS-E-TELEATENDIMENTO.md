@@ -36,7 +36,7 @@ Acesso inicial: `#/welcome`, com três cartões clicáveis. Paciente pode escolh
 1. Criar conta institucional com verificação de identidade e papéis.
 2. Enviar documentos e comprovações conforme exigido pela operação e legislação.
 3. Receber status **pendente de verificação**; painel administrativo analisa.
-4. Após aprovação, cadastrar unidade física, geolocalização e especialidades; exibir no mapa.
+4. Após aprovação e contratação de um plano com teste gratuito, cadastrar unidade física, geolocalização e especialidades; então exibir no mapa.
 5. Gerenciar profissionais vinculados (cada profissional autenticado), horários, agenda e convênios.
 6. Renovar/verificar cadastro quando informações forem alteradas.
 
@@ -93,3 +93,11 @@ Fonte para orientação regulatória: https://sistemas.cfm.org.br/normas/visuali
 3. Agenda e reserva transacional dos profissionais.
 4. Teleatendimento por vídeo, consentimento e regulação clínica.
 5. Integração entre triagem, teleatendimento e agendamento com segurança e auditoria.
+
+## Médicos independentes e planos de entrada
+
+- Clínica verificada: Essencial R$ 29,90/mês, Gestão R$ 99/mês, Gestão Plus R$ 199/mês (30 dias grátis propostos).
+- Médico vinculado à clínica: acesso pelo contrato da clínica sem segunda assinatura obrigatória.
+- Médico independente: Essencial R$ 29,90/mês ou Pro R$ 49/mês (30 dias grátis propostos), com cadastro e verificação gratuitos.
+- Consultório próprio: só posicionar no mapa após verificação de endereço e habilitação. Médico que atua somente online não recebe marcador de consultório fictício.
+- Na demonstração, o formulário `doctor-demo-form` usa dados inventados, não registra CRM e não envia solicitações reais. Não existe pagamento, período de teste ativo nem conta autêntica.
