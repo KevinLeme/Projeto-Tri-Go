@@ -206,3 +206,19 @@
  .role-light-pill{display:none}
 }
 @media(prefers-reduced-motion:reduce){.portal-role-card{transition:none}.portal-role-card:hover{transform:none}}
+
+/* Central demonstrativa do paciente no perfil. */
+.patient-area-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px;margin-bottom:18px}
+.patient-area-action{display:grid;grid-template-columns:40px minmax(0,1fr) auto;grid-template-rows:auto auto;align-items:center;gap:4px 10px;padding:16px;border:1px solid #dcebe1;background:#fff;border-radius:15px;color:#173b2b;text-align:left;min-width:0}
+.patient-area-action>span{grid-row:1/3;display:grid;place-items:center;width:39px;height:39px;border-radius:11px;background:#e8f8ee;color:#0b835d;font-size:22px}
+.patient-area-action strong{font-size:13px;align-self:end}
+.patient-area-action small{font-size:10px;color:#708478;line-height:1.45;align-self:start}
+.patient-area-action b{grid-column:3;grid-row:1/3;color:#0b9b6b;font-size:19px}
+.patient-area-action:hover,.patient-area-action:focus-visible{border-color:#81d5a9;background:#f5fcf7}
+.patient-privacy-card h2{font-size:16px;color:#214b32}
+.patient-privacy-card p{font-size:12px;color:#668075;line-height:1.6}
+.patient-privacy-card .btn{display:inline-flex;justify-content:center;margin-top:12px;font-size:12px}
+@media(max-width:900px){
+  .patient-area-grid{grid-template-columns:1fr;gap:8px}
+  .patient-area-action{padding:13px 14px}
+}
