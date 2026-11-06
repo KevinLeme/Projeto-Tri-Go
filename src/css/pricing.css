@@ -1,0 +1,72 @@
+/* Tri'Go: planos ilustrativos do modelo freemium.
+ * Apenas valores propostos; não há cobrança ou assinatura nesta versão.
+ */
+.pricing-section{margin:22px 0 25px;min-width:0}
+.pricing-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:15px;margin:0 0 16px}
+.pricing-heading h2{font-size:clamp(20px,2.4vw,27px);font-weight:850;letter-spacing:-.04em;line-height:1.24;color:#183e2d;margin:7px 0}
+.pricing-heading p{color:#698073;font-size:12px;line-height:1.6;max-width:680px;margin:0}
+.pricing-status{flex-shrink:0;background:#f3f7ee;color:#657640;border:1px solid #dbe6c8;border-radius:999px;padding:8px 12px;font-size:10px;white-space:nowrap;font-weight:800}
+.pricing-grid{display:grid;gap:13px;align-items:stretch}
+.pricing-grid-clinic{grid-template-columns:repeat(3,minmax(0,1fr))}
+.pricing-grid-professional{grid-template-columns:repeat(2,minmax(0,1fr))}
+.pricing-card{display:flex;flex-direction:column;gap:11px;background:#fff;border:1.5px solid #dbece2;border-radius:20px;padding:20px;min-width:0;box-shadow:0 5px 20px rgba(13,64,40,.035);transition:border-color .15s,box-shadow .15s}
+.pricing-card.pricing-featured{background:#f4fcf7}
+.pricing-card.selected{border-color:#0caf79;box-shadow:0 0 0 2px rgba(16,185,129,.09),0 8px 22px rgba(15,105,63,.08)}
+.pricing-plan-name{color:#16573f;font-size:13px;font-weight:850}
+.pricing-amount{display:flex;align-items:baseline;flex-wrap:wrap;gap:7px;min-height:39px}
+.pricing-amount strong{font-size:clamp(24px,3vw,34px);font-weight:850;line-height:1.2;letter-spacing:-.055em;color:#103d2c;white-space:nowrap}
+.pricing-amount small{font-size:11px;color:#637c6c;font-weight:700}
+.pricing-card>p{color:#5d7869;font-size:11px;line-height:1.5;margin:0;min-height:34px}
+.pricing-card ul{list-style:none;display:grid;align-content:start;gap:9px;padding:0;margin:5px 0 16px;flex:1}
+.pricing-card li{position:relative;color:#375c47;font-size:11px;line-height:1.45;padding-left:21px}
+.pricing-card li::before{content:"✓";position:absolute;left:0;top:-2px;color:#0baf78;font-size:14px;font-weight:850}
+.pricing-card button{border:1px solid #0b8b5e;border-radius:12px;background:#fff;color:#0b7653;font-size:12px;font-weight:800;padding:12px 9px;min-height:43px;width:100%;cursor:pointer}
+.pricing-card button:hover{background:#e5f8ec}
+.pricing-card.selected button{background:#0b845c;color:#fff}
+.pricing-card.selected button:hover{background:#096e4c}
+.pricing-card button:focus-visible{outline:3px solid rgba(16,185,129,.5);outline-offset:3px}
+.pricing-selection-status{font-size:12px;color:#0c7752;font-weight:800;line-height:1.5;margin:14px 0 4px}
+.pricing-small-print{font-size:10px;line-height:1.65;color:#769082;margin:5px 0 0}
+.pricing-patient-note{background:#ecf9f2;border:1px solid #cfead9;border-radius:13px;padding:13px 15px;color:#446a53;font-size:12px;line-height:1.6;margin:0 0 18px}
+.pricing-patient-note strong{color:#176340}
+@media(max-width:900px){
+ .pricing-section{margin:17px 0 23px}
+ .pricing-heading{flex-wrap:wrap;gap:10px}
+ .pricing-heading h2{font-size:21px}
+ .pricing-heading p{font-size:11px}
+ .pricing-grid-clinic,.pricing-grid-professional{grid-template-columns:1fr;gap:10px}
+ .pricing-card{padding:17px;border-radius:16px;gap:8px}
+ .pricing-card>p{min-height:0}
+ .pricing-card ul{margin:4px 0 13px;gap:7px}
+ .pricing-card li{font-size:11px}
+ .pricing-amount{min-height:0}
+ .pricing-amount strong{font-size:29px}
+ .pricing-small-print{font-size:10px}
+}
+@media(min-width:901px) and (max-width:1130px){
+ .pricing-grid-clinic{gap:9px}
+ .pricing-grid-clinic .pricing-card{padding:16px}
+ .pricing-grid-clinic .pricing-amount strong{font-size:27px}
+}
+@media(prefers-reduced-motion:reduce){.pricing-card{transition:none}}
+
+
+/* Avaliação gratuita por 30 dias em todos os planos comerciais. */
+.pricing-trial{
+  align-self:flex-start;display:inline-flex;align-items:center;gap:5px;
+  color:#06744f;background:#dff7e9;border:1px solid #a9e2c2;
+  font-weight:850;font-size:11px;letter-spacing:.01em;
+  border-radius:999px;padding:6px 11px;
+}
+.pricing-trial::before{content:"✓";font-size:12px}
+.pricing-amount{align-items:baseline}
+.pricing-amount small{max-width:140px;line-height:1.35}
+.doctor-onboarding{margin-bottom:22px;max-width:100%}
+.doctor-demo-note{font-size:11px;color:#5c7969;line-height:1.6;padding:11px 13px;background:#eff9f3;border:1px solid #dcece2;border-radius:11px;margin:2px 0 9px}
+#doctor-demo-preview{max-width:100%}
+#doctor-demo-preview strong,#doctor-demo-preview p,#doctor-demo-preview li{overflow-wrap:anywhere}
+@media(max-width:900px){
+ .pricing-trial{font-size:10px}
+ .doctor-onboarding{margin-bottom:16px}
+ .pricing-card .pricing-amount strong{font-size:27px}
+}

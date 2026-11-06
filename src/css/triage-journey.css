@@ -1,0 +1,104 @@
+/* Tri'Go — duas formas de começar a triagem e modalidade de atendimento após a avaliação.
+ * Serviços médicos reais não são simulados como concluídos.
+ */
+#screen-triage-choice,#screen-teleconsult{max-width:860px;margin-inline:auto;padding:12px 0 45px}
+.choice-header{display:flex;gap:16px;align-items:flex-start;margin:12px 0 23px}
+.choice-back{flex:0 0 43px;display:grid;place-items:center;width:43px;height:43px;border-radius:14px;border:1px solid #daeae0;background:#fff;color:#0d7c59;font-size:24px}
+.choice-header h1{margin:6px 0 8px;letter-spacing:-.049em;line-height:1.15;color:#143729;font-size:clamp(24px,3vw,35px)}
+.choice-header p{margin:0;color:#657f70;font-size:13px;line-height:1.6;max-width:650px}
+.choice-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
+.choice-card{display:flex;align-items:flex-start;flex-direction:column;gap:15px;position:relative;min-height:265px;padding:23px 21px;border:1px solid #d8e9df;border-radius:21px;background:#fff;box-shadow:0 8px 25px rgba(13,83,47,.045);color:#1c4932;text-align:left}
+.choice-card:hover{border-color:#7bd5a5;background:#fafffb;box-shadow:0 12px 29px rgba(13,83,47,.1)}
+.choice-card:focus-visible{outline:3px solid #10b981;outline-offset:2px}
+.choice-icon{display:grid;place-items:center;width:52px;height:52px;flex:0 0 52px;border-radius:17px;color:#0b815a;background:#e3f7ea}
+.choice-icon svg{width:28px;height:28px}
+.choice-copy{display:flex;flex:1;flex-direction:column;gap:10px;min-width:0}
+.choice-flag{align-self:flex-start;font-size:10px;font-weight:850;letter-spacing:.04em;background:#e2f6ea;color:#0a8359;padding:6px 9px;border-radius:999px;line-height:1.3}
+.choice-flag-soon{color:#8c6827;background:#fff4dc}
+.choice-copy>strong{font-size:21px;letter-spacing:-.04em;color:#19442e;line-height:1.22}
+.choice-copy>small{font-size:12px;color:#61796a;line-height:1.57}
+.choice-duration{margin-top:auto;padding-top:8px;font-size:10px;font-weight:750;color:#0c845d}
+.choice-arrow{position:absolute;right:20px;top:21px;color:#0b9866;font-size:20px}
+.choice-safety{border:1px solid #efd5aa;border-radius:15px;padding:15px 17px;background:#fff8eb;margin-top:20px}
+.choice-safety strong{font-size:12px;color:#845315}
+.choice-safety p{font-size:11px;color:#89612b;line-height:1.6;margin:5px 0 0}
+.choice-safety a,.choice-care-urgent a{font-weight:850;text-decoration:underline}
+.choice-footnote{font-size:11px;color:#748a7d;line-height:1.6;margin:14px 0}
+.choice-consult-notice{display:flex;gap:16px;align-items:flex-start;padding:22px;background:#fff;border:1px solid #cce5d5;border-radius:18px}
+.choice-consult-icon{display:grid;place-items:center;width:51px;height:51px;background:#e4f7eb;color:#0b8358;border-radius:15px;flex:0 0 51px;font-size:29px}
+.choice-consult-notice strong{font-size:17px;color:#1c4b30;line-height:1.35}
+.choice-consult-notice p{font-size:12px;color:#667d70;line-height:1.6;margin:7px 0 0}
+.choice-consult-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:17px 0}
+.choice-consult-steps>div{background:#f1faf5;border:1px solid #d8ecdf;border-radius:15px;padding:17px;display:grid;gap:8px;align-content:start}
+.choice-consult-steps span{font-size:20px;color:#0c9060;font-weight:850}
+.choice-consult-steps strong{font-size:13px;color:#235039}
+.choice-consult-steps small{font-size:11px;color:#6c8273;line-height:1.5}
+.choice-consult-secondary{border:0;background:#0a855b;color:#fff;padding:13px 18px;border-radius:12px;font-weight:800;font-size:12px}
+#screen-result .triage-care-selection{padding:20px 0 7px}
+#screen-result .triage-care-selection>h3{margin:8px 0 7px;color:#1d4631;font-size:21px;letter-spacing:-.04em}
+#screen-result .triage-care-selection>p{font-size:12px;line-height:1.6;color:#668071;margin:0 0 14px}
+#screen-result .triage-care-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+#screen-result .triage-care-card{display:flex;flex-direction:column;align-items:flex-start;gap:10px;text-align:left;padding:18px;border-radius:17px;background:#fff;border:1px solid #d9e8df;min-height:211px;color:#1d4933}
+#screen-result .triage-care-card:hover{border-color:#75d2a3;background:#f6fcf8}
+#screen-result .triage-care-card:focus-visible{outline:3px solid #10b981;outline-offset:2px}
+#screen-result .triage-care-symbol{display:grid;place-items:center;width:39px;height:39px;border-radius:12px;background:#e5f7ec;color:#0c9162;font-size:24px}
+#screen-result .triage-care-card strong{font-size:15px}
+#screen-result .triage-care-card small{font-size:11px;line-height:1.55;color:#647d70;flex:1}
+#screen-result .triage-care-link{font-size:11px;font-weight:850;color:#0d8257}
+#screen-result .triage-care-urgent{border:1px solid #edc58e;background:#fff6e6;padding:16px 18px;border-radius:14px;margin:14px 0}
+#screen-result .triage-care-urgent strong{color:#925318;font-size:13px}
+#screen-result .triage-care-urgent p{font-size:12px;line-height:1.6;margin:6px 0 0;color:#795524}
+#screen-result .triage-result-actions{display:flex;gap:9px;justify-content:flex-start;margin-top:17px}
+#screen-result .triage-result-actions .btn{width:auto;min-width:155px}
+#screen-result .triage-more-examples[hidden],#triage-map-preview[hidden]{display:none!important}
+#screen-clinic-portal .clinic-partner-access{border:1px solid #cae7d7;background:#f0faf3;border-radius:15px;padding:15px 17px;margin:18px 0;display:flex;gap:11px;align-items:flex-start}
+#screen-clinic-portal .clinic-partner-access .access-flag{font-size:11px;color:#0c875d;font-weight:850;border-radius:999px;background:#dff6e8;padding:7px 10px;white-space:nowrap}
+#screen-clinic-portal .clinic-partner-access strong{font-size:12px;color:#265039}
+#screen-clinic-portal .clinic-partner-access p{margin:6px 0 0;color:#587465;line-height:1.5;font-size:11px}
+#screen-professional-portal .professional-access-note{margin:0 0 21px;padding:14px 17px;background:#ecf8f1;border:1px solid #cfead9;border-radius:13px;color:#356a4d;font-size:12px;line-height:1.6}
+@media(max-width:900px){
+ #screen-triage-choice,#screen-teleconsult{padding:5px 0 calc(95px + env(safe-area-inset-bottom))}
+ .choice-header{margin:4px 0 19px;gap:10px}
+ .choice-header h1{font-size:24px}
+ .choice-header p{font-size:11px}
+ .choice-back{width:35px;height:35px;flex-basis:35px;border-radius:50%;font-size:20px}
+ .choice-cards{grid-template-columns:1fr;gap:11px}
+ .choice-card{min-height:0;padding:16px;gap:9px;border-radius:16px}
+ .choice-icon{width:43px;height:43px;flex-basis:43px;border-radius:12px}
+ .choice-icon svg{width:23px;height:23px}
+ .choice-copy>strong{font-size:17px}
+ .choice-copy>small{font-size:11px}
+ .choice-arrow{right:15px;top:16px}
+ .choice-safety{margin-top:14px;padding:13px 14px}
+ .choice-consult-steps{grid-template-columns:1fr;gap:8px}
+ .choice-consult-steps>div{padding:13px}
+ .choice-consult-notice{padding:14px;gap:10px}
+ .choice-consult-notice strong{font-size:14px}
+ #screen-result .triage-care-grid{grid-template-columns:1fr;gap:9px}
+ #screen-result .triage-care-card{min-height:0;padding:13px;gap:7px}
+ #screen-result .triage-care-selection{padding:12px 0 3px}
+ #screen-result .triage-care-selection>h3{font-size:19px}
+ #screen-result .triage-result-actions .btn{min-width:0}
+ #screen-clinic-portal .clinic-partner-access{flex-direction:column;gap:8px}
+}
+
+/* Na tela inicial, as duas formas de triagem aparecem sem exigir um clique intermediário. */
+#screen-home .home-triage-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+#screen-home .home-triage-actions button{display:flex;align-items:center;gap:10px;min-width:0;min-height:67px;text-align:left;border:1px solid rgba(255,255,255,.25);border-radius:13px;background:#fff;color:#17442e;padding:11px 12px;box-shadow:none}
+#screen-home .home-triage-actions button:hover{background:#e8f8ef}
+#screen-home .home-triage-actions .home-triage-video{background:rgba(5,76,53,.75);color:#fff;border-color:rgba(255,255,255,.3)}
+#screen-home .home-triage-actions .home-triage-video:hover{background:rgba(4,61,43,.88)}
+#screen-home .home-triage-icon{flex-shrink:0;display:grid;place-items:center;width:34px;height:34px;border-radius:10px;background:#e0f4e9;color:#0c8b5e;font-size:21px}
+#screen-home .home-triage-video .home-triage-icon{background:rgba(255,255,255,.14);color:#fff}
+#screen-home .home-triage-actions button>span:nth-child(2){display:flex;flex-direction:column;gap:4px;min-width:0;flex:1}
+#screen-home .home-triage-actions strong{font-size:12px;font-weight:800;line-height:1.3;overflow-wrap:anywhere}
+#screen-home .home-triage-actions small{font-size:10px;opacity:.82;line-height:1.4}
+#screen-home .home-triage-actions b{font-size:17px;color:#0d8d62;font-weight:700}
+#screen-home .home-triage-video b{color:#fff}
+#screen-home .home-triage-more{margin:11px 0 0;padding:5px 0;background:transparent;border:0;color:#e1fff0;font-size:11px;font-weight:750;text-decoration:underline;text-underline-offset:3px}
+@media(max-width:900px){
+ #screen-home .triage-callout .home-triage-actions{grid-template-columns:1fr}
+ #screen-home .home-triage-actions button{min-height:59px;padding:9px 11px}
+ #screen-home .home-triage-actions small{font-size:10px}
+ #screen-home .home-triage-actions .home-triage-icon{width:31px;height:31px}
+}

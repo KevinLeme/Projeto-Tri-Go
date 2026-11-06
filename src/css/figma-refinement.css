@@ -1,0 +1,239 @@
+/* Ajuste da interface mobile conforme medidas do Figma (390 × 844).
+   Elementos vetoriais e ilustração original ainda dependem da exportação do Figma. */
+/* O Android e o iOS já fornecem horário, rede e bateria; não desenhar outra barra. */
+:root{color-scheme:only light}
+@media(min-width:901px){
+  #screen-home,#screen-triage,#screen-result,#screen-clinic,#screen-appointment,#screen-success{max-width:760px;margin-inline:auto}
+  .specialty-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media(max-width:900px){
+  body,.workspace{background:#f7faf9}
+  .app-shell{min-height:100dvh}
+  .sidebar,.topbar{display:none!important}
+  main{width:100%;max-width:640px;padding:8px 20px calc(100px + env(safe-area-inset-bottom));margin:0 auto;min-height:100dvh}
+  .bottom-nav{position:fixed;z-index:25;left:0;right:0;bottom:0;height:calc(78px + env(safe-area-inset-bottom));min-height:78px;display:flex;justify-content:space-around;align-items:flex-start;padding:9px 9px calc(19px + env(safe-area-inset-bottom));border-top:1px solid #dce7e4;background:#fff;box-shadow:none}
+  .bottom-nav a{min-width:0;flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;padding:0;border-radius:0;color:#607372;font-size:11px;font-weight:500}
+  .bottom-nav a>span{display:grid;place-items:center;min-width:40px;height:28px;font-size:21px;line-height:1}
+  .bottom-nav a small{font-size:11px;line-height:1.1}
+  .bottom-nav a.is-active{color:#0f766e;font-weight:700}
+  .bottom-nav a.is-active>span{background:#d5ece7;border-radius:999px}
+  .page-heading{gap:10px;margin-bottom:16px}
+  .page-heading .greeting{font-size:13px;margin:0 0 3px;line-height:1.25}
+  .page-heading h1{font-size:23px;line-height:1.22;letter-spacing:-.035em;margin:0}
+  .page-heading .avatar.big{width:42px;height:42px;font-size:13px}
+  .search-wrap{height:50px;min-height:50px;padding:0 16px;gap:10px;box-shadow:0 6px 20px rgba(22,59,56,.13)}
+  .search-wrap>span{font-size:20px}.search-wrap input{font-size:13px}
+  .search-wrap .icon-button{font-size:18px;width:26px;height:26px;background:transparent;border:0}
+  .triage-callout{margin:16px 0 0;padding:20px;border-radius:22px;background:#0e7c58;box-shadow:0 6px 10px rgba(22,59,56,.13)}
+  .callout-heading{gap:12px;margin-bottom:14px}
+  .callout-icon{width:46px;height:46px;border-radius:16px;font-size:23px;background:rgba(255,255,255,.1)}
+  .callout-heading h2{font-size:18px;line-height:1.25;margin:0 0 3px}
+  .callout-heading p{font-size:12px;line-height:1.4;color:#d3e7e4}
+  .triage-callout .btn{height:54px;min-height:54px;background:#10b981;border:1px solid #10b981;font-size:15px;font-weight:650}
+  .section-heading{margin:22px 0 11px;gap:8px}
+  .section-heading h2{font-size:16px;line-height:1.35;margin:0}
+  .section-heading .text-link{font-size:13px;padding:0}
+  .specialty-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+  .specialty-grid button{height:88px;min-height:88px;min-width:0;gap:8px;border-radius:16px;font-size:11px;line-height:1.2;padding:9px 5px;font-weight:600}
+  .specialty-grid button span{font-size:23px;color:#0f766e;line-height:1.1}
+  .home-quickcards{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .quick-card{min-height:112px;border-radius:16px;padding:13px;gap:4px}
+  .quick-icon{font-size:21px;line-height:1.1}
+  .quick-card strong{font-size:12px}.quick-card small{font-size:11px;line-height:1.3}
+  .quick-arrow{right:11px;bottom:9px}
+  #screen-home>.inline-alert{font-size:11px;margin-top:16px;padding:11px 12px;line-height:1.5}
+  .screen-top{min-height:64px;gap:12px;align-items:center;margin:0 0 8px}
+  .screen-top .back-button{width:40px;height:40px;border:0;background:transparent;font-size:23px;padding:0}
+  .screen-top .eyebrow{display:none}
+  .screen-top h1{font-size:18px;line-height:1.3;margin:0}
+  #screen-triage .screen-top h1{font-size:17px}
+  .content-card{border-radius:16px;padding:18px 16px;margin-bottom:12px;box-shadow:none}
+  .triage-form{padding:18px 16px 20px}
+  .triage-form .progress-top{font-size:12px;font-weight:700}
+  .triage-form .progress-top span{color:#0e7c58}
+  .triage-form .progress-track{height:7px;margin:12px 0 23px}
+  .triage-form h2{font-size:19px;line-height:1.3;margin:0 0 8px}
+  .triage-form>.muted{font-size:12px;line-height:1.5;margin:0}
+  .symptom-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:18px 0 22px}
+  .symptom-option{min-height:63px;padding:10px 11px;font-size:12px;gap:8px;border-radius:12px;line-height:1.3}
+  .symptom-option>span{font-size:20px}
+  .field-label{font-size:13px;margin:17px 0 10px}
+  .duration-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+  .duration-grid span{font-size:12px;padding:12px 4px}
+  .emergency{font-size:11px;line-height:1.5;margin:19px 0}
+  .btn-lg{min-height:54px;font-size:14px}
+  .result-hero{padding:25px 12px}
+  .result-hero h1,.result-hero h2{font-size:21px;line-height:1.3}
+  .result-hero p{font-size:12px}
+  .success-icon{height:64px;width:64px;font-size:26px}
+  .recommendation h2{font-size:19px}
+  .recommendation p{font-size:12px;line-height:1.6}
+  .filter-bar{gap:8px;margin:14px 0;overflow-x:auto;flex-wrap:nowrap;padding-bottom:5px;scrollbar-width:none}
+  .filter-button{flex-shrink:0;padding:9px 12px;font-size:11px}
+  .clinic-cards{display:block}
+  .clinic-card{padding:15px;border-radius:15px;margin-bottom:10px;box-shadow:none}
+  .clinic-card h3{font-size:14px}.clinic-card .card-top p{font-size:11px}
+  .card-details{margin:10px 0}
+  .card-bottom strong{font-size:17px}.card-bottom .btn{padding:11px 15px;font-size:12px}
+  .welcome-layout{display:flex;flex-direction:column;gap:0;min-height:calc(100dvh - 175px)}
+  .welcome-illustration{order:0;min-height:290px;max-height:360px;flex:1;width:100%;margin-bottom:20px;border-radius:0;background:radial-gradient(ellipse,#def7ec 0%,#f7faf9 65%)}
+  .illustration-circle{width:180px;border-width:8px;aspect-ratio:1}
+  .illustration-circle span{font-size:76px}
+  .welcome-copy{order:1;display:flex;flex-direction:column;text-align:center;align-items:center;max-width:480px;width:100%;margin:0 auto}
+  .welcome-copy .eyebrow{font-size:12px;color:#0f766e}
+  .welcome-copy h1{font-size:28px;line-height:1.22;max-width:330px;margin:12px auto}
+  .welcome-copy>p{font-size:13px;line-height:1.55;margin-bottom:13px}
+  .welcome-copy .btn{max-width:358px;width:100%;margin:5px 0;height:54px}
+  .welcome-copy .footnote{font-size:11px;max-width:335px;margin-top:12px}
+  .clinic-detail-hero{height:132px;margin-bottom:12px}
+  .detail-head h2{font-size:18px}.meta-grid{margin-top:12px;gap:8px}
+  .meta-grid>div{padding:12px}.time-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+}
+@media(max-width:420px){
+  main{padding-inline:16px}
+  .welcome-illustration{min-height:250px}
+  .welcome-copy h1{font-size:26px}
+  .screen-top h1{font-size:17px}
+  .time-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:900px){.is-welcome-screen .bottom-nav{display:none}.is-welcome-screen main{padding-bottom:24px}}
+
+
+/* Etapa visual: questionário e tela inicial alinhados aos quadros mobile 390×844. */
+.triage-mobile-header{display:flex;align-items:center;gap:12px;margin-bottom:15px}
+.triage-header-label{display:flex;flex-direction:column;min-width:0;flex:1;gap:4px}
+.triage-header-label strong{font-size:15px;font-weight:800;color:#102a2b}
+.triage-header-label span{font-size:11px;color:#607372;line-height:1.35}
+.triage-top-icon{display:grid;place-items:center;flex-shrink:0;width:36px;height:36px;border-radius:50%;background:#fff;border:1px solid #edf3f0;color:#102a2b;font-size:25px;font-weight:400;line-height:1;box-shadow:0 2px 10px rgba(22,59,56,.05)}
+#screen-triage{max-width:760px;margin:0 auto}
+#screen-triage .triage-form{background:transparent;border:0;box-shadow:none;padding:0 2px;display:flex;flex-direction:column}
+#screen-triage .triage-form h1{font-size:clamp(24px,3vw,29px);font-weight:800;letter-spacing:-.035em;max-width:440px;line-height:1.12;margin:0 0 10px}
+#screen-triage .triage-intro{color:#607372;font-size:12px;line-height:1.45;margin:0 0 4px}
+#screen-triage .progress-top{font-size:12px;margin-top:4px}
+#screen-triage .progress-top strong{color:#0e7c58;font-weight:700}
+#screen-triage .progress-top span{color:#607372}
+#screen-triage .progress-track{height:6px;margin:10px 0 24px;background:#dce7e4}
+#screen-triage .progress-track span{background:#10b981}
+#screen-triage .symptom-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:22px 0 22px}
+#screen-triage .symptom-option{position:relative;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:8px;background:#fff;border:1px solid #dce7e4;min-height:77px;border-radius:12px;padding:11px 14px;color:#102a2b;box-shadow:0 1px 2px rgba(22,59,56,.025);cursor:pointer}
+#screen-triage .symptom-option input{position:absolute;left:0;top:0;width:100%;height:100%;opacity:0;cursor:pointer;margin:0}
+#screen-triage .symptom-option strong{font-size:12px;font-weight:700;line-height:1.1}
+#screen-triage .symptom-glyph{display:grid;place-items:center;width:24px;height:24px;font-size:17px;background:#f1f7f5;border-radius:8px;color:#0b4f4a}
+#screen-triage .symptom-option:has(input:checked){background:#d9f4ea;border:1.5px solid #10b981}
+#screen-triage .symptom-option:has(input:checked) .symptom-glyph{background:#10b981;color:#fff}
+#screen-triage .symptom-option:has(input:focus-visible){outline:3px solid #75d0b2;outline-offset:3px}
+#screen-triage .triage-duration{border:0;margin:0;padding:0;min-width:0}
+#screen-triage .triage-duration legend{font-size:13px;font-weight:800;margin-bottom:12px}
+#screen-triage .duration-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border:1px solid #e4eeeb;border-radius:999px;background:white;overflow:hidden}
+#screen-triage .duration-grid label{display:block}
+#screen-triage .duration-grid span{font-size:11px;line-height:1.4;padding:13px 3px;min-height:44px;border:0;background:transparent;border-radius:999px;color:#607372;font-weight:600}
+#screen-triage .duration-grid label:has(input:checked) span{background:#10b981;color:white;border:0}
+#screen-triage .triage-bottom{margin-top:30px}
+#screen-triage .triage-safety{font-size:11px;line-height:1.5;color:#607372;margin-bottom:10px}
+#screen-triage .triage-safety a{font-weight:700;text-decoration:underline;color:#b42318}
+#screen-triage .btn-primary{background:#10b981;color:white;border:0;box-shadow:0 5px 10px rgba(16,185,129,.14)}
+#screen-triage .btn-primary>span:first-child{font-size:18px;font-weight:500}
+#screen-triage .form-error{margin-bottom:10px;font-size:12px}
+.preview-appointments{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.preview-appointment{background:white;border:1px solid #dce7e4;border-radius:15px;padding:13px 14px;min-width:0;box-shadow:0 4px 10px rgba(22,59,56,.055)}
+.appointment-person{display:flex;align-items:center;gap:11px;min-width:0}
+.appointment-person>div{flex:1;min-width:0}
+.appointment-person strong{display:block;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.3}
+.appointment-person small{display:block;color:#607372;font-size:10px;margin-top:3px}
+.doctor-avatar{width:36px;height:36px;display:grid;place-items:center;flex-shrink:0;border-radius:50%;font-size:12px;font-weight:700}
+.doctor-avatar.teal{background:#d5ece7;color:#0b4f4a}
+.doctor-avatar.peach{background:#ffe9da;color:#b76641}
+.appointment-state{font-size:10px;font-weight:700;border-radius:999px;padding:5px 7px;flex-shrink:0}
+.appointment-state.ok{background:#e6f7ee;color:#0e7c58}
+.appointment-state.pending{background:#fff2d5;color:#a56b11}
+.appointment-info{margin-top:13px;padding-top:10px;border-top:1px solid #edf2ef;font-size:10px;color:#607372;line-height:1.5}
+.preview-disclaimer{font-size:11px;color:#607372;margin:7px 2px 0}
+@media(max-width:900px){
+  .is-triage-screen .bottom-nav{display:none}
+  .is-triage-screen main{padding:0;max-width:none}
+  #screen-triage.screen.is-active{display:flex;flex-direction:column;min-height:100dvh;padding:0 0 18px}
+  #screen-triage .triage-mobile-header{height:64px;min-height:64px;padding:0 20px;margin:0;gap:10px}
+  #screen-triage .triage-top-icon{width:34px;height:34px}
+  #screen-triage .triage-form{flex:1;padding:0 20px;min-height:0;max-width:620px;width:100%;margin:0 auto}
+  #screen-triage .progress-top{margin-top:8px}
+  #screen-triage .progress-track{margin:12px 0 20px}
+  #screen-triage .triage-form h1{font-size:23px;max-width:340px;margin-bottom:7px;line-height:1.17}
+  #screen-triage .triage-intro{font-size:12px;max-width:325px}
+  #screen-triage .symptom-grid{margin:20px 0 20px;gap:7px}
+  #screen-triage .symptom-option{min-height:80px;padding:10px 13px;gap:7px}
+  #screen-triage .symptom-option strong{font-size:12px}
+  #screen-triage .triage-duration legend{font-size:13px;margin-bottom:11px}
+  #screen-triage .triage-bottom{margin-top:auto;padding-top:18px}
+  #screen-triage .triage-safety{font-size:10px;line-height:1.4;margin:0 0 12px}
+  #screen-triage .btn-lg{height:54px;min-height:54px;font-size:14px}
+  .preview-appointments{grid-template-columns:1fr;gap:8px}
+  .preview-appointment{padding:12px}
+  .appointment-person strong{font-size:11px}
+  .appointment-info{font-size:10px}
+}
+@media(max-width:380px){
+  #screen-triage .triage-form{padding:0 15px}
+  #screen-triage .triage-mobile-header{padding:0 15px}
+  #screen-triage .symptom-option{min-height:72px}
+  #screen-triage .triage-form h1{font-size:22px}
+}
+
+
+/* Tela Início: dimensões e ritmo vertical derivados do quadro mobile do Figma. */
+.ui-icon{display:inline-block;width:1em;height:1em;vertical-align:middle;flex-shrink:0;stroke-width:1.9}
+#screen-home{max-width:920px;margin-inline:auto}
+#screen-home .page-heading .avatar{background:#d5ece7}
+#screen-home .search-wrap .ui-icon{font-size:19px;color:#607372}
+#screen-home .search-wrap .icon-button{display:grid;place-items:center;color:#0f766e;flex-shrink:0}
+#screen-home .triage-callout .callout-icon .ui-icon{font-size:23px;color:white}
+#screen-home .triage-callout .button-arrow .ui-icon{font-size:17px}
+#screen-home .specialty-grid .ui-icon{font-size:23px;color:#0f9876}
+#screen-home .preview-appointments{margin-bottom:0}
+#screen-home .preview-appointment{transition:border-color .16s,box-shadow .16s}
+#screen-home .preview-appointment:hover{border-color:#bcded1;box-shadow:0 5px 17px rgba(22,59,56,.06)}
+#screen-home .appointment-info{display:flex;flex-wrap:wrap;align-items:center;gap:8px 13px;font-size:11px}
+#screen-home .appointment-date-info,#screen-home .appointment-address-info{display:inline-flex;align-items:center;gap:5px}
+#screen-home .appointment-info .ui-icon{font-size:14px;color:#607372}
+#screen-home .appointment-state{white-space:nowrap}
+#screen-home .preview-disclaimer{color:#718a84}
+.bottom-nav .ui-icon{font-size:21px;display:block}
+.sidebar .side-links .ui-icon{font-size:21px}
+@media(min-width:901px){
+  #screen-home{max-width:890px;margin-inline:auto}
+  #screen-home .triage-callout{max-width:100%;padding:26px}
+  #screen-home .triage-callout .btn{width:100%;max-width:none}
+  #screen-home .specialty-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+  #screen-home .preview-appointments{grid-template-columns:repeat(2,minmax(0,1fr))}
+  #screen-home .preview-appointment{min-height:118px}
+  #screen-home .search-wrap{max-width:100%}
+}
+@media(max-width:900px){
+  #screen-home{padding-top:25px}
+  #screen-home .page-heading{margin-bottom:16px}
+  #screen-home .search-wrap{min-height:50px;height:50px}
+  #screen-home .triage-callout{margin-top:20px;padding:22px 20px;border-radius:22px}
+  #screen-home .triage-callout .callout-heading{margin-bottom:27px;min-height:55px}
+  #screen-home .callout-heading h2{font-size:18px;font-weight:800;letter-spacing:-.02em}
+  #screen-home .callout-heading p{font-size:12px;line-height:1.35}
+  #screen-home .triage-callout .btn{height:54px}
+  #screen-home .specialty-grid button{font-size:11px;font-weight:650}
+  #screen-home .specialty-grid .ui-icon{font-size:23px}
+  #screen-home .section-heading{margin-top:21px;margin-bottom:11px}
+  #screen-home .preview-appointments{grid-template-columns:1fr;gap:11px}
+  #screen-home .preview-appointment{min-height:111px;padding:15px 16px;border-radius:17px}
+  #screen-home .appointment-person{min-height:40px}
+  #screen-home .appointment-person strong{font-size:12px}
+  #screen-home .doctor-avatar{width:38px;height:38px}
+  #screen-home .appointment-state{font-size:10px}
+  #screen-home .appointment-info{margin-top:12px;padding-top:12px;gap:10px;font-size:10px}
+  #screen-home .preview-disclaimer{margin-top:8px;font-size:10px}
+  #screen-home>.inline-alert{display:none}
+}
+@media(max-width:385px){
+  #screen-home .triage-callout{padding:19px}
+  #screen-home .triage-callout .callout-heading{margin-bottom:20px}
+  #screen-home .preview-appointment{padding:12px}
+  #screen-home .appointment-info{gap:7px}
+  #screen-home .appointment-person strong{font-size:11px}
+  #screen-home .appointment-state{font-size:9px}
+}

@@ -1,0 +1,141 @@
+/* Questionário Tri'Go — quatro etapas demonstrativas, sem classificação clínica. */
+#screen-triage{max-width:800px;margin-inline:auto}
+#screen-triage .triage-flow{background:transparent;min-width:0;padding:0 2px 15px}
+#screen-triage .triage-progress-head{display:flex;align-items:end;justify-content:space-between;gap:10px;margin:9px 0 10px}
+#screen-triage .triage-progress-head>div{display:flex;flex-direction:column;gap:4px}
+#screen-triage .triage-progress-head strong{color:#0e7c58;font-size:13px}
+#screen-triage #triage-percent{color:#688077;font-size:12px}
+#screen-triage .triage-progress-rail{height:7px;background:#dce9e3;border-radius:20px;overflow:hidden;margin:0 0 24px}
+#screen-triage #triage-progress-fill{display:block;height:100%;background:#10b981;border-radius:20px;transition:width .22s ease}
+#triage-questionnaire{display:flex;flex-direction:column;gap:0;min-height:400px}
+#screen-triage .triage-stage{animation:triage-enter .18s ease-out}
+#screen-triage .triage-stage[hidden]{display:none!important}
+@keyframes triage-enter{from{opacity:.65;transform:translateY(5px)}to{opacity:1;transform:none}}
+#screen-triage .triage-heading{margin:5px 0 21px}
+#screen-triage .triage-heading h1,#screen-triage .triage-heading h2{font-size:clamp(23px,3vw,31px);font-weight:800;letter-spacing:-.045em;line-height:1.18;color:#102a2b;max-width:610px;margin:10px 0 9px}
+#screen-triage .triage-heading>p{font-size:13px;line-height:1.55;color:#647970;margin:0;max-width:605px}
+#screen-triage .triage-stage-tag{display:inline-flex;align-items:center;gap:7px;color:#0a865b;font-size:10px;font-weight:800;letter-spacing:.08em}
+#screen-triage .triage-stage-tag>span{font-size:12px}
+#screen-triage .triage-fieldset{border:0;margin:0 0 21px;padding:0;min-width:0}
+#screen-triage .triage-fieldset>legend{font-weight:800;font-size:14px;margin-bottom:13px;padding:0;color:#18342b}
+#screen-triage .symptom-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px;margin:0}
+#screen-triage .symptom-option{min-height:79px;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:10px;background:#fff;border:1px solid #dae7e0;box-shadow:0 2px 6px rgba(20,67,46,.035);border-radius:14px;padding:12px 15px;position:relative;cursor:pointer;transition:border-color .15s,background .15s}
+#screen-triage .symptom-option:hover{border-color:#9cdcc0}
+#screen-triage .symptom-option>strong{font-size:13px;line-height:1.2;color:#102a2b}
+#screen-triage .symptom-option input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;margin:0}
+#screen-triage .symptom-option:has(input:checked){background:#d9f4e9;border:1.5px solid #10b981}
+#screen-triage .symptom-option:has(input:focus-visible){outline:3px solid #10b981;outline-offset:3px}
+#screen-triage .symptom-glyph{display:grid;place-items:center;width:27px;height:27px;background:#eff8f3;border-radius:8px;color:#0e7c58;font-size:19px}
+#screen-triage .symptom-option:has(input:checked) .symptom-glyph{background:#10b981;color:white}
+#screen-triage .symptom-glyph .ui-icon{width:20px;height:20px;stroke:currentColor}
+#screen-triage .triage-selection-count{font-size:12px;color:#0c7756;font-weight:700;margin:-11px 0 16px}
+#screen-triage .triage-inline-info{display:flex;align-items:flex-start;gap:10px;background:#ecf8f2;border:1px solid #d8ede3;border-radius:13px;padding:12px 14px}
+#screen-triage .triage-inline-info>span{width:22px;height:22px;flex:0 0 22px;display:grid;place-items:center;border:1.5px solid #0e7c58;border-radius:50%;color:#0e7c58;font-style:normal;font-family:Georgia,serif;font-weight:800}
+#screen-triage .triage-inline-info p{font-size:11px;line-height:1.5;color:#476a5c;margin:0}
+#screen-triage .triage-choice-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+#screen-triage .duration-options{grid-template-columns:repeat(4,minmax(0,1fr))}
+#screen-triage .triage-choice{display:block;min-width:0;position:relative;cursor:pointer}
+#screen-triage .triage-choice input{position:absolute;opacity:0;width:100%;height:100%;inset:0;cursor:pointer;margin:0}
+#screen-triage .triage-choice>span{display:flex;justify-content:center;align-items:center;flex-direction:column;gap:4px;min-height:47px;text-align:center;background:#fff;border:1px solid #dce9e2;border-radius:12px;padding:12px 8px;font-size:12px;color:#34574a;font-weight:750;line-height:1.25}
+#screen-triage .triage-choice:has(input:checked)>span{background:#0eae7b;color:#fff;border-color:#0eae7b}
+#screen-triage .triage-choice:has(input:focus-visible)>span{outline:3px solid #10b981;outline-offset:3px}
+#screen-triage .triage-choice-detail>span{min-height:91px;align-items:flex-start;text-align:left;padding:14px 12px}
+#screen-triage .triage-choice-detail strong{font-size:13px}
+#screen-triage .triage-choice-detail small{display:block;font-size:11px;line-height:1.35;color:#667f71;font-weight:500}
+#screen-triage .triage-choice-detail:has(input:checked) small{color:#e6fff0}
+#screen-triage .triage-safety-banner{border:1px solid #edcc8b;background:#fff8e9;border-radius:14px;padding:15px 16px;margin-bottom:20px}
+#screen-triage .triage-safety-banner strong{font-size:14px;color:#9b6111}
+#screen-triage .triage-safety-banner p{margin:6px 0 0;color:#825c26;font-size:12px;line-height:1.55}
+#screen-triage .triage-safety-banner a,#screen-triage .triage-warning-detail a{font-weight:800;text-decoration:underline}
+#screen-triage .triage-warning-options{display:grid;gap:10px}
+#screen-triage .triage-warning-choice{display:flex;align-items:center;gap:12px;min-height:73px;position:relative;background:white;border:1px solid #dce9e2;border-radius:14px;padding:13px 15px;cursor:pointer}
+#screen-triage .triage-warning-choice input{height:19px;width:19px;accent-color:#0eae7b;flex-shrink:0}
+#screen-triage .triage-warning-choice span{display:flex;flex-direction:column;gap:5px}
+#screen-triage .triage-warning-choice strong{color:#19362b;font-size:13px}
+#screen-triage .triage-warning-choice small{font-size:11px;color:#668073;line-height:1.3}
+#screen-triage .triage-warning-choice:has(input:checked){background:#eaf9f1;border-color:#10b981}
+#screen-triage .triage-warning-detail{border:1px solid #e9c988;background:#fff5e2;border-radius:13px;padding:13px 15px;margin:-5px 0 18px}
+#screen-triage .triage-warning-detail[hidden]{display:none}
+#screen-triage .triage-warning-detail strong{font-size:12px;color:#9b5a0c}
+#screen-triage .triage-warning-detail p{margin:5px 0 0;font-size:11px;line-height:1.5;color:#765123}
+#screen-triage .triage-notes-label{font-size:13px;font-weight:800;display:block;margin-top:13px;margin-bottom:9px}
+#screen-triage .triage-notes-label span{color:#8ba095;font-size:11px;font-weight:500}
+#triage-notes{width:100%;min-height:95px;resize:vertical;max-height:170px;border-radius:13px;background:white;border:1px solid #dce9e2;padding:13px 15px;color:#1c3b2f;font-size:12px;line-height:1.5;box-sizing:border-box}
+#triage-notes:focus{outline:2px solid #10b981;outline-offset:2px}
+#screen-triage .triage-notes-count{text-align:right;font-size:10px;color:#849a8f;margin:4px 2px 0}
+#screen-triage .triage-review{background:white;border:1px solid #dce9e2;border-radius:17px;overflow:hidden;box-shadow:0 4px 14px rgba(21,69,46,.035)}
+#screen-triage .triage-review-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 17px;border-bottom:1px solid #edf3ef}
+#screen-triage .triage-review-row:last-child{border-bottom:0}
+#screen-triage .triage-review-row>div{display:grid;gap:5px;min-width:0}
+#screen-triage .triage-review-row span{font-size:11px;color:#72867b}
+#screen-triage .triage-review-row strong{font-size:13px;line-height:1.45;overflow-wrap:anywhere;color:#183a2a}
+#screen-triage .triage-edit{background:#e8f7ef;color:#0d815a;border-radius:999px;padding:7px 12px;font-size:11px;font-weight:700;flex-shrink:0}
+#screen-triage .triage-privacy{border:1px solid #d7ebe0;background:#eff8f3;border-radius:13px;padding:14px 15px;margin:15px 0}
+#screen-triage .triage-privacy strong{font-size:12px;color:#125b46}
+#screen-triage .triage-privacy p{font-size:11px;line-height:1.5;color:#526d60;margin:5px 0 0}
+#screen-triage .triage-confirm{display:flex;align-items:flex-start;gap:10px;font-size:12px;font-weight:600;color:#305c48;cursor:pointer;line-height:1.5}
+#screen-triage .triage-confirm input{accent-color:#0eaa73;width:18px;height:18px;flex-shrink:0}
+#screen-triage .triage-bottom{margin:25px 0 0;padding:0;flex-shrink:0}
+#screen-triage .triage-navigation{display:flex;align-items:center;gap:11px}
+#screen-triage .triage-navigation .btn{min-height:50px;margin:0}
+#screen-triage #triage-previous{flex:0 0 auto;min-width:100px}
+#screen-triage #triage-previous[hidden]{display:none!important}
+#screen-triage #complete-triage{flex:1;min-width:0;width:auto;background:#0db881;min-height:53px;border:0;color:white;box-shadow:0 5px 15px rgba(12,171,111,.13)}
+#screen-triage .triage-footer-notice{text-align:center;font-size:10px;color:#72867b;line-height:1.5;margin:12px 0 0}
+#screen-triage .triage-footer-notice a{color:#9b361e;font-weight:800;text-decoration:underline}
+#screen-triage .form-error{margin:0 0 12px;font-size:12px}
+#screen-result .triage-result-card{background:#fff;border:1px solid #dfe9e4;border-radius:17px;padding:18px 20px;margin-bottom:15px}
+#screen-result .triage-result-top{display:flex;justify-content:space-between;gap:14px;align-items:center;margin-bottom:14px}
+#screen-result .triage-result-top h3{font-size:19px;letter-spacing:-.035em;margin:5px 0 0}
+#screen-result .triage-result-check{width:35px;height:35px;border-radius:50%;display:grid;place-items:center;background:#e1f6e9;color:#0ca86f;font-size:22px}
+#screen-result .triage-result-line{display:grid;grid-template-columns:minmax(100px,35%) minmax(0,1fr);gap:16px;align-items:start;border-bottom:1px solid #edf3ef;padding:12px 0}
+#screen-result .triage-result-line:last-child{border-bottom:0}
+#screen-result .triage-result-line span{color:#6c8276;font-size:12px}
+#screen-result .triage-result-line strong{font-size:12px;line-height:1.45;color:#244735;overflow-wrap:anywhere}
+#screen-result .triage-result-warning{border:1px solid #edca88;background:#fff3db;border-radius:13px;padding:15px 17px;margin-bottom:15px}
+#screen-result .triage-result-warning strong{color:#995815;font-size:13px}
+#screen-result .triage-result-warning p{font-size:12px;color:#7e5924;line-height:1.5;margin:6px 0 0}
+#screen-result .triage-result-warning a{text-decoration:underline;font-weight:800}
+#screen-result .triage-result-neutral{border:1px solid #dcebe2;background:#eff8f2;border-radius:12px;padding:14px 16px;color:#436b54;font-size:12px;line-height:1.6;margin-bottom:14px}
+#screen-result .triage-result-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+#screen-result .triage-result-actions .btn{min-width:0;font-size:12px}
+#screen-result .triage-result-footnote{font-size:11px;color:#697f72;line-height:1.55;margin:0 0 19px}
+#screen-result .demo-priority[hidden]{display:none!important}
+@media(max-width:900px){
+  #screen-triage.screen.is-active{padding-bottom:0!important}
+  #screen-triage .triage-flow{display:flex;flex-direction:column;flex:1;min-height:calc(100dvh - 115px);padding:0 18px 0;max-width:620px;width:100%;margin:0 auto}
+  #screen-triage .triage-mobile-header{min-height:58px;height:58px;padding:0 18px}
+  #screen-triage .triage-progress-head{margin:6px 0 10px}
+  #screen-triage .triage-progress-rail{margin-bottom:18px}
+  #screen-triage .triage-heading{margin:0 0 17px}
+  #screen-triage .triage-heading h1,#screen-triage .triage-heading h2{font-size:23px;margin:8px 0 8px;line-height:1.2}
+  #screen-triage .triage-heading>p{font-size:12px}
+  #screen-triage .symptom-grid{gap:8px}
+  #screen-triage .symptom-option{padding:10px 12px;min-height:73px;gap:7px}
+  #screen-triage .symptom-option>strong{font-size:12px}
+  #screen-triage .triage-stage-tag{font-size:9px}
+  #screen-triage .triage-choice-grid{gap:7px}
+  #screen-triage .duration-options{grid-template-columns:repeat(2,minmax(0,1fr))}
+  #screen-triage .triage-choice>span{padding:12px 5px;font-size:11px}
+  #screen-triage .triage-choice-detail>span{min-height:98px;align-items:center;text-align:center;padding:13px 8px}
+  #screen-triage .triage-choice-detail small{font-size:10px}
+  #screen-triage .triage-navigation .btn{font-size:12px}
+  #screen-triage #triage-previous{min-width:93px}
+  #screen-triage .triage-bottom{margin-top:auto;position:sticky;bottom:0;padding:15px 0 calc(10px + env(safe-area-inset-bottom));z-index:5;background:linear-gradient(0deg,#f7faf9 82%,rgba(247,250,249,.98) 100%)}
+  #screen-triage .triage-footer-notice{margin:10px 0 0}
+  #screen-triage .triage-fieldset{margin-bottom:20px}
+  #screen-result .triage-result-card{padding:16px}
+}
+@media(max-width:400px){
+  #screen-triage .triage-flow{padding:0 15px}
+  #screen-triage .triage-mobile-header{padding:0 15px}
+  #screen-triage .triage-heading h1,#screen-triage .triage-heading h2{font-size:21px}
+  #screen-triage .symptom-option{min-height:67px}
+  #screen-triage .triage-choice-detail{min-width:0}
+  #screen-triage .triage-choice-detail>span{min-height:100px;padding:11px 5px}
+  #screen-result .triage-result-actions{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){
+ #screen-triage .triage-stage{animation:none}
+ #screen-triage #triage-progress-fill{transition:none}
+}
