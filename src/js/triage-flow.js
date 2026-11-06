@@ -100,6 +100,8 @@
     const report=api.state.triageReport;
     let box=screen.querySelector("#triage-result-details");
     if(!box){box=document.createElement("div");box.id="triage-result-details";reco.insertAdjacentElement("afterend",box);}
+    const oldExamples=screen.querySelector("#triage-map-preview");
+    if(oldExamples)oldExamples.hidden=true;
     const heading=screen.querySelector(".section-heading h2");
     if(heading)heading.textContent="Clínicas de exemplo para conhecer";
     if(!report){
@@ -107,7 +109,7 @@
       box.innerHTML='<button type="button" class="btn btn-primary" data-triage-restart>Iniciar questionário →</button>';
       return;
     }
-    reco.innerHTML='<span class="eyebrow">TRIAGEM INFORMATIVA CONCLUÍDA</span><h2 id="demo-specialty">Seu relato foi organizado</h2><p>Este resumo reúne apenas o que você informou. O Tri’Go ainda não determina diagnóstico, urgência ou especialidade adequada.</p>';
+    reco.innerHTML='<span class="eyebrow">FORMULÁRIO INFORMATIVO CONCLUÍDO</span><h2 id="demo-specialty">Seu relato foi organizado</h2><p>Este resumo reúne apenas o que você informou. O Tri’Go ainda não determina diagnóstico, urgência ou especialidade adequada.</p>';
     const warning=report.warning==="Sim"
       ?'<div class="triage-result-warning"><strong>Você indicou um possível sinal de alerta.</strong><p>Não espere pela plataforma se estiver com sintomas graves. Procure atendimento imediato ou ligue <a href="tel:192">192</a>.</p></div>'
       : report.warning==="Não sei"
@@ -116,8 +118,14 @@
     box.innerHTML='<div class="triage-result-card"><div class="triage-result-top"><div><span class="eyebrow">RESUMO DA CONVERSA</span><h3>Informações relatadas</h3></div><span class="triage-result-check" aria-hidden="true">✓</span></div>'+
       resultRow("Sintomas",report.symptoms.join(", "))+resultRow("Há quanto tempo",report.duration)+resultRow("Desconforto",report.intensity)+resultRow("Evolução",report.trend)+resultRow("Sinais de alerta",labels.warning[report.warning]||report.warning)+
       (report.notes?resultRow("Observações",report.notes):"")+'</div>'+warning+
-      '<div class="triage-result-actions"><button type="button" class="btn btn-outline" data-triage-restart>Refazer perguntas</button><button type="button" class="btn btn-primary" data-go="clinics">Explorar clínicas no mapa →</button></div>'+
-      '<p class="triage-result-footnote">Clínicas, especialidades, preços e horários abaixo são exemplos de navegação e não foram selecionados com base nos seus sintomas.</p>';
+      (report.warning==="Sim"
+        ?'<div class="triage-care-urgent"><strong>Não espere para agendar uma consulta de rotina</strong><p>Você indicou um sinal de alerta. Se está com sintomas graves, procure um serviço de urgência ou ligue <a href="tel:192">192</a>. As opções abaixo não substituem atendimento imediato.</p></div>'
+        :'<div class="triage-care-selection"><span class="eyebrow">PRÓXIMA ETAPA</span><h3>Como prefere buscar atendimento?</h3><p>O questionário não indicou a modalidade correta para seu caso. Um profissional deverá avaliar se o atendimento online é adequado.</p><div class="triage-care-grid">'+
+          '<button type="button" class="triage-care-card" data-go="clinics"><span class="triage-care-symbol" aria-hidden="true">⌖</span><strong>Ir até uma clínica</strong><small>Explore as unidades fictícias no mapa e veja a simulação de agendamento presencial.</small><span class="triage-care-link">Explorar mapa →</span></button>'+
+          '<button type="button" class="triage-care-card" data-go="teleconsult"><span class="triage-care-symbol" aria-hidden="true">▣</span><strong>Atendimento online</strong><small>Conheça como será possível agendar uma teleconsulta com médico verificado.</small><span class="triage-care-link">Conhecer teleconsulta →</span></button>'+
+        '</div></div>')+
+      '<div class="triage-result-actions"><button type="button" class="btn btn-outline" data-triage-restart>Refazer perguntas</button></div>'+
+      '<p class="triage-result-footnote">Não há diagnóstico, avaliação médica ou recomendação de especialidade nesta demonstração. Nenhum dos exemplos é um serviço real disponível.</p>';
   }
   $("#complete-triage").addEventListener("click",event=>{
     event.preventDefault();
