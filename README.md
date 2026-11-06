@@ -102,3 +102,23 @@ A publicação em Cloudflare Pages deve ser validada em navegador mobile e deskt
 - O serviço precisa de HTTPS e da autorização do navegador para acessar localização. Se a autorização for negada, a busca manual permanece disponível.
 
 Regressão sem dependências: `node --test tests/mapa-localizacao.test.cjs`.
+
+
+## Três acessos na tela inicial
+
+A URL `app.html#/welcome` apresenta três perfis de navegação **demonstrativos**:
+
+- **Paciente** → `#/home`, triagem por perguntas, clínicas, atendimentos, área pessoal e sala online `#/online`.
+- **Clínica** → `#/clinic-portal`, formulário de exemplo para solicitar parceria, com prévia local, sem gravar/enviar ou publicar no mapa.
+- **Profissional de saúde** → `#/professional-portal`, painel com agenda ilustrativa e teste local de câmera.
+
+A sala online usa a API do navegador `getUserMedia` **somente após clique**, com `audio:false`. Nenhuma videoconferência WebRTC é estabelecida, nenhuma imagem é gravada ou enviada a servidores e a câmera é desligada ao sair da tela ou ocultar a aba.
+
+Não há cadastro, login ou validação reais nesta versão. Os três acessos podem ser abertos livremente porque não possuem informações reais.
+
+Documentação da arquitetura futura e riscos: `docs/PORTAIS-E-TELEATENDIMENTO.md`.
+
+Verificações de regressão:
+`node --test tests/portais.test.cjs`.
+
+**Antes do lançamento:** autenticação e autorização por papel, verificação de clínicas e profissionais, backend com registros e segurança, LGPD, consentimento para teleatendimento e vídeo via infraestrutura apropriada.
