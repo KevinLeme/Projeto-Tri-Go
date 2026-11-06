@@ -173,5 +173,5 @@ Teste de regressão: `node --test tests/jornada-triagem.test.cjs`.
 - GPS e digitação de endereço ficam dentro do cartão inferior; o mapa mantém somente busca e filtros compactos sobre a cartografia.
 - Os tiles têm duas fontes de mapa claro com fallback em caso de falha; a área mantém cor clara quando imagens do mapa não carregam.
 - Estilos móveis carregados em `src/css/map-mobile-fix.css`. O desktop mantém a lateral de clínicas.
-- Validação de regressão: `node --test tests/planos.test.cjs tests/mapa-localizacao.test.cjs tests/mapa-mobile-fix.test.cjs`.
+- Validação de regressão: `node --test tests/planos.test.cjs tests/medico-independente.test.cjs tests/mapa-localizacao.test.cjs tests/mapa-mobile-fix.test.cjs`.
 
