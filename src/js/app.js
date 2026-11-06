@@ -12,8 +12,8 @@
     {id:"saude",name:"Centro Vida Saúde",area:"Paraíso · exemplo",specialty:"Clínica geral",price:160,rating:4.8,distance:3.6,availability:"Hoje",insurance:"Unimed",lat:-23.5840,lng:-46.6280,services:[["Clínica geral",160,30],["Teleconsulta",110,20]]},
     {id:"infantil",name:"Clínica Bem Viver",area:"Bela Vista · exemplo",specialty:"Pediatria",price:170,rating:4.8,distance:4.0,availability:"Amanhã",insurance:"Bradesco",lat:-23.5444,lng:-46.6320,services:[["Consulta pediátrica",170,40]]}
   ];
-  const screens = ["welcome","home","triage","result","clinics","clinic","appointment","success","bookings","profile"];
-  const titles = {welcome:"Bem-vindo",home:"Início",triage:"Triagem",result:"Resultado",clinics:"Clínicas",clinic:"Detalhes da clínica",appointment:"Confirmar atendimento",success:"Agendamento demonstrativo",bookings:"Atendimentos",profile:"Perfil"};
+  const screens = ["welcome","home","triage","result","clinics","clinic","appointment","success","bookings","profile","online","clinic-portal","professional-portal"];
+  const titles = {welcome:"Bem-vindo",home:"Início",triage:"Triagem",result:"Resultado",clinics:"Clínicas",clinic:"Detalhes da clínica",appointment:"Confirmar atendimento",success:"Agendamento demonstrativo",bookings:"Atendimentos",profile:"Perfil",online:"Atendimento online", "clinic-portal":"Painel da clínica", "professional-portal":"Área profissional"};
   const $ = (selector) => document.querySelector(selector);
   const $$ = (selector) => Array.from(document.querySelectorAll(selector));
   const money = (n) => Number(n).toLocaleString("pt-BR",{style:"currency",currency:"BRL",maximumFractionDigits:0});
@@ -31,6 +31,8 @@
   function currentScreen() { const screen=location.hash.replace(/^#\//,"").split("?")[0];return screens.includes(screen)?screen:"welcome"; }
   function renderScreen(screen) {
     document.body.classList.toggle("is-welcome-screen", screen === "welcome");
+    document.body.classList.toggle("is-role-portal",["welcome","clinic-portal","professional-portal"].includes(screen));
+    document.body.classList.toggle("is-online-room",screen==="online");
     document.body.classList.toggle("is-triage-screen", screen === "triage");
     $$(".screen").forEach((node)=>{const active=node.id==="screen-"+screen;node.classList.toggle("is-active",active);node.hidden=!active;});
     $$("[data-nav]").forEach((node)=>{const active=node.dataset.nav===screen || (screen==="clinic"&&node.dataset.nav==="clinics") || (screen==="success"&&node.dataset.nav==="bookings");node.classList.toggle("is-active",active);if(active)node.setAttribute("aria-current","page");else node.removeAttribute("aria-current");});
@@ -47,7 +49,7 @@
   }
   function updateGreeting() {
     const hour=new Date().getHours();
-    $(".greeting").textContent=(hour<12?"Bom dia":hour<18?"Boa tarde":"Boa noite")+", Mariana";
+    $(".greeting").textContent=(hour<12?"Bom dia":hour<18?"Boa tarde":"Boa noite")+", bem-vindo(a)";
   }
   function clinicCard(c) {
     const rating=String(c.rating).replace(".",",");
