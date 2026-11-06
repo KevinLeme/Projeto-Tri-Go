@@ -18,6 +18,7 @@
   <link rel="stylesheet" href="src/css/portal.css">
   <link rel="stylesheet" href="src/css/specialties.css">
   <link rel="stylesheet" href="src/css/triage-journey.css">
+  <link rel="stylesheet" href="src/css/pricing.css">
   <script defer src="src/js/ui-icons.js"></script>
   <script defer src="src/js/app.js"></script>
   <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -25,6 +26,7 @@
   <script defer src="src/js/map-location.js"></script>
   <script defer src="src/js/triage-flow.js"></script>
   <script defer src="src/js/portal.js"></script>
+  <script defer src="src/js/pricing.js"></script>
   <script defer src="src/js/specialties.js"></script>
 </head>
 <body>
@@ -139,7 +141,7 @@
             </button>
             <button type="button" class="choice-card" data-go="online">
               <span class="choice-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="2" y="5" width="15" height="14" rx="3"/><path d="m17 10 5-3v10l-5-3M7 12h5"/></svg></span>
-              <span class="choice-copy"><span class="choice-flag choice-flag-soon">COM MÉDICO · EM DESENVOLVIMENTO</span><strong>Triagem por videochamada</strong><small>No lançamento, um médico habilitado avaliará o relato e orientará o encaminhamento. Por enquanto, apenas teste local de câmera.</small><span class="choice-duration">Preço e disponibilidade serão informados antes de contratar</span></span><span class="choice-arrow" aria-hidden="true">→</span>
+              <span class="choice-copy"><span class="choice-flag choice-flag-soon">COM MÉDICO · EM DESENVOLVIMENTO</span><strong>Triagem por videochamada</strong><small>No lançamento, um médico habilitado avaliará o relato e orientará o encaminhamento. Por enquanto, apenas teste local de câmera.</small><span class="choice-duration">Valor da teletriagem médica: a definir com parceiros, informado antes de contratar</span></span><span class="choice-arrow" aria-hidden="true">→</span>
             </button>
           </div>
           <div class="choice-safety"><strong>Está passando por uma emergência?</strong><p>Não aguarde a triagem do aplicativo. Procure um serviço de urgência ou ligue <a href="tel:192">192</a>.</p></div>
@@ -287,6 +289,7 @@
         <section id="screen-online" class="screen portal-workspace" aria-labelledby="online-title">
           <header class="role-page-head"><button type="button" data-go="triage-choice" class="role-back">← Voltar às opções de triagem</button><span class="portal-demo-pill">Demonstração</span></header>
           <div class="role-page-intro"><span class="role-kicker">TELETRIAGEM MÉDICA · EM DESENVOLVIMENTO</span><h1 id="online-title">Triagem por vídeo com médico.</h1><p>Futuramente, você poderá conversar com um médico habilitado para avaliação e encaminhamento. Ainda não existe atendimento médico conectado: esta tela testa apenas sua câmera local.</p></div>
+          <p class="pricing-patient-note"><strong>Quanto custa?</strong> O formulário é gratuito. A futura teletriagem por vídeo não tem preço definido nem médico disponível nesta demonstração; o valor será informado antes de qualquer contratação.</p>
           <div class="role-page-grid">
             <div class="role-main-card">
               <div class="role-card-head"><div><h2>Prévia da sala online</h2><p>Teste local do dispositivo · sem conexão com outra pessoa</p></div><span class="role-light-pill">Ambiente de testes</span></div>
@@ -310,6 +313,31 @@
         <section id="screen-clinic-portal" class="screen portal-workspace" aria-labelledby="clinic-portal-title">
           <header class="role-page-head"><button type="button" class="role-back" data-go="welcome">← Todos os acessos</button><span class="portal-demo-pill">Área da clínica · demonstração</span></header>
           <div class="role-page-intro"><span class="role-kicker">PARA CLÍNICAS PARCEIRAS</span><h1 id="clinic-portal-title">Sua clínica mais perto de novos pacientes.</h1><p>O futuro painel do parceiro reunirá cadastro, profissionais, serviços, agenda e solicitações recebidas em um só lugar.</p></div><div class="clinic-partner-access"><span class="access-flag">Cadastro básico gratuito · proposta</span><div><strong>Sua clínica poderá aparecer no Tri-Go após verificação.</strong><p>A proposta comercial é oferecer perfil básico gratuito e ferramentas avançadas por assinatura opcional. Nenhum pagamento ou contrato está disponível nesta demonstração.</p></div></div>
+          <section class="pricing-section" id="clinic-pricing" aria-labelledby="clinic-pricing-title">
+            <div class="pricing-heading"><div><span class="role-card-kicker">PLANOS PARA CLÍNICAS</span><h2 id="clinic-pricing-title">Comece gratuitamente. Cresça com o Tri'Go.</h2><p>Valores mensais sugeridos para o lançamento. A ficha básica poderá aparecer no mapa após aprovação, sem taxa por paciente encaminhado.</p></div><span class="pricing-status">Preços em estudo</span></div>
+            <div class="pricing-grid pricing-grid-clinic" role="group" aria-label="Escolha um plano demonstrativo para clínica">
+              <article class="pricing-card selected" data-plan-card="clinic-basic">
+                <span class="pricing-plan-name">Básico</span><div class="pricing-amount"><strong>Grátis</strong><small>R$ 0/mês</small></div>
+                <p>Para estar presente no aplicativo sem custo mensal.</p>
+                <ul><li>Perfil da clínica após verificação</li><li>Endereço e especialidades no mapa</li><li>Dados de contato e serviços básicos</li></ul>
+                <button type="button" data-plan-choice="clinic-basic" aria-pressed="true">Plano selecionado</button>
+              </article>
+              <article class="pricing-card pricing-featured" data-plan-card="clinic-management">
+                <span class="pricing-plan-name">Gestão</span><div class="pricing-amount"><strong>R$ 99</strong><small>/mês</small></div>
+                <p>Para organizar o atendimento e a equipe.</p>
+                <ul><li>Tudo do Básico</li><li>Agenda de profissionais</li><li>Gestão de horários e serviços</li><li>Relatórios administrativos</li></ul>
+                <button type="button" data-plan-choice="clinic-management" aria-pressed="false">Simular este plano</button>
+              </article>
+              <article class="pricing-card" data-plan-card="clinic-plus">
+                <span class="pricing-plan-name">Gestão Plus</span><div class="pricing-amount"><strong>R$ 199</strong><small>/mês</small></div>
+                <p>Para clínicas com mais necessidades de operação.</p>
+                <ul><li>Tudo do Gestão</li><li>Múltiplas agendas</li><li>Integrações e automações futuras</li><li>Suporte adicional</li></ul>
+                <button type="button" data-plan-choice="clinic-plus" aria-pressed="false">Simular este plano</button>
+              </article>
+            </div>
+            <p class="pricing-selection-status" id="clinic-pricing-choice" role="status" aria-live="polite">Plano para simulação: Básico — R$ 0/mês.</p>
+            <p class="pricing-small-print">Seleção ilustrativa: nenhum pagamento é processado e a escolha não cria assinatura ou cadastro. Benefícios e valores ainda serão validados antes do lançamento.</p>
+          </section>
           <div class="clinic-portal-highlights"><div><span>01</span><strong>Solicitar parceria</strong><small>Dados institucionais da unidade</small></div><div><span>02</span><strong>Verificação Tri'Go</strong><small>Validação antes da publicação</small></div><div><span>03</span><strong>Gerenciar atendimentos</strong><small>Agenda, serviços e profissionais</small></div></div>
           <div class="role-page-grid">
             <section class="role-main-card" aria-labelledby="clinic-form-title">
@@ -334,6 +362,25 @@
         <section id="screen-professional-portal" class="screen portal-workspace" aria-labelledby="professional-portal-title">
           <header class="role-page-head"><button type="button" class="role-back" data-go="welcome">← Todos os acessos</button><span class="portal-demo-pill">Área profissional · demonstração</span></header>
           <div class="role-page-intro"><span class="role-kicker">PROFISSIONAIS HABILITADOS</span><h1 id="professional-portal-title">Seu espaço para cuidar à distância.</h1><p>Uma futura área reservada a profissionais verificados, com agenda, atendimentos online e gestão da fila de pacientes.</p></div><p class="professional-access-note"><strong>Modelo comercial em estudo:</strong> perfil básico gratuito para médicos verificados, com ferramentas de agenda e gestão opcionais por assinatura. Profissionais vinculados a uma clínica não precisam pagar uma segunda assinatura obrigatória.</p>
+          <section class="pricing-section" id="professional-pricing" aria-labelledby="professional-pricing-title">
+            <div class="pricing-heading"><div><span class="role-card-kicker">PLANOS PARA MÉDICOS INDEPENDENTES</span><h2 id="professional-pricing-title">Ferramentas opcionais, sem barreira para começar.</h2><p>Perfil básico gratuito após verificação. Quem já usa a agenda de uma clínica parceira não precisa contratar outra assinatura obrigatória.</p></div><span class="pricing-status">Preços em estudo</span></div>
+            <div class="pricing-grid pricing-grid-professional" role="group" aria-label="Escolha um plano demonstrativo para profissional">
+              <article class="pricing-card selected" data-plan-card="doctor-basic">
+                <span class="pricing-plan-name">Perfil básico</span><div class="pricing-amount"><strong>Grátis</strong><small>R$ 0/mês</small></div>
+                <p>Presença profissional após verificação do registro.</p>
+                <ul><li>Perfil profissional verificado</li><li>Vínculo com clínica parceira</li><li>Dados e especialidades profissionais</li></ul>
+                <button type="button" data-plan-choice="doctor-basic" aria-pressed="true">Plano selecionado</button>
+              </article>
+              <article class="pricing-card pricing-featured" data-plan-card="doctor-pro">
+                <span class="pricing-plan-name">Pro</span><div class="pricing-amount"><strong>R$ 49</strong><small>/mês</small></div>
+                <p>Para gerenciar a própria agenda de modo independente.</p>
+                <ul><li>Tudo do Perfil básico</li><li>Agenda pessoal e disponibilidade</li><li>Ferramentas administrativas adicionais</li></ul>
+                <button type="button" data-plan-choice="doctor-pro" aria-pressed="false">Simular este plano</button>
+              </article>
+            </div>
+            <p class="pricing-selection-status" id="doctor-pricing-choice" role="status" aria-live="polite">Plano para simulação: Perfil básico — R$ 0/mês.</p>
+            <p class="pricing-small-print">Não há pagamento, contratação ou publicação de perfil profissional nesta versão. A remuneração por teletriagem e consultas é independente destes planos.</p>
+          </section>
           <div class="professional-demo-summary"><div><span>ATENDIMENTOS DE EXEMPLO</span><strong>03</strong><small>Agendados no protótipo</small></div><div><span>DISPONIBILIDADE</span><strong>Demo</strong><small>Nenhuma agenda real vinculada</small></div><div><span>ACESSO PROFISSIONAL</span><strong>Verificação</strong><small>Registro obrigatório na versão real</small></div></div>
           <div class="role-page-grid">
             <section class="role-main-card" aria-labelledby="professional-camera-title">
