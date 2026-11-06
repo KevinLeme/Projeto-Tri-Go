@@ -231,8 +231,17 @@
           <div class="page-heading"><div><span class="eyebrow">MINHA AGENDA</span><h1 id="bookings-title">Atendimentos</h1><p class="muted">Histórico disponível apenas durante esta sessão.</p></div></div><div id="booking-content" class="content-card empty-state"><div class="empty-icon">▣</div><h2>Você ainda não possui agendamentos</h2><p>Explore as clínicas e simule seu primeiro atendimento.</p><button type="button" class="btn btn-primary" data-go="clinics">Explorar clínicas →</button></div>
         </section>
         <section id="screen-profile" class="screen" aria-labelledby="profile-title">
-          <div class="page-heading"><div><span class="eyebrow">MINHA CONTA</span><h1 id="profile-title">Perfil</h1></div></div><div class="content-card profile-card"><span class="avatar big">MS</span><div><h2>Visitante de demonstração</h2><p class="muted">Nenhuma conta foi criada neste protótipo.</p></div></div><div class="content-card"><h2>Sobre o Tri-Go</h2><p>Estamos construindo uma experiência de acesso a serviços de saúde mais organizada, com triagem informativa, busca de clínicas e agendamento.</p><p class="muted">Esta versão demonstra somente a interface e a navegação. Não processa prontuários, dados médicos ou pagamentos reais.</p><a href="./index.html" class="btn btn-outline">Visitar site institucional</a></div>
+          <div class="page-heading"><div><span class="eyebrow">ESPAÇO DO PACIENTE</span><h1 id="profile-title">Minha área</h1></div></div>
+          <div class="content-card profile-card"><span class="avatar big">TG</span><div><h2>Visitante de demonstração</h2><p class="muted">A criação de contas de pacientes será habilitada na integração com o backend.</p></div></div>
+          <div class="patient-area-grid">
+            <button type="button" data-go="bookings" class="patient-area-action"><span aria-hidden="true">▣</span><strong>Meus atendimentos</strong><small>Ver reservas demonstrativas e remarcações</small><b aria-hidden="true">→</b></button>
+            <button type="button" data-go="triage" class="patient-area-action"><span aria-hidden="true">✚</span><strong>Minha triagem</strong><small>Iniciar questionário informativo</small><b aria-hidden="true">→</b></button>
+            <button type="button" data-go="online" class="patient-area-action"><span aria-hidden="true">▣</span><strong>Atendimento online</strong><small>Conhecer a prévia de vídeo</small><b aria-hidden="true">→</b></button>
+            <button type="button" data-go="clinics" class="patient-area-action"><span aria-hidden="true">⌖</span><strong>Encontrar clínicas</strong><small>Explorar mapa de unidades fictícias</small><b aria-hidden="true">→</b></button>
+          </div>
+          <div class="content-card patient-privacy-card"><h2>Privacidade e segurança</h2><p>Este protótipo não cria login, prontuário ou perfil permanente. Consultas e clínicas exibidas são exemplos; a triagem informativa fica apenas nesta aba.</p><button type="button" data-go="welcome" class="btn btn-outline">Ver os três tipos de acesso</button></div>
         </section>
+
 
         <section id="screen-online" class="screen portal-workspace" aria-labelledby="online-title">
           <header class="role-page-head"><button type="button" data-go="home" class="role-back">← Voltar ao paciente</button><span class="portal-demo-pill">Demonstração</span></header>
