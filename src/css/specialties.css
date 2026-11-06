@@ -1,0 +1,93 @@
+/* Tri'Go — catálogo de especialidades.
+ * Mobile-first; resultados demonstrativos, não promessa de atendimento real.
+ */
+#screen-specialties{max-width:1060px;margin:0 auto;padding:14px 0 38px}
+.specialties-heading{display:flex;align-items:flex-start;gap:17px;margin:8px 0 23px}
+.specialties-back{flex-shrink:0;display:grid;place-items:center;width:42px;height:42px;border:1px solid #deebe3;background:#fff;color:#0b6f50;border-radius:13px;font-size:23px;box-shadow:0 3px 12px rgba(16,68,42,.05)}
+.specialties-back:hover{background:#eaf8ef}
+.specialties-heading h1{margin:6px 0 7px;font-size:clamp(24px,3vw,34px);letter-spacing:-.05em;line-height:1.17;color:#132e27;font-weight:850}
+.specialties-heading p{color:#677c71;font-size:13px;line-height:1.55;margin:0}
+.specialties-search-box{display:flex;align-items:center;gap:12px;min-height:55px;padding:7px 14px;border-radius:15px;background:#fff;border:1px solid #dce8e0;box-shadow:0 5px 20px rgba(15,66,39,.04);color:#0b7954}
+.specialties-search-box:focus-within{border-color:#0bb981;box-shadow:0 0 0 3px rgba(16,185,129,.13)}
+.specialties-search-box svg{flex-shrink:0}
+.specialties-search-box input{width:100%;min-width:0;flex:1;border:0;background:transparent;outline:none;color:#17382c;font-size:13px;font-weight:500;height:37px}
+.specialties-search-box input::placeholder{color:#91a198;font-size:12px;font-weight:500}
+.specialties-search-box button{flex-shrink:0;display:grid;place-items:center;border:0;background:#edf6f0;color:#267c5b;border-radius:9px;height:32px;width:32px;font-size:22px;padding:0}
+.specialties-search-box button[hidden]{display:none}
+.specialties-toolbar{display:flex;align-items:center;justify-content:space-between;gap:15px;margin:19px 0}
+.specialty-modes{display:flex;align-items:center;gap:7px;min-width:0}
+.specialty-mode{padding:10px 15px;border:1px solid #dbe8df;background:#fff;border-radius:999px;color:#537163;font-size:12px;font-weight:750;white-space:nowrap}
+.specialty-mode:hover{border-color:#9cddbb}
+.specialty-mode.active{background:#0e7c58;border-color:#0e7c58;color:#fff}
+.specialties-count{font-size:11px;font-weight:650;color:#759080;white-space:nowrap}
+.specialties-catalog{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}
+.specialty-catalog-card{display:flex;align-items:flex-start;gap:13px;text-align:left;padding:19px 17px;min-width:0;min-height:152px;background:#fff;border:1px solid #dce8e1;border-radius:17px;box-shadow:0 3px 15px rgba(18,73,45,.035);color:#153b2a;transition:box-shadow .16s,border-color .16s,transform .16s}
+.specialty-catalog-card:hover{border-color:#79d5a4;box-shadow:0 9px 25px rgba(18,87,51,.1);transform:translateY(-2px)}
+.specialty-catalog-card:focus-visible{outline:3px solid #0db97a;outline-offset:3px}
+.specialty-catalog-card.is-highlighted{border-color:#10b981;background:#effbf4;box-shadow:0 0 0 2px rgba(16,185,129,.13)}
+.specialty-catalog-icon{flex:0 0 42px;width:42px;height:42px;border-radius:13px;background:#e7f7ed;color:#0b8e62;display:grid;place-items:center}
+.specialty-catalog-content{display:flex;flex:1;min-width:0;flex-direction:column;gap:7px}
+.specialty-catalog-content strong{font-size:14px;line-height:1.3;overflow-wrap:anywhere;color:#173a2c;font-weight:800}
+.specialty-catalog-content small{font-size:11px;font-weight:450;line-height:1.42;color:#6b8477;min-height:31px}
+.specialty-catalog-meta{align-self:flex-start;margin-top:auto;border-radius:999px;font-size:10px;font-weight:750;padding:5px 8px;line-height:1.2}
+.specialty-catalog-meta.has-options{background:#e4f8ed;color:#078553}
+.specialty-catalog-meta.no-options{background:#f1f5f2;color:#82928a}
+.specialty-catalog-arrow{font-size:19px;color:#0c9061;align-self:flex-start;flex-shrink:0}
+.specialties-empty{background:#fff;border:1px solid #dcebe1;border-radius:18px;text-align:center;margin:16px auto 0;padding:38px 24px}
+.specialties-empty[hidden],.specialties-notice[hidden]{display:none!important}
+.specialties-empty strong{color:#1a4430;font-size:16px}
+.specialties-empty p{font-size:12px;line-height:1.5;color:#688273}
+.specialties-empty button{border:1px solid #c9e4d4;background:#edf9f2;border-radius:11px;padding:11px 16px;color:#0b7b56;font-size:12px;font-weight:800}
+.specialties-notice{margin:16px 0 0;padding:15px 18px;background:#fff8e8;border:1px solid #f0d6a2;border-radius:13px;font-size:12px;line-height:1.5;color:#7c561b}
+.specialties-footer{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:23px;padding:20px 22px;border:1px solid #cee8d9;border-radius:17px;background:#ebf8f1}
+.specialties-footer strong{color:#204c35;font-size:13px}
+.specialties-footer p{color:#607b6b;font-size:11px;line-height:1.5;margin:5px 0 0}
+.specialties-footer button{border:0;min-height:42px;padding:11px 15px;white-space:nowrap;background:#0d815b;color:#fff;border-radius:11px;font-size:12px;font-weight:800;display:flex;align-items:center;gap:12px}
+.specialties-footer button:hover{background:#096a4b}
+.specialties-footer button span{font-size:18px}
+.specialties-disclaimer{font-size:11px;line-height:1.55;color:#799083;text-align:center;margin:17px 0 0}
+/* O filtro escolhido acompanha o usuário até o mapa, com opção de trocar ou limpar. */
+.specialty-active-badge,.specialty-active-list-badge{display:flex;align-items:center;gap:8px;background:#fff;border:1px solid #a9dec3;color:#15553b;border-radius:12px;padding:9px 11px;font-size:11px;font-weight:750;box-shadow:0 5px 16px rgba(12,76,44,.09);max-width:100%}
+.specialty-active-badge[hidden],.specialty-active-list-badge[hidden]{display:none!important}
+.specialty-active-badge span,.specialty-active-list-badge span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1;min-width:0}
+.specialty-active-badge button,.specialty-active-list-badge button{border:0;background:#e8f8ee;color:#0b7951;border-radius:9px;font-size:11px;font-weight:800;flex-shrink:0;padding:7px 8px}
+.specialty-active-badge button:last-child,.specialty-active-list-badge button:last-child{font-size:19px;padding:1px 9px}
+.specialty-active-list-badge{margin:10px 0 15px;box-shadow:none;max-width:440px}
+.specialty-active-badge{max-width:340px}
+@media(min-width:901px){
+ .specialty-active-badge{align-self:flex-start}
+ #screen-clinics.is-map-active .specialty-active-list-badge{display:none!important}
+}
+@media(max-width:900px){
+ #screen-specialties{padding:5px 0 calc(90px + env(safe-area-inset-bottom))}
+ .specialties-heading{gap:11px;margin:6px 0 19px}
+ .specialties-back{width:35px;height:35px;border-radius:50%;font-size:19px}
+ .specialties-heading h1{font-size:23px;margin:5px 0}
+ .specialties-heading p{font-size:11px}
+ .specialties-search-box{min-height:51px;padding:6px 11px;gap:9px;border-radius:13px}
+ .specialties-toolbar{align-items:flex-start;flex-wrap:wrap;gap:9px;margin:15px 0}
+ .specialty-modes{gap:6px}
+ .specialty-mode{font-size:10px;padding:9px 10px}
+ .specialties-count{font-size:10px;align-self:center}
+ .specialties-catalog{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+ .specialty-catalog-card{padding:12px;min-height:160px;border-radius:13px;display:grid;grid-template-columns:minmax(0,1fr) 18px;grid-template-rows:32px auto;gap:9px 5px}
+ .specialty-catalog-icon{width:34px;height:34px;flex-basis:34px;border-radius:10px}
+ .specialty-catalog-icon svg{width:21px;height:21px}
+ .specialty-catalog-content{grid-column:1 / -1;gap:6px}
+ .specialty-catalog-content strong{font-size:12px}
+ .specialty-catalog-content small{font-size:10px;min-height:29px}
+ .specialty-catalog-meta{font-size:9px;padding:5px 7px}
+ .specialty-catalog-arrow{grid-column:2;grid-row:1;justify-self:end;font-size:17px}
+ .specialties-footer{flex-direction:column;align-items:stretch;padding:15px;margin-top:18px}
+ .specialties-footer button{justify-content:space-between}
+ .specialties-disclaimer{font-size:10px}
+ .specialty-active-badge{max-width:100%;align-self:flex-start}
+ #screen-clinics.is-map-active .specialty-active-list-badge{display:none!important}
+}
+@media(max-width:370px){
+ .specialties-catalog{gap:7px}
+ .specialty-catalog-card{padding:10px}
+ .specialty-mode{padding:8px}
+ .specialties-count{width:100%}
+}
+@media(prefers-reduced-motion:reduce){.specialty-catalog-card{transition:none}.specialty-catalog-card:hover{transform:none}}
