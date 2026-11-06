@@ -4,14 +4,14 @@
 (() => {
   "use strict";
   const prices={
-    "clinic-basic":{group:"clinic",label:"Básico",value:0},
-    "clinic-management":{group:"clinic",label:"Gestão",value:99},
-    "clinic-plus":{group:"clinic",label:"Gestão Plus",value:199},
-    "doctor-basic":{group:"doctor",label:"Perfil básico",value:0},
-    "doctor-pro":{group:"doctor",label:"Pro",value:49}
+    "clinic-basic":{group:"clinic",label:"Essencial",value:29.9,trialDays:30},
+    "clinic-management":{group:"clinic",label:"Gestão",value:99,trialDays:30},
+    "clinic-plus":{group:"clinic",label:"Gestão Plus",value:199,trialDays:30},
+    "doctor-basic":{group:"doctor",label:"Independente Essencial",value:29.9,trialDays:30},
+    "doctor-pro":{group:"doctor",label:"Independente Pro",value:49,trialDays:30}
   };
   const selection={clinic:"clinic-basic",doctor:"doctor-basic"};
-  const money=value=>value===0?"R$ 0/mês":"R$ "+value+"/mês";
+  const money=value=>"R$ "+value.toLocaleString("pt-BR",{minimumFractionDigits:value%1?2:0,maximumFractionDigits:2})+"/mês";
   function choose(id){
     const plan=prices[id];
     if(!plan)return false;
@@ -28,7 +28,7 @@
       }
     });
     const status=document.getElementById(plan.group==="clinic"?"clinic-pricing-choice":"doctor-pricing-choice");
-    if(status)status.textContent="Plano para simulação: "+plan.label+" — "+money(plan.value)+".";
+    if(status)status.textContent="Plano de exemplo: "+plan.label+" — 30 dias grátis; depois "+money(plan.value)+". Sem cobrança nesta demonstração.";
     return true;
   }
   document.addEventListener("click",event=>{
