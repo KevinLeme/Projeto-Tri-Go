@@ -92,12 +92,7 @@
         <section id="screen-home" class="screen" aria-labelledby="home-title">
           <div class="page-heading"><div><p class="muted greeting">Bem-vindo(a) ao Tri\u0027Go</p><h1 id="home-title">Como podemos ajudar?</h1></div><span class="avatar big" aria-label="Perfil demonstrativo">TG</span></div>
           <div class="search-wrap"><span aria-hidden="true">⌕</span><input id="home-search" aria-label="Buscar clínica ou especialidade" placeholder="Buscar clínica, bairro ou especialidade" autocomplete="off"><button class="icon-button" type="button" data-go="clinics" aria-label="Pesquisar clínicas">⚙</button></div>
-          <div class="triage-callout"><div class="callout-heading"><span class="callout-icon" aria-hidden="true">☷</span><div><h2>Conte o que está sentindo</h2><p>Triagem gratuita de demonstração, em cerca de 2 minutos.</p></div></div><button class="btn btn-bright" type="button" data-go="triage"><span class="button-arrow" aria-hidden="true">→</span> Iniciar triagem gratuita</button></div>
-          <div class="home-telehealth">
-            <div class="home-telehealth-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="13" height="14" rx="3"/><path d="m16 10 5-3v10l-5-3M7 12h5"/></svg></div>
-            <div class="home-telehealth-copy"><span>ATENDIMENTO ONLINE · EM DESENVOLVIMENTO</span><h2>Converse com um profissional por vídeo</h2><p>Conheça a sala de atendimento remoto e teste sua câmera antes da futura integração.</p></div>
-            <button class="home-telehealth-action" type="button" data-go="online">Conhecer sala online <span aria-hidden="true">→</span></button>
-          </div>
+          <div class="triage-callout"><div class="callout-heading"><span class="callout-icon" aria-hidden="true">☷</span><div><h2>Como você prefere começar?</h2><p>Escolha um formulário informativo gratuito ou conheça a futura triagem por vídeo com médico.</p></div></div><button class="btn btn-bright" type="button" data-go="triage-choice"><span class="button-arrow" aria-hidden="true">→</span> Escolher minha triagem</button></div>
           <div class="section-heading"><h2>Especialidades</h2><button class="text-link" type="button" data-go="specialties">Ver todas →</button></div>
           <div class="specialty-grid"><button type="button" data-catalog-specialty="Clínica geral"><span>⚕</span>Clínica geral</button><button type="button" data-catalog-specialty="Pediatria"><span>♙</span>Pediatria</button><button type="button" data-catalog-specialty="Ortopedia"><span>♧</span>Ortopedia</button></div>
           <div class="section-heading"><h2>Próximos agendamentos</h2><button class="text-link" type="button" data-go="bookings">Ver todos</button></div>
@@ -133,6 +128,21 @@
           <div id="specialties-notice" class="specialties-notice" role="status" aria-live="polite" hidden></div>
           <div class="specialties-footer"><div><strong>Não encontrou o que procura?</strong><p>Você também pode explorar todas as clínicas fictícias, sem selecionar uma especialidade.</p></div><button type="button" data-specialty-all-clinics>Ver todas as clínicas <span aria-hidden="true">→</span></button></div>
           <p class="specialties-disclaimer">Catálogo ilustrativo. A presença de uma especialidade não significa que há profissionais cadastrados ou atendimentos disponíveis. Não representa indicação médica.</p>
+        </section>
+        <section id="screen-triage-choice" class="screen" aria-labelledby="triage-choice-title">
+          <header class="choice-header"><button type="button" data-go="home" class="choice-back" aria-label="Voltar para início">←</button><div><span class="eyebrow">ANTES DO ATENDIMENTO</span><h1 id="triage-choice-title">Como deseja fazer sua triagem?</h1><p>Escolha um caminho. Você poderá procurar atendimento presencial ou online depois da etapa apropriada.</p></div></header>
+          <div class="choice-cards">
+            <button type="button" class="choice-card" data-go="triage">
+              <span class="choice-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M9 4h6l1 2h3v15H5V6h3l1-2Z"/><path d="M9 11h6m-6 4h6"/></svg></span>
+              <span class="choice-copy"><span class="choice-flag">GRATUITO · DISPONÍVEL NA DEMONSTRAÇÃO</span><strong>Responder formulário</strong><small>Conte os sintomas e organize um resumo informativo, sem diagnóstico automático.</small><span class="choice-duration">Cerca de 2–4 minutos</span></span><span class="choice-arrow" aria-hidden="true">→</span>
+            </button>
+            <button type="button" class="choice-card" data-go="online">
+              <span class="choice-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="2" y="5" width="15" height="14" rx="3"/><path d="m17 10 5-3v10l-5-3M7 12h5"/></svg></span>
+              <span class="choice-copy"><span class="choice-flag choice-flag-soon">COM MÉDICO · EM DESENVOLVIMENTO</span><strong>Triagem por videochamada</strong><small>No lançamento, um médico habilitado avaliará o relato e orientará o encaminhamento. Por enquanto, apenas teste local de câmera.</small><span class="choice-duration">Preço e disponibilidade serão informados antes de contratar</span></span><span class="choice-arrow" aria-hidden="true">→</span>
+            </button>
+          </div>
+          <div class="choice-safety"><strong>Está passando por uma emergência?</strong><p>Não aguarde a triagem do aplicativo. Procure um serviço de urgência ou ligue <a href="tel:192">192</a>.</p></div>
+          <p class="choice-footnote">A teletriagem médica e a teleconsulta são serviços distintos. O médico define o encaminhamento clinicamente adequado.</p>
         </section>
         <section id="screen-triage" class="screen" aria-label="Questionário demonstrativo de sintomas">
   <div class="triage-mobile-header">
@@ -224,7 +234,7 @@
           <div class="screen-top"><button type="button" class="back-button" data-go="triage" aria-label="Voltar">←</button><div><span class="eyebrow">TRIAGEM</span><h1 id="result-title">Resultado da triagem</h1></div></div>
           <div class="result-hero"><span class="success-icon">✓</span><h2>Questionário concluído!</h2><p>Você completou o formulário de demonstração.</p></div>
           <div class="content-card recommendation"><p class="eyebrow">PRÓXIMA ETAPA</p><h2>Conheça opções de atendimento</h2><p>O Tri-Go exibirá uma orientação clínica somente quando houver um protocolo validado e profissionais responsáveis. Nesta versão, não há avaliação dos sintomas nem indicação de especialidade.</p><span class="soft-tag">Protótipo · Sem recomendação médica</span></div>
-          <div class="section-heading"><h2>Clínicas para explorar</h2><span class="muted">Dados fictícios</span></div><div id="result-clinics"></div>
+          <div class="triage-more-examples" id="triage-map-preview" hidden><div class="section-heading"><h2>Clínicas fictícias</h2><span class="muted">Exemplos ilustrativos</span></div><div id="result-clinics"></div></div>
           <div class="inline-alert emergency">Piora intensa ou risco imediato? Ligue <a href="tel:192">192</a>.</div>
         </section>
         <section id="screen-clinics" class="screen" aria-labelledby="clinics-title">
@@ -258,17 +268,24 @@
           <div class="content-card profile-card"><span class="avatar big">TG</span><div><h2>Visitante de demonstração</h2><p class="muted">A criação de contas de pacientes será habilitada na integração com o backend.</p></div></div>
           <div class="patient-area-grid">
             <button type="button" data-go="bookings" class="patient-area-action"><span aria-hidden="true">▣</span><strong>Meus atendimentos</strong><small>Ver reservas demonstrativas e remarcações</small><b aria-hidden="true">→</b></button>
-            <button type="button" data-go="triage" class="patient-area-action"><span aria-hidden="true">✚</span><strong>Minha triagem</strong><small>Iniciar questionário informativo</small><b aria-hidden="true">→</b></button>
-            <button type="button" data-go="online" class="patient-area-action"><span aria-hidden="true">▣</span><strong>Atendimento online</strong><small>Conhecer a prévia de vídeo</small><b aria-hidden="true">→</b></button>
+            <button type="button" data-go="triage-choice" class="patient-area-action"><span aria-hidden="true">✚</span><strong>Minha triagem</strong><small>Escolher formulário ou triagem médica por vídeo</small><b aria-hidden="true">→</b></button>
+            <button type="button" data-go="triage-choice" class="patient-area-action"><span aria-hidden="true">▣</span><strong>Teletriagem por vídeo</strong><small>Conhecer a opção com médico, ainda em desenvolvimento</small><b aria-hidden="true">→</b></button>
             <button type="button" data-go="clinics" class="patient-area-action"><span aria-hidden="true">⌖</span><strong>Encontrar clínicas</strong><small>Explorar mapa de unidades fictícias</small><b aria-hidden="true">→</b></button>
           </div>
           <div class="content-card patient-privacy-card"><h2>Privacidade e segurança</h2><p>Este protótipo não cria login, prontuário ou perfil permanente. Consultas e clínicas exibidas são exemplos; a triagem informativa fica apenas nesta aba.</p><button type="button" data-go="welcome" class="btn btn-outline">Ver os três tipos de acesso</button></div>
         </section>
 
 
+        <section id="screen-teleconsult" class="screen" aria-labelledby="teleconsult-title">
+          <header class="choice-header"><button type="button" data-go="result" class="choice-back" aria-label="Voltar ao resumo">←</button><div><span class="eyebrow">ETAPA DE ATENDIMENTO</span><h1 id="teleconsult-title">Atendimento médico online</h1><p>Depois da triagem, será possível consultar médicos verificados e agendar uma teleconsulta, quando houver oferta disponível.</p></div></header>
+          <div class="choice-consult-notice"><span class="choice-consult-icon" aria-hidden="true">▣</span><div><strong>Agendamento online em desenvolvimento</strong><p>Ainda não temos profissionais ou horários reais conectados. O preço, o médico responsável e o consentimento deverão aparecer antes de confirmar qualquer consulta.</p></div></div>
+          <div class="choice-consult-steps"><div><span>01</span><strong>Selecionar médico</strong><small>Identidade e registro profissional verificados</small></div><div><span>02</span><strong>Escolher horário</strong><small>Valor transparente e disponibilidade real</small></div><div><span>03</span><strong>Entrar na consulta</strong><small>Vídeo seguro com consentimento do paciente</small></div></div>
+          <button type="button" class="choice-consult-secondary" data-go="clinics">Explorar clínicas no mapa →</button>
+          <p class="choice-footnote">O Tri'Go não substitui serviços de urgência. O médico pode recomendar atendimento presencial quando necessário.</p>
+        </section>
         <section id="screen-online" class="screen portal-workspace" aria-labelledby="online-title">
-          <header class="role-page-head"><button type="button" data-go="home" class="role-back">← Voltar ao paciente</button><span class="portal-demo-pill">Demonstração</span></header>
-          <div class="role-page-intro"><span class="role-kicker">ATENDIMENTO ONLINE</span><h1 id="online-title">Seu atendimento, de onde estiver.</h1><p>Uma experiência de videoatendimento planejada para conversar com profissionais habilitados. Nesta etapa, você pode apenas testar a própria câmera.</p></div>
+          <header class="role-page-head"><button type="button" data-go="triage-choice" class="role-back">← Voltar às opções de triagem</button><span class="portal-demo-pill">Demonstração</span></header>
+          <div class="role-page-intro"><span class="role-kicker">TELETRIAGEM MÉDICA · EM DESENVOLVIMENTO</span><h1 id="online-title">Triagem por vídeo com médico.</h1><p>Futuramente, você poderá conversar com um médico habilitado para avaliação e encaminhamento. Ainda não existe atendimento médico conectado: esta tela testa apenas sua câmera local.</p></div>
           <div class="role-page-grid">
             <div class="role-main-card">
               <div class="role-card-head"><div><h2>Prévia da sala online</h2><p>Teste local do dispositivo · sem conexão com outra pessoa</p></div><span class="role-light-pill">Ambiente de testes</span></div>
@@ -282,10 +299,10 @@
               </div>
               <p class="camera-feedback" data-camera-status="patient" role="status" aria-live="polite">Nenhuma imagem ou áudio é enviado ou gravado pelo Tri'Go nesta demonstração.</p>
             </div>
-            <aside class="role-aside-card"><span class="role-card-kicker">COMO VAI FUNCIONAR</span><h2>Da triagem ao atendimento</h2>
-              <ol class="role-step-list"><li><strong>Conte o que está sentindo</strong><span>Preencha o questionário informativo.</span></li><li><strong>Escolha o tipo de atendimento</strong><span>Presencial ou online, quando disponível.</span></li><li><strong>Entre na sala segura</strong><span>Profissional verificado, consentimento e horário confirmado.</span></li></ol>
-              <button type="button" class="role-aside-action" data-go="triage">Iniciar triagem por perguntas →</button>
-              <p class="role-security-note">Teletriagem por vídeo e consultas reais dependem de autenticação, profissionais habilitados, consentimento e infraestrutura segura. Em emergência, ligue 192.</p>
+            <aside class="role-aside-card"><span class="role-card-kicker">COMO VAI FUNCIONAR</span><h2>Como funcionará a triagem por vídeo</h2>
+              <ol class="role-step-list"><li><strong>Escolha um horário de teletriagem</strong><span>Preço informado e médico habilitado.</span></li><li><strong>Converse com o médico</strong><span>O profissional avaliará o quadro e o encaminhamento adequado.</span></li><li><strong>Receba o direcionamento</strong><span>Uma consulta online ou presencial poderá ser indicada conforme avaliação.</span></li></ol>
+              <button type="button" class="role-aside-action" data-go="triage">Prefiro preencher o formulário gratuito →</button>
+              <p class="role-security-note">Esta tela NÃO conclui triagem médica e não libera atendimento após o teste de câmera. Para lançar o serviço real, precisaremos de médico responsável, autenticação, agendamento, consentimento, encaminhamento e infraestrutura segura. Em emergência, ligue 192.</p>
             </aside>
           </div>
         </section>
