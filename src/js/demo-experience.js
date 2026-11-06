@@ -58,7 +58,7 @@
     const home=$(".preview-appointments");
     if(home){home.setAttribute("aria-label","Agendamentos exemplificativos. Não são consultas reais.");}
     // O catálogo de especialidades controla a seleção; não antecipar busca no mapa.
-    $("#screen-home .specialty-grid button").forEach(button=>{
+    $$("#screen-home .specialty-grid button").forEach(button=>{
       button.setAttribute("aria-label","Ver catálogo de especialidades. Destaque: "+button.textContent.trim());
     });
   }
@@ -267,7 +267,7 @@
       desktopToggle.textContent=show?"☷ Ver lista":"⌖ Abrir mapa";
       desktopToggle.setAttribute("aria-label",show?"Mostrar clínicas em lista":"Abrir mapa de clínicas");
     }
-    $("[data-view]").forEach(b=>{
+    $$("[data-view]").forEach(b=>{
       const pressed=b.dataset.view===state.mapMode;
       b.classList.toggle("selected",pressed);
       b.setAttribute("aria-pressed",pressed?"true":"false");
