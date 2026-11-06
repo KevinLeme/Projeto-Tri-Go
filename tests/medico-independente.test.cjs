@@ -24,6 +24,7 @@ function prepare(plan={group:"doctor",label:"Independente Essencial",value:29.9,
     createElement:tag=>({
       tag,textContent:"",children:[],listeners:{},
       append(...parts){this.children.push(...parts)},
+      appendChild(part){this.children.push(part);return part;},
       addEventListener(name,cb){this.listeners[name]=cb}
     }),
     createTextNode:text=>({text})
