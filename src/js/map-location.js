@@ -64,6 +64,23 @@
     '<button type="button" id="ride-back-demo" class="ride-region-back">Ver mapa de exemplo</button>';
   root.querySelector(".ride-map-scene").appendChild(locationCard);
 
+  // As mensagens de localização ficam na ficha inferior no celular, sem cobrir
+  // o mapa. No PC, a interface continua dentro do painel cartográfico.
+  function placeLocationNotices(){
+    const sheet=root.querySelector(".ride-map-sheet");
+    const footer=sheet?.querySelector(".ride-sheet-footer");
+    const scene=root.querySelector(".ride-map-scene");
+    if(window.matchMedia("(max-width:900px)").matches&&footer){
+      sheet.insertBefore(status,footer);
+      sheet.insertBefore(locationCard,footer);
+    }else if(scene){
+      if(status.parentElement!==scene)scene.appendChild(status);
+      if(locationCard.parentElement!==scene)scene.appendChild(locationCard);
+    }
+  }
+  placeLocationNotices();
+  window.addEventListener("resize",placeLocationNotices);
+
   const $=(selector)=>document.querySelector(selector);
   const addressInput=$("#ride-address-input");
   const addressResults=$("#ride-address-results");
