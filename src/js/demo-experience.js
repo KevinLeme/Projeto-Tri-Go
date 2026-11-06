@@ -57,9 +57,10 @@
   function prepareHome(){
     const home=$(".preview-appointments");
     if(home){home.setAttribute("aria-label","Agendamentos exemplificativos. Não são consultas reais.");}
-    const buttons=$$("#screen-home .specialty-grid button");
-    const fields=["Clínica geral","Pediatria","Ortopedia"];
-    buttons.forEach((b,i)=>b.addEventListener("click",()=>{state.search=fields[i]||"";},true));
+    // O catálogo de especialidades controla a seleção; não antecipar busca no mapa.
+    $("#screen-home .specialty-grid button").forEach(button=>{
+      button.setAttribute("aria-label","Ver catálogo de especialidades. Destaque: "+button.textContent.trim());
+    });
   }
   function prepareResult(){
     const result=$("#screen-result");
@@ -135,7 +136,7 @@
   }
   function filteredClinics(){
     const query=state.search.toLocaleLowerCase("pt-BR");
-    const arr=clinics.filter(c=>(c.name+" "+c.area+" "+c.specialty+" "+c.insurance).toLocaleLowerCase("pt-BR").includes(query)&&(!state.insuranceOnly||c.insurance!=="Particular"));
+    const arr=clinics.filter(c=>(c.name+" "+c.area+" "+c.specialty+" "+c.insurance).toLocaleLowerCase("pt-BR").includes(query)&&(!state.specialtyFilter||c.specialty.toLocaleLowerCase("pt-BR")===state.specialtyFilter.toLocaleLowerCase("pt-BR"))&&(!state.insuranceOnly||c.insurance!=="Particular"));
     const order={distance:(a,b)=>a.distance-b.distance,price:(a,b)=>a.price-b.price,available:(a,b)=>["Hoje","Amanhã","Em 3 dias"].indexOf(a.availability)-["Hoje","Amanhã","Em 3 dias"].indexOf(b.availability),rating:(a,b)=>b.rating-a.rating};
     return arr.sort(order[state.sort]||order.distance);
   }
@@ -163,7 +164,7 @@
       selectedMapId=null;
       count.textContent="Nenhuma clínica para este filtro";
       pos.textContent="0 de 0";
-      card.innerHTML='<div class="ride-empty-state">Nenhum exemplo encontrado. Experimente outro filtro.</div>';
+      card.innerHTML='<div class="ride-empty-state"><strong>Nenhuma clínica de exemplo nesta especialidade.</strong><p>Escolha outra especialidade ou limpe o filtro para visualizar todas.</p><button type="button" data-clear-specialty>Ver todas as clínicas</button></div>';
       if(book){book.disabled=true;delete book.dataset.clinic;}
       $$(".ride-sidebar-card").forEach(el=>el.classList.remove("selected"));
       return;
