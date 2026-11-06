@@ -15,12 +15,14 @@
   <link rel="stylesheet" href="src/css/map-ride.css">
   <link rel="stylesheet" href="src/css/map-location.css">
   <link rel="stylesheet" href="src/css/triage-flow.css">
+  <link rel="stylesheet" href="src/css/portal.css">
   <script defer src="src/js/ui-icons.js"></script>
   <script defer src="src/js/app.js"></script>
   <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script defer src="src/js/demo-experience.js"></script>
   <script defer src="src/js/map-location.js"></script>
   <script defer src="src/js/triage-flow.js"></script>
+  <script defer src="src/js/portal.js"></script>
 </head>
 <body>
   <div class="app-shell">
@@ -44,16 +46,56 @@
         <div class="topbar-actions"><span class="demo-chip">Ambiente de teste</span><a href="#/profile" class="avatar" aria-label="Abrir perfil">MS</a></div>
       </header>
       <main id="main-content" tabindex="-1">
-        <section id="screen-welcome" class="screen is-active" aria-labelledby="welcome-title">
-          <div class="welcome-layout">
-            <div class="welcome-illustration"><span class="floating-icon" aria-hidden="true">✚</span><span class="health-line" aria-hidden="true">♡</span><div class="illustration-circle"><span aria-hidden="true">⚕</span></div><span class="illustration-label">Cuidado com você, em cada etapa</span></div>
-            <div class="welcome-copy"><span class="eyebrow">TRIAGEM 100% GRATUITA</span><h1 id="welcome-title">Triagem inteligente e consulta na hora certa.</h1><p>Responda a algumas perguntas, conheça opções de atendimento e explore as clínicas disponíveis em uma experiência simples.</p><button class="btn btn-primary btn-lg" type="button" data-go="triage">Iniciar triagem gratuita <span aria-hidden="true">→</span></button><button class="btn btn-outline btn-lg" type="button" data-go="home">Explorar aplicativo</button><p class="footnote">Seus dados de saúde não são enviados ou armazenados nesta demonstração.</p></div>
+        <section id="screen-welcome" class="screen is-active portal-entry" aria-labelledby="welcome-title">
+          <div class="portal-entry-head">
+            <a class="portal-brand" href="#/welcome" aria-label="Tri-Go, página de acessos"><img src="src/image/trigo-logo.jpg" alt=""><span>Tri'<strong>Go</strong><small>TRIAGEM • CUIDADO • SAÚDE</small></span></a>
+            <span class="portal-demo-pill"><span></span> Protótipo demonstrativo</span>
           </div>
+          <div class="portal-hero">
+            <div class="portal-hero-copy">
+              <div class="portal-eyebrow"><span class="portal-eyebrow-dot"></span> O cuidado começa por aqui</div>
+              <h1 id="welcome-title">Sua saúde, com o <em>caminho mais simples.</em></h1>
+              <p>Encontre clínicas, organize o que está sentindo ou conheça o futuro atendimento online do Tri'Go. Escolha como deseja acessar a plataforma.</p>
+              <div class="portal-highlights"><span>✓ Clínicas no mapa</span><span>✓ Triagem informativa</span><span>✓ Atendimento online planejado</span></div>
+            </div>
+            <div class="portal-hero-visual" aria-hidden="true">
+              <div class="portal-orbit portal-orbit-a"></div><div class="portal-orbit portal-orbit-b"></div>
+              <div class="portal-visual-logo"><img src="src/image/trigo-logo.jpg" alt=""></div>
+              <div class="portal-float portal-float-one"><span>✚</span><div><strong>Cuidado acessível</strong><small>Em um só lugar</small></div></div>
+              <div class="portal-float portal-float-two"><span>⌖</span><div><strong>Clínicas perto de você</strong><small>Busca por localização</small></div></div>
+            </div>
+          </div>
+          <div class="portal-choose">
+            <div class="portal-section-heading"><div><span>ESCOLHA SEU ACESSO</span><h2>Como você quer usar o Tri'Go?</h2><p>Três espaços pensados para necessidades diferentes.</p></div></div>
+            <div class="portal-role-grid">
+              <button type="button" class="portal-role-card portal-role-patient" data-go="home">
+                <span class="portal-role-top"><span class="portal-role-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="7.5" r="3.5"/><path d="M5 20v-1a7 7 0 0 1 14 0v1"/></svg></span><span class="portal-role-arrow" aria-hidden="true">↗</span></span>
+                <strong>Sou paciente</strong><span class="portal-role-desc">Faça a triagem informativa, explore clínicas e acompanhe seus agendamentos.</span>
+                <span class="portal-role-action">Acessar como paciente <span aria-hidden="true">→</span></span>
+              </button>
+              <button type="button" class="portal-role-card" data-go="clinic-portal">
+                <span class="portal-role-top"><span class="portal-role-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="6" width="16" height="15" rx="2"/><path d="M9 6V3h6v3M12 10v7M8.5 13.5h7"/></svg></span><span class="portal-role-arrow" aria-hidden="true">↗</span></span>
+                <strong>Sou uma clínica</strong><span class="portal-role-desc">Conheça o cadastro de parceiros, os serviços e a gestão dos atendimentos.</span>
+                <span class="portal-role-action">Conhecer área da clínica <span aria-hidden="true">→</span></span>
+              </button>
+              <button type="button" class="portal-role-card" data-go="professional-portal">
+                <span class="portal-role-top"><span class="portal-role-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="13" height="14" rx="3"/><path d="m16 10 5-3v10l-5-3M7 12h5"/></svg></span><span class="portal-role-arrow" aria-hidden="true">↗</span></span>
+                <strong>Sou profissional</strong><span class="portal-role-desc">Explore a futura agenda de teleatendimento e teste sua câmera localmente.</span>
+                <span class="portal-role-action">Conhecer área profissional <span aria-hidden="true">→</span></span>
+              </button>
+            </div>
+          </div>
+          <p class="portal-access-note">Ambiente de demonstração. Não há contas reais, triagem médica por vídeo, encaminhamentos ou cadastros ativos nesta versão.</p>
         </section>
         <section id="screen-home" class="screen" aria-labelledby="home-title">
-          <div class="page-heading"><div><p class="muted greeting">Boa tarde, Mariana</p><h1 id="home-title">Como podemos ajudar?</h1></div><span class="avatar big">MS</span></div>
+          <div class="page-heading"><div><p class="muted greeting">Bem-vindo(a) ao Tri\u0027Go</p><h1 id="home-title">Como podemos ajudar?</h1></div><span class="avatar big" aria-label="Perfil demonstrativo">TG</span></div>
           <div class="search-wrap"><span aria-hidden="true">⌕</span><input id="home-search" aria-label="Buscar clínica ou especialidade" placeholder="Buscar clínica, bairro ou especialidade" autocomplete="off"><button class="icon-button" type="button" data-go="clinics" aria-label="Pesquisar clínicas">⚙</button></div>
           <div class="triage-callout"><div class="callout-heading"><span class="callout-icon" aria-hidden="true">☷</span><div><h2>Conte o que está sentindo</h2><p>Triagem gratuita de demonstração, em cerca de 2 minutos.</p></div></div><button class="btn btn-bright" type="button" data-go="triage"><span class="button-arrow" aria-hidden="true">→</span> Iniciar triagem gratuita</button></div>
+          <div class="home-telehealth">
+            <div class="home-telehealth-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="13" height="14" rx="3"/><path d="m16 10 5-3v10l-5-3M7 12h5"/></svg></div>
+            <div class="home-telehealth-copy"><span>ATENDIMENTO ONLINE · EM DESENVOLVIMENTO</span><h2>Converse com um profissional por vídeo</h2><p>Conheça a sala de atendimento remoto e teste sua câmera antes da futura integração.</p></div>
+            <button class="home-telehealth-action" type="button" data-go="online">Conhecer sala online <span aria-hidden="true">→</span></button>
+          </div>
           <div class="section-heading"><h2>Especialidades</h2><button class="text-link" type="button" data-go="clinics">Ver todas →</button></div>
           <div class="specialty-grid"><button type="button" data-go="clinics"><span>⚕</span>Clínica geral</button><button type="button" data-go="clinics"><span>♙</span>Pediatria</button><button type="button" data-go="clinics"><span>♧</span>Ortopedia</button></div>
           <div class="section-heading"><h2>Próximos agendamentos</h2><button class="text-link" type="button" data-go="bookings">Ver todos</button></div>
@@ -190,6 +232,71 @@
         </section>
         <section id="screen-profile" class="screen" aria-labelledby="profile-title">
           <div class="page-heading"><div><span class="eyebrow">MINHA CONTA</span><h1 id="profile-title">Perfil</h1></div></div><div class="content-card profile-card"><span class="avatar big">MS</span><div><h2>Visitante de demonstração</h2><p class="muted">Nenhuma conta foi criada neste protótipo.</p></div></div><div class="content-card"><h2>Sobre o Tri-Go</h2><p>Estamos construindo uma experiência de acesso a serviços de saúde mais organizada, com triagem informativa, busca de clínicas e agendamento.</p><p class="muted">Esta versão demonstra somente a interface e a navegação. Não processa prontuários, dados médicos ou pagamentos reais.</p><a href="./index.html" class="btn btn-outline">Visitar site institucional</a></div>
+        </section>
+
+        <section id="screen-online" class="screen portal-workspace" aria-labelledby="online-title">
+          <header class="role-page-head"><button type="button" data-go="home" class="role-back">← Voltar ao paciente</button><span class="portal-demo-pill">Demonstração</span></header>
+          <div class="role-page-intro"><span class="role-kicker">ATENDIMENTO ONLINE</span><h1 id="online-title">Seu atendimento, de onde estiver.</h1><p>Uma experiência de videoatendimento planejada para conversar com profissionais habilitados. Nesta etapa, você pode apenas testar a própria câmera.</p></div>
+          <div class="role-page-grid">
+            <div class="role-main-card">
+              <div class="role-card-head"><div><h2>Prévia da sala online</h2><p>Teste local do dispositivo · sem conexão com outra pessoa</p></div><span class="role-light-pill">Ambiente de testes</span></div>
+              <div class="portal-camera" data-camera-area="patient">
+                <div class="portal-camera-placeholder"><span>▣</span><strong>Sua câmera está desligada</strong><small>Você decide quando permitir o acesso.</small></div>
+                <video data-camera-preview muted autoplay playsinline aria-label="Imagem local da sua câmera" hidden></video>
+              </div>
+              <div class="camera-controls" data-camera-controls="patient">
+                <button type="button" class="camera-start" data-camera-start="patient">Testar minha câmera</button>
+                <button type="button" class="camera-stop" data-camera-stop="patient" disabled>Desligar câmera</button>
+              </div>
+              <p class="camera-feedback" data-camera-status="patient" role="status" aria-live="polite">Nenhuma imagem ou áudio é enviado ou gravado pelo Tri'Go nesta demonstração.</p>
+            </div>
+            <aside class="role-aside-card"><span class="role-card-kicker">COMO VAI FUNCIONAR</span><h2>Da triagem ao atendimento</h2>
+              <ol class="role-step-list"><li><strong>Conte o que está sentindo</strong><span>Preencha o questionário informativo.</span></li><li><strong>Escolha o tipo de atendimento</strong><span>Presencial ou online, quando disponível.</span></li><li><strong>Entre na sala segura</strong><span>Profissional verificado, consentimento e horário confirmado.</span></li></ol>
+              <button type="button" class="role-aside-action" data-go="triage">Iniciar triagem por perguntas →</button>
+              <p class="role-security-note">Teletriagem por vídeo e consultas reais dependem de autenticação, profissionais habilitados, consentimento e infraestrutura segura. Em emergência, ligue 192.</p>
+            </aside>
+          </div>
+        </section>
+        <section id="screen-clinic-portal" class="screen portal-workspace" aria-labelledby="clinic-portal-title">
+          <header class="role-page-head"><button type="button" class="role-back" data-go="welcome">← Todos os acessos</button><span class="portal-demo-pill">Área da clínica · demonstração</span></header>
+          <div class="role-page-intro"><span class="role-kicker">PARA CLÍNICAS PARCEIRAS</span><h1 id="clinic-portal-title">Sua clínica mais perto de novos pacientes.</h1><p>O futuro painel do parceiro reunirá cadastro, profissionais, serviços, agenda e solicitações recebidas em um só lugar.</p></div>
+          <div class="clinic-portal-highlights"><div><span>01</span><strong>Solicitar parceria</strong><small>Dados institucionais da unidade</small></div><div><span>02</span><strong>Verificação Tri'Go</strong><small>Validação antes da publicação</small></div><div><span>03</span><strong>Gerenciar atendimentos</strong><small>Agenda, serviços e profissionais</small></div></div>
+          <div class="role-page-grid">
+            <section class="role-main-card" aria-labelledby="clinic-form-title">
+              <div class="role-card-head"><div><span class="role-card-kicker">CADASTRO DE EXEMPLO</span><h2 id="clinic-form-title">Simule a solicitação da sua clínica</h2><p>Use somente informações fictícias. Este formulário não envia nem armazena dados.</p></div></div>
+              <form id="clinic-demo-form" class="clinic-onboarding-form" autocomplete="off">
+                <label for="demo-clinic-name">Nome da clínica de exemplo</label><input id="demo-clinic-name" name="clinic" placeholder="Ex.: Clínica Bem Viver" maxlength="75" required>
+                <div class="role-form-grid"><div><label for="demo-clinic-city">Cidade</label><input id="demo-clinic-city" name="city" placeholder="Ex.: Varginha" maxlength="60" required></div><div><label for="demo-clinic-state">Estado</label><select id="demo-clinic-state" name="state" required><option value="">Selecione</option><option>MG</option><option>SP</option><option>RJ</option><option>ES</option><option>PR</option><option>SC</option><option>RS</option><option>BA</option><option>GO</option><option>DF</option><option>Outro</option></select></div></div>
+                <label for="demo-clinic-specialty">Especialidade principal</label><select id="demo-clinic-specialty" name="specialty" required><option value="">Escolha uma especialidade</option><option>Clínica geral</option><option>Ortopedia</option><option>Pediatria</option><option>Cardiologia</option><option>Outra especialidade</option></select>
+                <fieldset class="clinic-demo-services"><legend>Quais serviços deseja anunciar?</legend><label><input type="checkbox" name="service" value="Consultas presenciais" checked> Consultas presenciais</label><label><input type="checkbox" name="service" value="Teleatendimento"> Teleatendimento</label><label><input type="checkbox" name="service" value="Convênios"> Convênios</label></fieldset>
+                <button type="submit" class="role-primary-btn">Visualizar solicitação de exemplo <span aria-hidden="true">→</span></button>
+              </form>
+              <div id="clinic-demo-preview" class="clinic-demo-preview" hidden aria-live="polite"></div>
+            </section>
+            <aside class="role-aside-card">
+              <span class="role-card-kicker">PAINEL DO PARCEIRO</span><h2>O que sua clínica poderá gerenciar</h2>
+              <div class="role-feature-list"><div><span>▣</span><strong>Agenda dos profissionais</strong><small>Horários e indisponibilidades</small></div><div><span>✚</span><strong>Serviços e especialidades</strong><small>Preços, atendimento e convênios</small></div><div><span>⌖</span><strong>Presença no mapa</strong><small>Somente após aprovação da unidade</small></div><div><span>◷</span><strong>Solicitações recebidas</strong><small>Confirmações e remarcações</small></div></div>
+              <button type="button" data-go="clinics" class="role-aside-action">Visualizar mapa demonstrativo →</button>
+              <p class="role-security-note">O cadastro real exigirá autenticação e verificação institucional antes que qualquer clínica apareça para pacientes.</p>
+            </aside>
+          </div>
+        </section>
+        <section id="screen-professional-portal" class="screen portal-workspace" aria-labelledby="professional-portal-title">
+          <header class="role-page-head"><button type="button" class="role-back" data-go="welcome">← Todos os acessos</button><span class="portal-demo-pill">Área profissional · demonstração</span></header>
+          <div class="role-page-intro"><span class="role-kicker">PROFISSIONAIS HABILITADOS</span><h1 id="professional-portal-title">Seu espaço para cuidar à distância.</h1><p>Uma futura área reservada a profissionais verificados, com agenda, atendimentos online e gestão da fila de pacientes.</p></div>
+          <div class="professional-demo-summary"><div><span>ATENDIMENTOS DE EXEMPLO</span><strong>03</strong><small>Agendados no protótipo</small></div><div><span>DISPONIBILIDADE</span><strong>Demo</strong><small>Nenhuma agenda real vinculada</small></div><div><span>ACESSO PROFISSIONAL</span><strong>Verificação</strong><small>Registro obrigatório na versão real</small></div></div>
+          <div class="role-page-grid">
+            <section class="role-main-card" aria-labelledby="professional-camera-title">
+              <div class="role-card-head"><div><span class="role-card-kicker">SALA DE ATENDIMENTO</span><h2 id="professional-camera-title">Prévia do consultório digital</h2><p>Teste sua câmera localmente. Não existe paciente conectado.</p></div></div>
+              <div class="portal-camera" data-camera-area="professional"><div class="portal-camera-placeholder"><span>▣</span><strong>Prévia de vídeo</strong><small>Ative a câmera somente quando desejar.</small></div><video data-camera-preview muted autoplay playsinline aria-label="Imagem local da câmera do profissional" hidden></video></div>
+              <div class="camera-controls" data-camera-controls="professional"><button type="button" class="camera-start" data-camera-start="professional">Testar câmera</button><button type="button" class="camera-stop" data-camera-stop="professional" disabled>Desligar câmera</button></div>
+              <p class="camera-feedback" data-camera-status="professional" role="status" aria-live="polite">Prévia local apenas. Nenhuma imagem é enviada, gravada ou compartilhada.</p>
+            </section>
+            <aside class="role-aside-card"><span class="role-card-kicker">FILA ILUSTRATIVA</span><h2>Próximos atendimentos</h2>
+              <div class="professional-demo-queue"><div><time>09:00</time><span><strong>Atendimento de exemplo 01</strong><small>Triagem online · demonstração</small></span></div><div><time>10:30</time><span><strong>Atendimento de exemplo 02</strong><small>Teleatendimento · demonstração</small></span></div><div><time>14:00</time><span><strong>Atendimento de exemplo 03</strong><small>Retorno · demonstração</small></span></div></div>
+              <button type="button" class="role-aside-action" data-go="online">Ver jornada do paciente →</button><p class="role-security-note">Para atender de verdade será necessária verificação profissional, gestão segura dos prontuários e uma plataforma de videochamada com consentimento.</p>
+            </aside>
+          </div>
         </section>
       </main>
     </div>
