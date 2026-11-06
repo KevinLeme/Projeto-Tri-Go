@@ -27,13 +27,22 @@
   function moveLocationToolbar(){
     const sidebar=root.querySelector(".ride-map-sidebar");
     const list=sidebar?.querySelector(".ride-sidebar-list");
-    if(window.matchMedia("(min-width:901px)").matches && list){
+    const sheet=root.querySelector(".ride-map-sheet");
+    const footer=sheet?.querySelector(".ride-sheet-footer");
+    const desktop=window.matchMedia("(min-width:901px)").matches;
+    if(desktop && list){
       sidebar.insertBefore(toolbar,list);
       toolbar.classList.add("ride-location-in-sidebar");
+      toolbar.classList.remove("ride-location-in-sheet");
+    }else if(sheet && footer){
+      // No celular, os botões ficam NO cartão inferior: nada cobre os marcadores.
+      sheet.insertBefore(toolbar,footer);
+      toolbar.classList.add("ride-location-in-sheet");
+      toolbar.classList.remove("ride-location-in-sidebar");
     }else{
       floating.appendChild(toolbar);
-      toolbar.classList.remove("ride-location-in-sidebar");
     }
+    if(!desktop && !addressForm.hidden) setAddressOpen(false);
   }
   moveLocationToolbar();
   window.addEventListener("resize",moveLocationToolbar);
@@ -277,7 +286,7 @@
       setAddressOpen(false);
     }
   });
-  // Tela PC: endereço já expandido. Celular: GPS e botão de endereço visíveis.
+  // PC mantém busca aberta na lateral; celular usa botões compactos no cartão inferior.
   setAddressOpen(!isMobile());
   window.addEventListener("trigo:screen",event=>{
     if(event.detail?.screen==="clinics"&&window.TriGo?.state?.mapMode==="map"){
