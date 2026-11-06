@@ -111,7 +111,7 @@
     const screen=$("#screen-clinics");
     if(!screen)return;
     const heading=$(".page-heading",screen);
-    if(heading)heading.innerHTML='<div><span class="eyebrow">CLÍNICAS</span><h1 id="clinics-title">Explore no mapa</h1><p class="muted">Pontos e clínicas fictícios para demonstração.</p></div>';
+    if(heading)heading.innerHTML='<div><span class="eyebrow">CLÍNICAS</span><h1 id="clinics-title">Explore no mapa</h1><p class="muted">Pontos e clínicas fictícios para demonstração.</p></div><button type="button" id="desktop-map-toggle" class="desktop-map-toggle" data-view="map" aria-label="Abrir mapa de clínicas">⌖ Abrir mapa</button>';
     const bar=$(".filter-bar",screen);
     if(bar&&!bar.querySelector('[data-sort="insurance"]')){
       bar.querySelector('[data-sort="rating"]')?.remove();
@@ -129,6 +129,24 @@
     wrapper.hidden=true;
     wrapper.innerHTML="\n  <aside class=\"ride-map-sidebar\" aria-label=\"Clínicas demonstrativas\">\n    <div class=\"ride-sidebar-heading\"><span class=\"ride-sidebar-overline\">EXPLORAR CLÍNICAS</span><h2>Escolha seu atendimento</h2><p>Clique em uma clínica para ver horários e agendar.</p></div>\n    <div class=\"ride-sidebar-list\" id=\"map-clinic-list\"></div>\n    <p class=\"ride-sidebar-disclaimer\">Pontos, valores e disponibilidade fictícios.</p>\n  </aside>\n  <div class=\"ride-map-scene\">\n    <div id=\"trigo-map\" role=\"region\" aria-label=\"Mapa interativo de clínicas fictícias na região da Avenida Paulista\"></div>\n    <div id=\"trigo-map-fallback\" class=\"map-fallback\" hidden><strong>Mapa temporariamente indisponível</strong><p>Consulte as clínicas pelo botão Lista.</p><button type=\"button\" data-view=\"list\">Ver lista de clínicas</button></div>\n    <div class=\"ride-map-floating\">\n      <div class=\"ride-map-search\">\n        <button id=\"map-back-to-list\" type=\"button\" aria-label=\"Ver clínicas em lista\">‹</button>\n        <label class=\"sr-only\" for=\"map-search\">Buscar clínica ou especialidade</label>\n        <input id=\"map-search\" type=\"search\" placeholder=\"Buscar clínica ou especialidade\" autocomplete=\"off\">\n        <button type=\"button\" id=\"map-toggle-filters\" class=\"ride-filter-toggle\" aria-controls=\"map-filters\" aria-expanded=\"true\" aria-label=\"Mostrar ou ocultar filtros\">☷</button>\n      </div>\n      <div class=\"ride-map-filters\" id=\"map-filters\" role=\"group\" aria-label=\"Filtros rápidos\">\n        <button type=\"button\" class=\"ride-chip active\" data-map-filter=\"distance\">⌖ Perto no mapa</button>\n        <button type=\"button\" class=\"ride-chip\" data-map-filter=\"price\">R$ Menor preço</button>\n        <button type=\"button\" class=\"ride-chip\" data-map-filter=\"available\">◷ Disponibilidade</button>\n        <button type=\"button\" class=\"ride-chip\" data-map-filter=\"insurance\">✚ Convênio</button>\n      </div>\n    </div>\n    <button class=\"ride-recenter\" id=\"map-my-location\" type=\"button\" aria-label=\"Localizar-me no mapa\" title=\"Minha localização\">⌖</button>\n    <div class=\"ride-map-sheet\" id=\"map-bottom-sheet\" aria-label=\"Clínica selecionada\">\n      <div class=\"ride-sheet-handle\" aria-hidden=\"true\"></div>\n      <div class=\"ride-sheet-header\"><div><span class=\"ride-sheet-overline\">CLÍNICAS NA REGIÃO DE EXEMPLO</span><strong id=\"ride-results-count\">6 opções para explorar</strong></div><span id=\"ride-position-count\">1 de 6</span></div>\n      <div id=\"map-featured-card\"></div>\n      <div class=\"ride-sheet-footer\">\n        <div class=\"ride-sheet-paging\"><button type=\"button\" data-map-step=\"-1\" aria-label=\"Clínica anterior\">‹</button><button type=\"button\" data-map-step=\"1\" aria-label=\"Próxima clínica\">›</button></div>\n        <button type=\"button\" class=\"ride-booking-button\" id=\"ride-book-selected\">Ver horários <span>→</span></button>\n      </div>\n    </div>\n    <div class=\"ride-map-notice\" role=\"note\"><span class=\"ride-info-badge\" aria-hidden=\"true\">i</span><span><strong>Mapa ilustrativo</strong><small>Não representa clínicas reais.</small></span></div>\n    <p id=\"map-note\" class=\"ride-map-access-note\" role=\"status\" aria-live=\"polite\" hidden></p>\n  </div>";
     cards.before(wrapper);
+    // No celular, busca, mapa e cartão inferior são áreas IRMÃS e nunca se sobrepõem.
+    // No desktop, conservamos o mapa de duas colunas e seus controles originais.
+    const adjustMapLayout=()=>{
+      const scene=wrapper.querySelector(".ride-map-scene");
+      const toolbar=wrapper.querySelector(".ride-map-floating");
+      const sheet=wrapper.querySelector(".ride-map-sheet");
+      if(!scene||!toolbar||!sheet)return;
+      if(window.matchMedia("(max-width:900px)").matches){
+        if(toolbar.parentElement!==wrapper)wrapper.insertBefore(toolbar,scene);
+        if(sheet.parentElement!==wrapper)wrapper.appendChild(sheet);
+      }else{
+        if(toolbar.parentElement!==scene)scene.insertBefore(toolbar,scene.querySelector(".ride-recenter"));
+        if(sheet.parentElement!==scene)scene.insertBefore(sheet,scene.querySelector(".ride-map-notice"));
+      }
+      if(map && !wrapper.hidden)requestAnimationFrame(()=>map.invalidateSize(false));
+    };
+    adjustMapLayout();
+    window.addEventListener("resize",adjustMapLayout);
     const recenter=$("#map-my-location");
     if(recenter)recenter.innerHTML=svgIcon("location");
     const toggle=$("#map-toggle-filters");
@@ -243,7 +261,13 @@
     listBox.hidden=show;
     wrapper.hidden=!show;
     screen.classList.toggle("is-map-active",show);
-    $$("[data-view]").forEach(b=>{
+    const desktopToggle=$("#desktop-map-toggle");
+    if(desktopToggle){
+      desktopToggle.dataset.view=show?"list":"map";
+      desktopToggle.textContent=show?"☷ Ver lista":"⌖ Abrir mapa";
+      desktopToggle.setAttribute("aria-label",show?"Mostrar clínicas em lista":"Abrir mapa de clínicas");
+    }
+    $("[data-view]").forEach(b=>{
       const pressed=b.dataset.view===state.mapMode;
       b.classList.toggle("selected",pressed);
       b.setAttribute("aria-pressed",pressed?"true":"false");
