@@ -158,3 +158,16 @@ Modelo comercial proposto (a validar): **pacientes gratuitos para mapa/formulár
 Detalhes do fluxo, preços candidatos e restrições éticas/regulatórias: `docs/TRIAGEM-E-MODELO-DE-NEGOCIO.md`.
 
 Teste de regressão: `node --test tests/jornada-triagem.test.cjs`.
+
+
+## Planos e valores visíveis na demonstração
+
+Os valores propostos foram incorporados à interface pública dos portais comerciais:
+- `app.html#/clinic-portal`: **Básico R$ 0/mês**, **Gestão R$ 99/mês**, **Gestão Plus R$ 199/mês**;
+- `app.html#/professional-portal`: **Perfil básico R$ 0/mês**, **Pro R$ 49/mês**;
+- `app.html#/triage-choice` e `#/online`: formulário gratuito e teletriagem médica por vídeo com **valor ainda a definir** com os parceiros;
+- `app.html#/teleconsult`: teleconsulta médica futura, com preço dependente de profissional e disponibilidade.
+
+A seleção de planos é **apenas visual** e aparece na prévia do formulário fictício da clínica: não registra contas, não publica clínicas, não cobra, não armazena assinatura ou dados de faturamento. Os preços são **hipóteses para testes de mercado**, não oferta comercial final.
+
+Teste: `node --test tests/planos.test.cjs`.
