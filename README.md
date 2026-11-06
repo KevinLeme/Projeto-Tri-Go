@@ -122,3 +122,22 @@ Verificações de regressão:
 `node --test tests/portais.test.cjs`.
 
 **Antes do lançamento:** autenticação e autorização por papel, verificação de clínicas e profissionais, backend com registros e segurança, LGPD, consentimento para teleatendimento e vídeo via infraestrutura apropriada.
+
+
+## Catálogo de especialidades — navegação antes do mapa
+
+O botão **Ver todas** da seção Especialidades da tela inicial agora abre `app.html#/specialties`, e os três cartões iniciais abrem o catálogo com a especialidade destacada.
+
+- Catálogo visual com **18 especialidades**, pesquisa e filtro **Com clínicas de exemplo**.
+- Cada cartão informa se existe clínica demonstrativa para aquela especialidade. Isso é calculado a partir das clínicas fictícias do front-end.
+- Ao escolher uma especialidade com clínica de exemplo, o usuário vai ao mapa `#/clinics` com um filtro **exato** por especialidade. O filtro acompanha tanto a lista quanto os marcadores do mapa.
+- O mapa permite **Alterar** a especialidade no catálogo ou **Limpar** o filtro para mostrar todas as clínicas.
+- Especialidades ainda sem clínicas demonstrativas mostram um aviso no catálogo, sem sugerir disponibilidade falsa e sem criar agendamento.
+- **O backend não foi alterado.** Futuramente o catálogo deverá vir de especialidades e serviços reais das clínicas verificadas.
+- Testes: `node --test tests/especialidades.test.cjs`.
+
+Para testar:
+- `app.html#/home` — clicar em **Ver todas**;
+- `app.html#/specialties` — buscar e escolher a especialidade;
+- `app.html#/clinics` — filtrar o mapa e limpar ou trocar a seleção.
+
