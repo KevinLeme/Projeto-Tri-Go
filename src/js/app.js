@@ -35,7 +35,7 @@
     document.body.classList.toggle("is-online-room",screen==="online");
     document.body.classList.toggle("is-triage-screen", screen === "triage");
     $$(".screen").forEach((node)=>{const active=node.id==="screen-"+screen;node.classList.toggle("is-active",active);node.hidden=!active;});
-    $$("[data-nav]").forEach((node)=>{const active=node.dataset.nav===screen || (screen==="clinic"&&node.dataset.nav==="clinics") || (screen==="success"&&node.dataset.nav==="bookings");node.classList.toggle("is-active",active);if(active)node.setAttribute("aria-current","page");else node.removeAttribute("aria-current");});
+    $$("[data-nav]").forEach((node)=>{const active=node.dataset.nav===screen || (screen==="specialties"&&node.dataset.nav==="home") || (screen==="clinic"&&node.dataset.nav==="clinics") || (screen==="success"&&node.dataset.nav==="bookings");node.classList.toggle("is-active",active);if(active)node.setAttribute("aria-current","page");else node.removeAttribute("aria-current");});
     $("#page-title").textContent=titles[screen]||"Tri-Go";
     if (screen==="result") renderResults();
     if (screen==="clinics") renderClinics();
