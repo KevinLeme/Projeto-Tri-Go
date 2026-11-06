@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="src/css/map-location.css">
   <link rel="stylesheet" href="src/css/triage-flow.css">
   <link rel="stylesheet" href="src/css/portal.css">
+  <link rel="stylesheet" href="src/css/specialties.css">
   <script defer src="src/js/ui-icons.js"></script>
   <script defer src="src/js/app.js"></script>
   <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -23,6 +24,7 @@
   <script defer src="src/js/map-location.js"></script>
   <script defer src="src/js/triage-flow.js"></script>
   <script defer src="src/js/portal.js"></script>
+  <script defer src="src/js/specialties.js"></script>
 </head>
 <body>
   <div class="app-shell">
@@ -96,8 +98,8 @@
             <div class="home-telehealth-copy"><span>ATENDIMENTO ONLINE · EM DESENVOLVIMENTO</span><h2>Converse com um profissional por vídeo</h2><p>Conheça a sala de atendimento remoto e teste sua câmera antes da futura integração.</p></div>
             <button class="home-telehealth-action" type="button" data-go="online">Conhecer sala online <span aria-hidden="true">→</span></button>
           </div>
-          <div class="section-heading"><h2>Especialidades</h2><button class="text-link" type="button" data-go="clinics">Ver todas →</button></div>
-          <div class="specialty-grid"><button type="button" data-go="clinics"><span>⚕</span>Clínica geral</button><button type="button" data-go="clinics"><span>♙</span>Pediatria</button><button type="button" data-go="clinics"><span>♧</span>Ortopedia</button></div>
+          <div class="section-heading"><h2>Especialidades</h2><button class="text-link" type="button" data-go="specialties">Ver todas →</button></div>
+          <div class="specialty-grid"><button type="button" data-catalog-specialty="Clínica geral"><span>⚕</span>Clínica geral</button><button type="button" data-catalog-specialty="Pediatria"><span>♙</span>Pediatria</button><button type="button" data-catalog-specialty="Ortopedia"><span>♧</span>Ortopedia</button></div>
           <div class="section-heading"><h2>Próximos agendamentos</h2><button class="text-link" type="button" data-go="bookings">Ver todos</button></div>
           <div class="preview-appointments" aria-label="Agendamentos de exemplo">
             <article class="preview-appointment">
@@ -110,6 +112,27 @@
             </article>
           </div>
           <p class="preview-disclaimer">Agendamentos fictícios usados somente para demonstrar a interface.</p>
+        </section>
+        <section id="screen-specialties" class="screen" aria-labelledby="specialties-title">
+          <div class="specialties-heading">
+            <button class="specialties-back" type="button" data-go="home" aria-label="Voltar ao início">←</button>
+            <div><span class="eyebrow">ENCONTRE SEU ATENDIMENTO</span><h1 id="specialties-title">Qual especialidade procura?</h1><p>Explore as áreas de atendimento antes de escolher uma clínica no mapa.</p></div>
+          </div>
+          <div class="specialties-search-box">
+            <svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="10.8" cy="10.8" r="7"/><path d="m16 16 5 5"/></svg>
+            <label for="specialty-search" class="sr-only">Buscar especialidade</label>
+            <input id="specialty-search" type="search" placeholder="Buscar especialidade, como cardiologia..." autocomplete="off">
+            <button id="specialty-search-clear" type="button" hidden aria-label="Limpar busca">×</button>
+          </div>
+          <div class="specialties-toolbar"><div id="specialty-mode" class="specialty-modes" role="group" aria-label="Mostrar especialidades">
+            <button type="button" class="specialty-mode active" data-specialty-mode="all" aria-pressed="true">Todas</button>
+            <button type="button" class="specialty-mode" data-specialty-mode="available" aria-pressed="false">Com clínicas de exemplo</button>
+          </div><span class="specialties-count" id="specialties-count" aria-live="polite"></span></div>
+          <div id="specialties-grid" class="specialties-catalog" aria-label="Especialidades de atendimento"></div>
+          <div id="specialties-empty" class="specialties-empty" hidden><strong>Nenhuma especialidade encontrada.</strong><p>Tente outro termo ou volte a visualizar todas.</p><button type="button" data-specialty-reset>Mostrar todas</button></div>
+          <div id="specialties-notice" class="specialties-notice" role="status" aria-live="polite" hidden></div>
+          <div class="specialties-footer"><div><strong>Não encontrou o que procura?</strong><p>Você também pode explorar todas as clínicas fictícias, sem selecionar uma especialidade.</p></div><button type="button" data-specialty-all-clinics>Ver todas as clínicas <span aria-hidden="true">→</span></button></div>
+          <p class="specialties-disclaimer">Catálogo ilustrativo. A presença de uma especialidade não significa que há profissionais cadastrados ou atendimentos disponíveis. Não representa indicação médica.</p>
         </section>
         <section id="screen-triage" class="screen" aria-label="Questionário demonstrativo de sintomas">
   <div class="triage-mobile-header">
