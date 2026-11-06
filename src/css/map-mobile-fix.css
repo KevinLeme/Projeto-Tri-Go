@@ -1,0 +1,182 @@
+/* Mobile map repair — override legacy layouts without touching desktop.
+ * Location controls live in the bottom sheet; the actual map stays unobstructed.
+ * Force a light backdrop even when tiles fail to load on some Android browsers.
+ */
+.device-status{display:none!important}
+#screen-clinics .ride-map-scene,
+#screen-clinics .leaflet-container,
+#screen-clinics #trigo-map{
+  color-scheme:light!important;
+  background-color:#e6f1e9!important;
+}
+#screen-clinics .leaflet-tile-pane,
+#screen-clinics .leaflet-map-pane,
+#screen-clinics .leaflet-tile-container,
+#screen-clinics img.leaflet-tile{
+  filter:none!important;
+  -webkit-filter:none!important;
+  mix-blend-mode:normal!important;
+}
+#screen-clinics img.leaflet-tile{opacity:1!important}
+#screen-clinics .leaflet-container{font-family:inherit}
+@media(max-width:900px){
+  #screen-clinics.is-map-active .ride-map-layout{
+    position:fixed!important;
+    inset:0 0 calc(73px + env(safe-area-inset-bottom))!important;
+    height:auto!important;
+    max-height:none!important;
+    min-height:0!important;
+    border:0!important;
+    border-radius:0!important;
+    overflow:hidden!important;
+    background:#e9f2eb!important;
+  }
+  #screen-clinics .ride-map-layout .ride-map-scene{height:100%;width:100%;background:#e6f1e9!important}
+  #screen-clinics .ride-map-scene #trigo-map{background:#e6f1e9!important}
+  #screen-clinics .ride-map-floating{
+    top:calc(10px + env(safe-area-inset-top,0px))!important;
+    left:12px!important;
+    right:12px!important;
+    gap:6px!important;
+  }
+  #screen-clinics .ride-map-search{
+    min-height:47px!important;
+    border-radius:15px!important;
+    padding:4px 8px 4px 5px!important;
+    gap:7px!important;
+  }
+  #screen-clinics .ride-map-search button{
+    flex:0 0 37px!important;
+    width:37px!important;
+    height:37px!important;
+    border-radius:11px!important;
+  }
+  #screen-clinics .ride-map-search input{height:36px;font-size:12px}
+  #screen-clinics .ride-map-search input::placeholder{font-size:11px}
+  #screen-clinics .ride-map-filters{
+    gap:6px!important;
+    padding:0 12px 6px 0!important;
+    margin:0 -12px 0 0!important;
+    max-width:calc(100vw - 12px);
+  }
+  #screen-clinics .ride-chip{
+    min-height:32px!important;
+    font-size:10px!important;
+    padding:7px 11px!important;
+    box-shadow:0 2px 8px rgba(16,72,47,.13)!important;
+    border-radius:999px!important;
+  }
+  #screen-clinics .ride-map-sheet{
+    display:flex!important;
+    flex-direction:column!important;
+    gap:0!important;
+    padding:8px 14px calc(11px + env(safe-area-inset-bottom,0px))!important;
+    min-height:0!important;
+    height:auto!important;
+    max-height:54%!important;
+    overflow:visible!important;
+    border-radius:22px 22px 0 0!important;
+    background:#ffffff!important;
+    color:#15372c!important;
+    box-shadow:0 -8px 30px rgba(27,65,47,.12)!important;
+  }
+  #screen-clinics .ride-sheet-handle{
+    width:35px!important;
+    height:4px!important;
+    margin:0 auto 8px!important;
+    background:#d8e8df!important;
+  }
+  #screen-clinics .ride-sheet-header{margin-bottom:8px!important}
+  #screen-clinics .ride-sheet-overline{font-size:9px}
+  #screen-clinics .ride-sheet-header strong{font-size:13px!important}
+  #screen-clinics .ride-featured-main{gap:8px}
+  #screen-clinics .ride-featured-logo{width:37px;height:37px;flex-basis:37px;border-radius:11px}
+  #screen-clinics .ride-featured-copy>strong{font-size:12px}
+  #screen-clinics .ride-featured-badges{margin-top:5px!important}
+  #screen-clinics .ride-featured-badges span{font-size:9px}
+  #screen-clinics .ride-featured-price strong{font-size:13px}
+  #screen-clinics .ride-sheet-footer{margin-top:9px!important;gap:8px}
+  #screen-clinics .ride-sheet-paging button{width:33px!important;height:39px!important;font-size:21px}
+  #screen-clinics .ride-booking-button{min-height:40px!important;font-size:12px;box-shadow:none!important}
+  #screen-clinics .ride-location-in-sheet{
+    position:static!important;
+    display:block!important;
+    padding:8px 0 0!important;
+    margin:9px 0 0!important;
+    background:transparent!important;
+    border:0!important;
+    border-top:1px solid #e6eee9!important;
+    border-radius:0!important;
+    box-shadow:none!important;
+    min-width:0;
+    pointer-events:auto;
+  }
+  #screen-clinics .ride-location-in-sheet .ride-location-buttons{
+    display:grid!important;
+    grid-template-columns:1fr 1fr!important;
+    gap:8px!important;
+  }
+  #screen-clinics .ride-location-in-sheet .ride-location-buttons button{
+    min-height:32px!important;
+    padding:6px 9px!important;
+    border-radius:9px!important;
+    font-size:10px!important;
+    gap:5px!important;
+    box-shadow:none!important;
+    line-height:1.1!important;
+  }
+  #screen-clinics .ride-location-in-sheet .ride-location-buttons button>span{font-size:16px}
+  #screen-clinics .ride-location-in-sheet .ride-address-panel{
+    position:absolute!important;
+    left:11px!important;
+    right:11px!important;
+    bottom:calc(100% + 8px)!important;
+    margin:0!important;
+    padding:15px!important;
+    max-height:min(56dvh,390px)!important;
+    overflow-y:auto!important;
+    z-index:1300!important;
+    background:#fff!important;
+    color:#1c4731!important;
+    border:1px solid #c9e9d7!important;
+    border-radius:16px!important;
+    box-shadow:0 6px 30px rgba(17,61,39,.22)!important;
+  }
+  #screen-clinics .ride-location-in-sheet .ride-address-fields{display:flex;flex-wrap:wrap}
+  #screen-clinics .ride-location-in-sheet .ride-address-fields input{min-width:120px}
+  #screen-clinics .ride-location-in-sheet .ride-address-fields button{min-height:38px}
+  #screen-clinics .ride-location-in-sheet .ride-address-results{max-height:140px}
+  #screen-clinics .ride-recenter{display:none!important}
+  #screen-clinics .ride-map-notice{display:none!important}
+  #screen-clinics .ride-map-scene .leaflet-control-attribution{
+    bottom:0!important;
+    font-size:8px!important;
+    background:rgba(255,255,255,.9)!important;
+    color:#495f52!important;
+  }
+  #screen-clinics .ride-location-status{
+    bottom:calc(240px + env(safe-area-inset-bottom))!important;
+    left:12px!important;
+    right:12px!important;
+    max-width:none!important;
+    z-index:1400;
+  }
+  #screen-clinics .ride-location-region{
+    bottom:calc(240px + env(safe-area-inset-bottom))!important;
+    left:12px!important;
+    right:12px!important;
+    max-width:none!important;
+    padding:9px 12px!important;
+  }
+  #screen-clinics .ride-location-region p{font-size:10px!important;line-height:1.35}
+}
+@media(max-width:380px){
+  #screen-clinics .ride-map-sheet{padding-left:10px!important;padding-right:10px!important}
+  #screen-clinics .ride-location-in-sheet .ride-location-buttons button{font-size:9px!important;padding:6px 4px!important}
+  #screen-clinics .ride-featured-badges span{font-size:8px}
+}
+@media(max-height:680px) and (max-width:900px){
+  #screen-clinics .ride-map-sheet{max-height:60%!important}
+  #screen-clinics .ride-location-in-sheet .ride-location-buttons button{min-height:29px!important}
+  #screen-clinics .ride-sheet-header{margin-bottom:5px!important}
+}
