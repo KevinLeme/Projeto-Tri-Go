@@ -36,9 +36,11 @@ function mount({mobile=false,permission="prompt",places=[]}={}){
   root.querySelector=selector=>({
     ".ride-map-floating":element("floating"),
     ".ride-map-sidebar":element("sidebar"),
-    ".ride-map-scene":element("scene")
+    ".ride-map-scene":element("scene"),
+    ".ride-map-sheet":element("map-bottom-sheet")
   })[selector]||null;
   element("sidebar").querySelector=selector=>selector===".ride-sidebar-list"?element("sidebar-list"):null;
+  element("map-bottom-sheet").querySelector=selector=>selector===".ride-sheet-footer"?element("sheet-footer"):null;
   const document={
     getElementById:id=>id==="demo-map-wrap"?root:element(id),
     querySelector:selector=>selector.startsWith("#")?element(selector.slice(1)):null,
@@ -133,4 +135,10 @@ test("retornar à demonstração não conserva marcador de localização",()=>{
   window.TriGoLocation.resetToDemo();
   assert.equal(record.reset,1);
   assert.equal(Object.values(nodes).find(element=>element.id==="ride-location-region")?.hidden,true);
+});
+
+test("no celular GPS e endereço ficam no cartão inferior, sem tapar o mapa",()=>{
+  const {record}=mount({mobile:true});
+  const toolbar=Object.entries(record.parents).find(([id])=>id.startsWith("div-"));
+  assert.equal(toolbar?.[1],"map-bottom-sheet");
 });
