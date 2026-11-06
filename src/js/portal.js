@@ -139,7 +139,9 @@
     $("[data-preview-specialty]",preview).textContent=specialty;
     $("[data-preview-services]",preview).textContent=services.join(", ")||"Nenhum";
     const chosenPlan=window.TriGoPricing?.getSelected("clinic");
-    $("[data-preview-plan]",preview).textContent=chosenPlan?(chosenPlan.label+" — "+(chosenPlan.value===0?"R$ 0/mês":"R$ "+chosenPlan.value+"/mês")):"Básico — R$ 0/mês";
+    $("[data-preview-plan]",preview).textContent=chosenPlan
+      ?chosenPlan.label+" — 30 dias grátis; depois "+chosenPlan.value.toLocaleString("pt-BR",{style:"currency",currency:"BRL"})+"/mês"
+      :"Essencial — 30 dias grátis; depois R$ 29,90/mês";
     preview.hidden=false;
     preview.scrollIntoView({behavior:"smooth",block:"nearest"});
   });
